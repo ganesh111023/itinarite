@@ -13,7 +13,6 @@
 /tmp
 /config/config.yml
 /config/database.yml
-/config/secrets.yml
 /public/cache
 /public/stylesheets/compiled
 /public/system/*
