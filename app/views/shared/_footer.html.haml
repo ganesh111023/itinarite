@@ -1,4 +1,22 @@
-%nav.navbar.navbar-inverse
-	.container-fluid
-		.navbar-brand
-			= "Itinirite"
+- flash.each do |name, msg|
+  - if msg.is_a?(String)
+    %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
+      = content_tag :div, msg, :id => "flash_#{name}"
+/ Footer
+%footer.footer
+  .row.full-width
+    .small-12.medium-12.large-12.columns
+      %h4 Follow Me
+      %ul.footer-links
+        %li
+          %a{:href => "#"} GitHub
+        %li
+          %a{:href => "#"} Facebook
+        %li
+          %a{:href => "#"} Twitter
+        %li
+          %a{:href => "#"} Instagram
+        %li
+          %a{:href => "#"} Dribbble
+        %ul
