@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   #validation
   validates :name, presence: true
   #validates :profile_picture, presence: true
-  validates :address, presence: true
+  #validates :address, presence: true
 
 end

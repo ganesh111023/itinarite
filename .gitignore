@@ -15,6 +15,7 @@
 /config/*
 /config/database.yml
 /tmp
+/public/*
 /public/cache
 /public/stylesheets/compiled
 /public/system/*
