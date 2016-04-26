@@ -128,3 +128,90 @@
   margin-top: -10px;
   float: left;
 }
+.blue_heading{
+  color: rgb(63,72,204);
+}
+.profile_title{
+  font-size: 25px !important;
+  font-weight: 200px;
+}
+.right_nav{
+  padding-right: 120px;
+}
+.dropdown-menu > li > a {
+    clear: both;
+    color: #333;
+    display: block;
+    font-weight: 400;
+    line-height: 1.42857;
+    white-space: nowrap;
+}
+.user_dashboard{
+  margin-top: 50px;
+}
+.profile_pic{
+  width: 160px;
+  min-height: 150px;
+  border: 2px solid black;
+}
+
+.friend{
+  width: 160px;
+  min-height: 310px;
+  border: 2px solid black;
+}
+.trip_block{
+  width: 800px;
+  min-height: 500px;
+  border:  2px solid black;
+}
+.box-heading{
+  color: rgb(63,72,204);
+  font-family: monospace,Georgia,serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+.black_color{
+  color: black;
+}
+.right_nav li > a{
+  color: black;
+}
+
+.dropdown-menu{
+   min-width: 86px !important;
+}
+
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus, .navbar-nav.open > li > a:focus {
+  border: 1px solid;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+  background-color: rgb(148,220,248);
+}
+
+.navbar-nav > li > .dropdown-menu {
+  max-width: 86px !important;
+  min-width: 86px !important;
+  border: 1px solid black !important;
+  border-bottom-left-radius: 10% !important ;
+  border-bottom-right-radius: 10% !important;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+  border: 1px solid;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+  background-color: rgb(148,220,248);
+} 
+.dropdown-menu > li > a {
+    font-size: 11px !important;
+    white-space: normal !important;
+}
+.dropdown-menu > li:not(:last-child) > a:after{
+  content: "";
+  display: block;
+  height: 1px;
+  margin-left: -20px;
+  width: 85px;
+  background: black;
+}
