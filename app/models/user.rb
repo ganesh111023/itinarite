@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   #mount uploader to upload photo
   mount_uploader :profile_picture, PhotoUploader
 
+  # accessor
+  attr_accessor :profile_pic
+
   #validation
   validates :name, presence: true
   #validates :profile_picture, presence: true

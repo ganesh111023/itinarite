@@ -151,7 +151,7 @@
 }
 .profile_pic{
   width: 160px;
-  min-height: 150px;
+  min-height: 180px;
   border: 2px solid black;
 }
 
@@ -214,4 +214,25 @@
   margin-left: -20px;
   width: 85px;
   background: black;
+}
+
+.image_link{
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  opacity: 0.51;
+  padding: 9px 26px 2px 36px;
+  transition: outline-color 0.13s ease-out 0s;
+}
+.display_none{
+  display:none;
+}
+.profile_pic:hover{
+  display: block;
+}
+#preview img {
+  float: right;
+  margin-top: 21px;
+  max-height: 100px;
+  max-width: 100px;
 }
