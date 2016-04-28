@@ -4,8 +4,9 @@
 			%span.box-heading
 				= current_user.name if current_user
 			.div.profile_pic
-				- if current_user.profile_picture.present?
-					= image_tag(current_user.profile_picture.url, size: "155x175", alt: "Profile Picture")
+				.picture_block
+					- if current_user.profile_picture.present?
+						= image_tag(current_user.profile_picture.url, alt: "Profile Picture",class: "picture_block")
 				%a{"data-target" => "#myModal", "data-toggle" => "modal", class: "image_link"} Upload Image
 				#myModal.modal.fade{:role => "dialog"}
 					.modal-dialog
