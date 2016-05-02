@@ -28,6 +28,7 @@
   background-color: rgb(148,220,248);
   text-align: left;
   color: #fff;
+  height: 50px;
 }
 
 .header h4 {
@@ -161,9 +162,10 @@
   border: 2px solid black;
 }
 .trip_block{
+  border: 2px solid black;
+  margin-bottom: 40px;
+  min-height: 555px;
   width: 800px;
-  min-height: 500px;
-  border:  2px solid black;
 }
 .box-heading{
   color: rgb(63,72,204);
@@ -239,4 +241,10 @@
 .picture_block{
   width: 155px;
   height: 175px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.home_page{
+  min-height: 555px;
 }

@@ -1,0 +1,43 @@
+.container.main_block.user_dashboard
+	.row
+		.col-sm-12.col-md-2
+			%span.box-heading
+				= current_user.name if current_user
+			.div.profile_pic
+				.picture_block
+					- if current_user.profile_picture.present?
+						= image_tag(current_user.profile_picture.url, alt: "Profile Picture",class: "picture_block")
+				%a{"data-target" => "#myModal", "data-toggle" => "modal", class: "image_link"} Upload Image
+				#myModal.modal.fade{:role => "dialog"}
+					.modal-dialog
+						.modal-content
+							.modal-header
+								%button.close{"data-dismiss" => "modal", :type => "button"} ×
+								%h4.modal-title Select Profile picture
+								%div#preview
+							.modal-body
+								= form_for(current_user, url: upload_picture_dashboard_path(id: current_user.id), method: :post) do |f|
+									= f.file_field :profile_pic
+									%br
+									= f.submit "Upload Image", class: "btn btn-success"
+							.modal-footer
+								%button.btn.btn-success{"data-dismiss" => "modal", :type => "button"} Close
+			%br
+			%span.box-heading
+				= "friends"
+			.div.friend
+		.col-sm-12.col-md-9
+			%span.box-heading
+				= "My Trip"
+			.div.trip_block
+
+
+:javascript
+	$('#user_profile_pic').change(function(){
+	    var oFReader = new FileReader();
+	    oFReader.readAsDataURL(this.files[0]);
+	    console.log(this.files[0]);
+	    oFReader.onload = function (oFREvent) {
+	        $('#preview').html('<img src="'+oFREvent.target.result+'">');
+	    };
+	});

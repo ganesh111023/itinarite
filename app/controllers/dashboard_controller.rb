@@ -5,6 +5,9 @@ class DashboardController < ApplicationController
 		
 	end
 
+	def profile
+	end
+
 	#upload_picture_dashboard
 	def upload_picture
 		if current_user && params[:user].present?
@@ -16,7 +19,8 @@ class DashboardController < ApplicationController
 		else
 			flash[:alert] = "Please select image and upload!"
 		end
-			redirect_to dashboard_index_path
+			redirect_to profile_path
 	end
 
 end
+#home_dashboard_index

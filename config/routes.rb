@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'dashboard#index'
-
+   get '/profile', to: 'dashboard#profile'
    resources :dashboard, only: :index do
     member do
       post 'upload_picture'

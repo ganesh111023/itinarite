@@ -3,14 +3,14 @@
   .container-fluid
     .navbar-header
       %b 
-        %a.navbar-brand.blue_heading.profile_title{:href => "#"} Itinarite
+        %a.navbar-brand.blue_heading.profile_title{:href => "/"} Itinarite
     %ul.nav.navbar-nav.right_nav.navbar-right
       %li
-        %a{:href => "#"}
+        %a{:href => "/"}
           %span
           Home
       %li
-        %a{:href => "#"}
+        %a{:href => "/profile"}
           %span
           = current_user.name.capitalize if current_user.present?
       %li.dropdown
