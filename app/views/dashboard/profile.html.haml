@@ -30,7 +30,10 @@
 			%span.box-heading
 				= "My Trip"
 			.div.trip_block
-
+	.row
+		.col-sm-12.col-md-2
+			%div
+				#basic_map
 
 :javascript
 	$('#user_profile_pic').change(function(){
@@ -41,3 +44,11 @@
 	        $('#preview').html('<img src="'+oFREvent.target.result+'">');
 	    };
 	});
+	$("document").ready(function(){
+		handler = Gmaps.build('Google');
+		handler.buildMap({ provider: {}, internal: {id: 'basic_map'}}, function(){
+	    handler.fitMapToBounds();
+	    handler.getMap().setZoom(2); 
+	  });
+	});
+	
