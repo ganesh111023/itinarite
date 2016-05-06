@@ -23,17 +23,20 @@
 							.modal-footer
 								%button.btn.btn-success{"data-dismiss" => "modal", :type => "button"} Close
 			%br
-			%span.box-heading
-				= "friends"
-			.div.friend
-		.col-sm-12.col-md-9
+			.side_link
+				%span.box-heading
+					= "Live Feed"
+					%hr
+					= "Friends"
+					%hr
+					= "My Recent Trips"
+		.col-sm-12.col-md-8
 			%span.box-heading
 				= "My Trip"
-			.div.trip_block
-	.row
-		.col-sm-12.col-md-2
 			%div
 				#basic_map
+			%div
+				#tripblock
 
 :javascript
 	$('#user_profile_pic').change(function(){
