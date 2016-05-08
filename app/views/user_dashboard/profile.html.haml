@@ -16,7 +16,7 @@
 								%h4.modal-title Select Profile picture
 								%div#preview
 							.modal-body
-								= form_for(current_user, url: upload_picture_dashboard_path(id: current_user.id), method: :post) do |f|
+								= form_for(current_user, url: upload_picture_user_dashboard_path(id: current_user.id), method: :post) do |f|
 									= f.file_field :profile_pic
 									%br
 									= f.submit "Upload Image", class: "btn btn-success"
@@ -30,6 +30,8 @@
 					= "Friends"
 					%hr
 					= "My Recent Trips"
+					%hr
+					= link_to "followings(#{@followings_count})", user_following_user_dashboard_path(id: current_user.id)
 		.col-sm-12.col-md-8
 			%span.box-heading
 				= "My Trip"
@@ -37,6 +39,7 @@
 				#basic_map
 			%div
 				#tripblock
+					= render 'user'
 
 :javascript
 	$('#user_profile_pic').change(function(){

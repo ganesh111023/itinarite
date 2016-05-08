@@ -2,10 +2,12 @@ class UserDashboardController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-	  
+	 
 	end
 
 	def profile
+	   @users = User.all
+	   @followings_count = current_user.following.size
 	end
 
 	#upload_picture_dashboard
@@ -23,14 +25,20 @@ class UserDashboardController < ApplicationController
 	end
 
 	def follow_user
-		binding.pry
+		@users = User.all
 		@user = User.find_by_id params[:id]
-		current_user.follow_user(@user)
+		current_user.follow(@user)
 	end
 
 	def unfollow_user
+		@users = User.all
 		@user = User.find_by_id params[:id]
-		current_user.unfollow_user(@user)
+		current_user.unfollow(@user)
+	end
+
+	def user_following
+		@user = User.find_by_id params[:id]
+		@followings = @user.following
 	end
 
 end

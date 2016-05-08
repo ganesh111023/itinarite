@@ -289,3 +289,6 @@ body{
   margin-bottom: 15px;
   background-color: white;
 }
+.btn-xs, .btn-group-xs > .btn {
+  margin-bottom: 10px;
+}

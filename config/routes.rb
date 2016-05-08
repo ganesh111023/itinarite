@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'dashboard#index'
-   get '/profile', to: 'dashboard#profile'
-   resources :dashboard, only: :index do
+   root 'user_dashboard#index'
+   get '/profile', to: 'user_dashboard#profile'
+   resources :user_dashboard, only: :index do
     member do
       post 'upload_picture'
+      post 'follow_user'
+      post 'unfollow_user'
+      get 'user_following'
     end
    end
 
