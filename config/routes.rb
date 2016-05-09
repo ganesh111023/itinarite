@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'follow_user'
       post 'unfollow_user'
       get 'user_following'
+      get 'user_followers'
     end
    end
 

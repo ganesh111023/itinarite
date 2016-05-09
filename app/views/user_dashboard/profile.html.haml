@@ -32,6 +32,8 @@
 					= "My Recent Trips"
 					%hr
 					= link_to "followings(#{@followings_count})", user_following_user_dashboard_path(id: current_user.id)
+					%hr
+					= link_to "follower(#{@followers_count})", user_followers_user_dashboard_path(id: current_user.id)
 		.col-sm-12.col-md-8
 			%span.box-heading
 				= "My Trip"

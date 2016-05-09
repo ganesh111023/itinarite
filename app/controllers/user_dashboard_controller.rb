@@ -8,6 +8,7 @@ class UserDashboardController < ApplicationController
 	def profile
 	   @users = User.all
 	   @followings_count = current_user.following.size
+	   @followers_count = current_user.followers.uniq.size
 	end
 
 	#upload_picture_dashboard
@@ -39,6 +40,11 @@ class UserDashboardController < ApplicationController
 	def user_following
 		@user = User.find_by_id params[:id]
 		@followings = @user.following
+	end
+
+	def user_followers
+		@user = User.find_by_id params[:id]
+		@followers = @user.followers.uniq
 	end
 
 end
