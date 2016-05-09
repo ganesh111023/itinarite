@@ -8,7 +8,6 @@ body{
 .profile_picture{
 	width:120px;
 	height: 120px;
-	border: solid;
   background-color: white;
 }
 .full-width {
@@ -159,7 +158,6 @@ body{
 .profile_pic{
   width: 160px;
   min-height: 180px;
-  border: 2px solid black;
 }
 
 .friend{
