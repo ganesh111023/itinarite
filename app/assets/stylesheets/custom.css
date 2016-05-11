@@ -264,6 +264,7 @@ body{
   margin-left: 15px;
   padding: 2px;
   width: 150px;
+  background-color: white;
 }
 .logo_app{
   height: 50px;
@@ -271,6 +272,7 @@ body{
   margin-top: -15px;
   padding: 0px;
   width: 150px;
+  background-color: white;
 }
 .box-heading hr {
   border-width: 2px;
