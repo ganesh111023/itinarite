@@ -1,12 +1,11 @@
 class UserDashboardController < ApplicationController
 	before_action :authenticate_user!
+	before_action :get_all_user_except_current, only: [:profile, :follow_user, :unfollow_user]
 
 	def index
-	 
 	end
 
 	def profile
-	   @users = User.all
 	   @followings_count = current_user.following.size
 	   @followers_count = current_user.followers.uniq.size
 	end
@@ -26,13 +25,11 @@ class UserDashboardController < ApplicationController
 	end
 
 	def follow_user
-		@users = User.all
 		@user = User.find_by_id params[:id]
 		current_user.follow(@user)
 	end
 
 	def unfollow_user
-		@users = User.all
 		@user = User.find_by_id params[:id]
 		current_user.unfollow(@user)
 	end
@@ -46,5 +43,10 @@ class UserDashboardController < ApplicationController
 		@user = User.find_by_id params[:id]
 		@followers = @user.followers.uniq
 	end
+
+	private
+		def get_all_user_except_current
+			@users = User.get_list_of_user_except_current_user(current_user.id)
+		end
 
 end

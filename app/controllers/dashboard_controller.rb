@@ -23,7 +23,6 @@ class UserDashboardController < ApplicationController
 	end
 
 	def follow_user
-		binding.pry
 		@user = User.find_by_id params[:id]
 		current_user.follow_user(@user)
 	end

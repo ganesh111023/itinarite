@@ -28,6 +28,9 @@
   #validates :profile_picture, presence: true
   #validates :address, presence: true
 
+  #scope
+    scope :get_list_of_user_except_current_user, -> (id) { where("id !=?", id) }
+
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
