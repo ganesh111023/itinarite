@@ -25,11 +25,11 @@
 			%br
 			.side_link
 				%span.box-heading
-					= "Live Feed"
+					= link_to "Live Feed", "javascript:void(0)"
 					%hr
-					= "Friends"
+					= link_to "Friends", "javascript:void(0)"
 					%hr
-					= "My Recent Trips"
+					= link_to "My Recent Trips", "javascript:void(0)"
 					%hr
 					= link_to "followings(#{@followings_count})", user_following_user_dashboard_path(id: current_user.id)
 					%hr
@@ -39,9 +39,8 @@
 				= "My Trip"
 			%div
 				#basic_map
-			%div
-				#tripblock
-					= render 'user'
+			%div#tripblock
+				= render 'user'
 
 :javascript
 	$('#user_profile_pic').change(function(){
