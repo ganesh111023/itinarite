@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507175345) do
+ActiveRecord::Schema.define(version: 20160514042946) do
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.string   "user_id",    limit: 255
+    t.string   "browser",    limit: 255
+    t.string   "ip_address", limit: 255
+    t.string   "controller", limit: 255
+    t.string   "action",     limit: 255
+    t.text     "params",     limit: 65535
+    t.string   "note",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id", limit: 4

@@ -3,6 +3,7 @@ class UserDashboardController < ApplicationController
 	before_action :get_all_user_except_current, only: [:profile, :follow_user, :unfollow_user]
 
 	def index
+		@following_recent_activities = ActivityLog.following_user_activities(current_user)
 	end
 
 	def profile
@@ -14,6 +15,7 @@ class UserDashboardController < ApplicationController
 	def upload_picture
 		if current_user && params[:user].present?
 			if current_user.update_attributes(profile_picture: params[:user][:profile_pic])
+				record_activity("#{current_user.name.capitalize} updated his profile picture.")
 				flash[:notice] = "image successfully uploaded"
 			else
 				flash[:alert] = "image upload error"
@@ -27,11 +29,13 @@ class UserDashboardController < ApplicationController
 	def follow_user
 		@user = User.find_by_id params[:id]
 		current_user.follow(@user)
+		record_activity("#{current_user.name.capitalize} Follow #{@user.name.capitalize}.")
 	end
 
 	def unfollow_user
 		@user = User.find_by_id params[:id]
 		current_user.unfollow(@user)
+		record_activity("#{current_user.name.capitalize} UnFollow #{@user.name.capitalize}.")
 	end
 
 	def user_following
