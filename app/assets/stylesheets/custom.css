@@ -2,7 +2,7 @@
 	min-height: 560px;
 }
 body{
-  background-color: rgb(195,197,196);
+  background-color: rgb(233,235,238);
   width: 100%;
 }
 .profile_picture{
@@ -153,7 +153,7 @@ body{
 }
 .user_dashboard{
   margin-top: 50px;
-  background-color: rgb(195,197,196);
+  background-color: rgb(233,235,238);
 }
 .profile_pic{
   width: 160px;
@@ -247,6 +247,7 @@ body{
 .picture_block{
   width: 155px;
   height: 175px;
+  background-color: white;
 }
 .dropdown:hover .dropdown-menu {
   display: block;
@@ -293,4 +294,12 @@ body{
 }
 .btn-xs, .btn-group-xs > .btn {
   margin-bottom: 10px;
+}
+.navbar-header{
+  background-color: white;
+  padding-left: 0px;
+}
+.navbar-brand{
+  margin-left: -12px;
+  background-color: white;
 }
