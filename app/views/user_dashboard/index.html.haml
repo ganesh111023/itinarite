@@ -1,8 +1,10 @@
 .container.main_block.home_page
 	.row
 		.col-sm-12.col-md-12
-			%h2
-				Live new feed area
+			%div.panel
+				%h1
+					Live new feed area
 			- @following_recent_activities.each do |a|
+				= image_tag(get_user_image_url(a.user_id),alt: "user picture",class: "activity_user_pic")
 				= a.note
 				%br

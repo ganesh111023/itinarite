@@ -2,13 +2,13 @@
 	min-height: 560px;
 }
 body{
-  background-color: rgb(233,235,238);
+  background-color: rgb(255,255,255);
   width: 100%;
 }
 .profile_picture{
 	width:120px;
 	height: 120px;
-  background-color: white;
+  background-color: rgb(203,203,203);
 }
 .full-width {
   max-width: 1400px;
@@ -153,11 +153,12 @@ body{
 }
 .user_dashboard{
   margin-top: 50px;
-  background-color: rgb(233,235,238);
+  background-color: rgb(255,255,255);
 }
 .profile_pic{
   width: 160px;
   min-height: 180px;
+  padding-top: 5px;
 }
 
 .friend{
@@ -176,7 +177,7 @@ body{
 .box-heading{
   color: rgb(63,72,204);
   font-family: monospace,Georgia,serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
 }
 .black_color{
@@ -247,7 +248,7 @@ body{
 .picture_block{
   width: 155px;
   height: 175px;
-  background-color: white;
+  background-color: rgb(203,203,203);
 }
 .dropdown:hover .dropdown-menu {
   display: block;
@@ -302,4 +303,22 @@ body{
 .navbar-brand{
   margin-left: -12px;
   background-color: white;
+}
+.left_side_block{
+  background-color: rgb(242,242,242);
+  padding-bottom: 50px;
+}
+.activity_user_pic{
+  width: 50px;
+  height: 50px;
+  padding: 8px;
+}
+.panel {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border-color: #d8d8d8;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    margin-bottom: 1.25rem;
+    padding: 1.50rem;
 }
