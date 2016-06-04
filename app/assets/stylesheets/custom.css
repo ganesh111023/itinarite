@@ -1,14 +1,10 @@
 .main_block{
 	min-height: 560px;
 }
-body{
-  background-color: rgb(255,255,255);
-  width: 100%;
-}
 .profile_picture{
 	width:120px;
 	height: 120px;
-  background-color: rgb(203,203,203);
+  background-color: white;
 }
 .full-width {
   max-width: 1400px;
@@ -155,8 +151,12 @@ body{
   margin-top: 50px;
   background-color: rgb(255,255,255);
 }
+.profile_page{
+  background-color: rgb(233,235,238);
+  padding: 20px;
+}
 .profile_pic{
-  width: 160px;
+  width: 180px;
   min-height: 180px;
   padding-top: 5px;
 }
@@ -230,7 +230,7 @@ body{
   color: white;
   font-weight: 700;
   opacity: 0.51;
-  padding: 9px 26px 2px 36px;
+  padding: 9px 50px 2px 36px;
   transition: outline-color 0.13s ease-out 0s;
 }
 .display_none{
@@ -246,9 +246,9 @@ body{
   max-width: 100px;
 }
 .picture_block{
-  width: 155px;
+  width: 180px;
   height: 175px;
-  background-color: rgb(203,203,203);
+  background-color: white;
 }
 .dropdown:hover .dropdown-menu {
   display: block;
@@ -258,8 +258,12 @@ body{
 }
 #basic_map{
   height: 200px; 
-  margin-bottom: 15px;
-  border: 10px solid white;
+  padding: 0px;
+}
+.google_map{
+  border: 2px solid white;
+  height: auto;
+  width: auto;
 }
 .logo_image{
   height: 50px;
@@ -283,15 +287,14 @@ body{
   color: black;
 }
 .side_link{
-  height: 132px;
+  min-height: 150px;
   background-color: white;
   padding-left: 8px;
 }
 #tripblock{
   min-height: 300px; 
-  margin-bottom: 15px;
-  padding: 10px;
   background-color: white;
+  font-size: 12px;
 }
 .btn-xs, .btn-group-xs > .btn {
   margin-bottom: 10px;
@@ -301,11 +304,12 @@ body{
   padding-left: 0px;
 }
 .navbar-brand{
-  margin-left: -12px;
+  margin-left: -40px;
+  padding-top:15px;
   background-color: white;
 }
 .left_side_block{
-  background-color: rgb(242,242,242);
+  background-color: rgb(233,235,238);
   padding-bottom: 50px;
 }
 .activity_user_pic{
@@ -321,4 +325,10 @@ body{
     color: #333;
     margin-bottom: 1.25rem;
     padding: 1.50rem;
+}
+.trip_area{
+  padding: 0px;
+}
+.fu_link{
+  font-size: 15px !important;
 }

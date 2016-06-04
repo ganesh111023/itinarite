@@ -1,18 +1,12 @@
-%table{:style => "width:100%"}
-	%tr
-		%th{:style => "width:150px"} 
-			Name
-		%th{:style => "width:150px"} 
-			Email
-		%th{:style => "width:150px"} 
-			follow/unfollow
-	- @users.each do |user|
-		%tr
-			%td{:style => "width:150px"}
-				= user.name || "N/A"
-			%td{:style => "width:150px"}
-				= user.email
-			%td{:style => "width:150px"}
-				= current_user.following.include?(user) ? (link_to "unfollow", unfollow_user_user_dashboard_path(id: 	user.id), method: :post, remote: true,  class: "btn btn-success btn-xs") : (link_to "follow", follow_user_user_dashboard_path(id: user.id),method: :post, remote: true, class: "btn btn-success btn-xs")
+%hr
+	= link_to "followings(#{@followings_count})", user_following_user_dashboard_path(id: current_user.id),class: 'fu_link'
+%hr
+	= link_to "follower(#{@followers_count})", user_followers_user_dashboard_path(id: current_user.id),class: 'fu_link'
+%br
+- @users.each do |user|
+	%div
+		= user.name || "N/A"
+	%div
+		= current_user.following.include?(user) ? (link_to "unfollow", unfollow_user_user_dashboard_path(id: 	user.id), method: :post, remote: true,  class: "btn btn-success btn-xs") : (link_to "follow", follow_user_user_dashboard_path(id: user.id),method: :post, remote: true, class: "btn btn-success btn-xs")
 
-			
+		

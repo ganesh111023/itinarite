@@ -1,4 +1,4 @@
-.container.main_block.user_dashboard
+.main_block.profile_page
 	.row
 		.col-sm-12.col-md-2.left_side_block
 			%span.box-heading
@@ -30,17 +30,15 @@
 					= link_to "Friends", "javascript:void(0)"
 					%hr
 					= link_to "My Recent Trips", "javascript:void(0)"
-					%hr
-					= link_to "followings(#{@followings_count})", user_following_user_dashboard_path(id: current_user.id)
-					%hr
-					= link_to "follower(#{@followers_count})", user_followers_user_dashboard_path(id: current_user.id)
-		.col-sm-12.col-md-8
+					%div#tripblock
+						= render 'user'
+		.col-sm-12.col-md-8.trip_area
 			%span.box-heading
 				= "My Trip"
-			%div
+			%div.google_map
 				#basic_map
-			%div#tripblock
-				= render 'user'
+			
+			
 
 :javascript
 	$('#user_profile_pic').change(function(){
@@ -55,7 +53,7 @@
 		handler = Gmaps.build('Google');
 		handler.buildMap({ provider: {}, internal: {id: 'basic_map'}}, function(){
 	    handler.fitMapToBounds();
-	    handler.getMap().setZoom(2); 
+	    handler.getMap().setZoom(1); 
 	  });
 	});
 	

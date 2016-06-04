@@ -29,12 +29,16 @@ class UserDashboardController < ApplicationController
 	def follow_user
 		@user = User.find_by_id params[:id]
 		current_user.follow(@user)
+	  @followings_count = current_user.following.size
+	  @followers_count = current_user.followers.uniq.size
 		record_activity("#{current_user.name.capitalize} Follow #{@user.name.capitalize}.")
 	end
 
 	def unfollow_user
 		@user = User.find_by_id params[:id]
 		current_user.unfollow(@user)
+	  @followings_count = current_user.following.size
+	  @followers_count = current_user.followers.uniq.size
 		record_activity("#{current_user.name.capitalize} UnFollow #{@user.name.capitalize}.")
 	end
 
