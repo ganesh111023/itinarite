@@ -6,6 +6,11 @@
 	height: 120px;
   background-color: white;
 }
+
+body.profile{
+  background-color: rgb(233,235,238);
+}
+
 .full-width {
   max-width: 1400px;
 }
@@ -156,7 +161,7 @@
   padding: 20px;
 }
 .profile_pic{
-  width: 180px;
+  width: 160px;
   min-height: 180px;
   padding-top: 5px;
 }
@@ -192,37 +197,16 @@
 }
 
 .navbar-nav > li > a:hover, .navbar-nav > li > a:focus, .navbar-nav.open > li > a:focus {
-  border: 1px solid;
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
-  background-color: rgb(148,220,248);
+  background-color: white;
 }
 
-.navbar-nav > li > .dropdown-menu {
-  max-width: 86px !important;
-  min-width: 86px !important;
-  border: 1px solid black !important;
-  border-bottom-left-radius: 10% !important ;
-  border-bottom-right-radius: 10% !important;
-}
-
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
-  border: 1px solid;
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
-  background-color: rgb(148,220,248);
+.dropdown-menu > li > a:hover{
+  background-color: rgba(0, 0, 0, 0.5);
+    color: white;
 } 
 .dropdown-menu > li > a {
     font-size: 11px !important;
     white-space: normal !important;
-}
-.dropdown-menu > li:not(:last-child) > a:after{
-  content: "";
-  display: block;
-  height: 1px;
-  margin-left: -20px;
-  width: 85px;
-  background: black;
 }
 
 .image_link{
@@ -230,7 +214,7 @@
   color: white;
   font-weight: 700;
   opacity: 0.51;
-  padding: 9px 50px 2px 36px;
+  padding: 9px 29px 2px 36px;
   transition: outline-color 0.13s ease-out 0s;
 }
 .display_none{
@@ -246,7 +230,7 @@
   max-width: 100px;
 }
 .picture_block{
-  width: 180px;
+  width: 160px;
   height: 175px;
   background-color: white;
 }
