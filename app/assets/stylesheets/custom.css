@@ -8,9 +8,8 @@
 }
 
 body.profile{
-  background-color: rgb(233,235,238);
+  background-color: rgb(233,235,238)
 }
-
 .full-width {
   max-width: 1400px;
 }
@@ -200,10 +199,11 @@ body.profile{
   background-color: white;
 }
 
-.dropdown-menu > li > a:hover{
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu.open > li > a:focus{
   background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-} 
+  color: white;
+}
+
 .dropdown-menu > li > a {
     font-size: 11px !important;
     white-space: normal !important;
