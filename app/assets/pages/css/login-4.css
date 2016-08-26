@@ -195,6 +195,9 @@ Login page
   }
 
 }
-#register-back-btn{
-  background-color: #00b8e7;
+.back-btn{
+  background-color: white;
+}
+.back-btn:hover{
+  background-color: transparent;
 }
