@@ -17,7 +17,7 @@ module Itinarite
      Dir.glob("#{Rails.root}/app/assets/pages/**/*/").each do |path|
       config.assets.paths << path
     end
-     Dir.glob("#{Rails.root}/app/assets/theme/**/*/").each do |path|
+     Dir.glob("#{Rails.root}/app/assets/themes/**/*/").each do |path|
       config.assets.paths << path
     end
      Dir.glob("#{Rails.root}/app/assets/js/**/*/").each do |path|
