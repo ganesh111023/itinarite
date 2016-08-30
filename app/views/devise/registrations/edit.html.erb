@@ -6,20 +6,19 @@
       <aside class="profile-nav col-lg-3">
           <section class="panel">
               <div class="user-heading round">
-                  <a href="#">
-                      <img alt="" src="/assets/profile-avatar.jpg">
+                  <a href="/">
+                      <img alt="" src="#{current_user.profile_pic.try(:url) if current_user }">
                   </a>
-                  <h1>Jonathan Smith</h1>
-                  <p>jsmith@flatlab.com</p>
+                  <h1><%= current_user.name if current_user%></h1>
+                  <p><%= current_user.email if current_user%></p>
               </div>
               <ul class="nav nav-pills nav-stacked">
                   <li>
-                      <a href="dashboard.html">
+                      <a href="/">
                           <i class="fa fa-calendar"></i> 
                           Recent Activity <span class="label primary-bg pull-right r-activity">9</span>
                       </a>
                   </li>
-                  <li><a href="edit-profile.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
               </ul>
           </section>
       </aside>
