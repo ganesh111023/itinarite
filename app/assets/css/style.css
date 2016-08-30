@@ -895,6 +895,8 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 
 
+
+
 /*spark line*/
 .chart {
     display: inline-block;
@@ -6544,7 +6546,7 @@ a.guest-on i {
     margin: 60px 0;
 }
 .ui-slider-horizontal .ui-slider-range-min {
-  background: transparent; none repeat scroll 0 0;
+  background: transparent none repeat scroll 0 0;
   left: 0;
 }
 .box{
