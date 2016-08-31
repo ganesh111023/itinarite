@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   protected
 	  def configure_permitted_parameters
 	    devise_parameter_sanitizer.for(:sign_up) do |u|
-	      u.permit(:name, :profile_picture,:address,
+	      u.permit(:name,:address,
 	        :email, :password, :password_confirmation)
 	    end
 	    devise_parameter_sanitizer.for(:account_update) do |u|

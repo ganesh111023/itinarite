@@ -138,7 +138,7 @@ Login page
 }
 
 .login .content .has-error .select2-container i {
-  color: #b94a48; 
+  color: #b94a48;  
 }
 
 .login .content .select2-container a span {
@@ -200,4 +200,12 @@ Login page
 }
 .back-btn:hover{
   background-color: transparent;
+}
+
+.login-form .help-block{
+  color:red;
+}
+#user_remember_me{
+  margin-top: 0px;
+  margin-left: 0px;
 }

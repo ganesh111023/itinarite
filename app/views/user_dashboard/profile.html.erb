@@ -7,7 +7,7 @@
           <section class="panel">
              <div class="user-heading round">
                 <a href="#">
-                   <img alt="" src="#{current_user.try(:profile_picture).try(:url) if current_user}">
+                   <%= image_tag("#{current_user.try(:profile_picture).try(:url)}") if current_user %>
                 </a>
                 <h1><%= current_user.name if current_user %></h1>
                 <p><%= current_user.email if current_user%></p>
