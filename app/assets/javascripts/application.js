@@ -13,5 +13,10 @@
 //= require underscore
 //= require gmaps/google
 
-
-
+$(document).ready(function(){
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'gmap_geocoding'}}, function(){
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(1); 
+  });
+});

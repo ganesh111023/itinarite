@@ -14,12 +14,13 @@
              </div>
              <ul class="nav nav-pills nav-stacked">
                 <li>
-                   <a href="dashboard.html">
+                   <a href="/">
                       <i class="fa fa-calendar"></i> 
                       Recent Activity <span class="label primary-bg pull-right r-activity">9</span>
                    </a>
                 </li>
                 <li><a href="/users/edit  "> <i class="fa fa-edit"></i> Edit profile</a></li>
+                <li><a href="/my_trips  "> <i class="fa fa-suitcase"></i> My Trips</a></li>
              </ul>
           </section>
           <section class="panel">
@@ -468,22 +469,3 @@
    </ul>
   </div>
    <!-- Right Slidebar end -->
-
-
- <script>
-   $('#user_profile_pic').change(function(){
-      var oFReader = new FileReader();
-      oFReader.readAsDataURL(this.files[0]);
-      console.log(this.files[0]);
-      oFReader.onload = function (oFREvent) {
-        $('#preview').html('<img src="'+oFREvent.target.result+'">');
-      };
-   });
-   $("document").ready(function(){
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'basic_map'}}, function(){
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(1); 
-      });
-   });
- </script>
