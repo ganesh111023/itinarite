@@ -13,6 +13,7 @@ class UserDashboardController < ApplicationController
 
 	#upload_picture_dashboard
 	def upload_picture
+		binding.pry
 		if current_user && params[:user].present?
 			if current_user.update_attributes(profile_picture: params[:user][:profile_pic])
 				record_activity("#{current_user.name.capitalize} updated his profile picture.")

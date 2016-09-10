@@ -7,7 +7,7 @@ Rails.application.routes.draw do
    root 'user_dashboard#index'
    get '/profile', to: 'user_dashboard#profile'
 
-  resources :trips,  only: :index do
+  resources :trips do
     collection do
       get "my_trip"
       get "gallery"

@@ -19,6 +19,9 @@
   # get user follower user list
   has_many :followers, through: :passive_relationships, source: :follower
 
+  #Trip association
+  has_many :trips
+
 
   # accessor
   attr_accessor :profile_pic

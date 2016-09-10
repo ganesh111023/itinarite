@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514055635) do
+ActiveRecord::Schema.define(version: 20160909055004) do
 
   create_table "activity_logs", force: :cascade do |t|
     t.string   "browser",    limit: 255
@@ -25,11 +25,42 @@ ActiveRecord::Schema.define(version: 20160514055635) do
     t.integer  "user_id",    limit: 4
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.integer  "imageable_id",   limit: 4
+    t.string   "imageable_type", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id", limit: 4
     t.integer  "followed_id", limit: 4
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+  end
+
+  create_table "trip_activities", force: :cascade do |t|
+    t.string   "place",         limit: 255
+    t.text     "description",   limit: 65535
+    t.datetime "activity_date"
+    t.string   "type",          limit: 255
+    t.integer  "trip_id",       limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.string   "address",     limit: 255
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|

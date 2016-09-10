@@ -122,7 +122,8 @@ var Script = function () {
         var nowTemp = new Date();
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-        var checkin = $('#dpd1').datepicker({
+        var checkin = $('.dpd1').datepicker({
+            alert();
             onRender: function(date) {
                 return date.valueOf() < now.valueOf() ? 'disabled' : '';
             }
