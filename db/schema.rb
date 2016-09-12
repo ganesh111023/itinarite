@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20160909055004) do
     t.string   "place",         limit: 255
     t.text     "description",   limit: 65535
     t.datetime "activity_date"
-    t.string   "type",          limit: 255
+    t.string   "activity_type", limit: 255
     t.integer  "trip_id",       limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

@@ -1,21 +1,21 @@
   $(document).ready(function () {
     //Add input box to the trip event
-    $("#addmorning").click(function(){
-        addRow(".clone:first",".clone:last" );
+    $("#addmorning").on("click",function(){
+        addMorningRow(".morning-activities:last",".morning-activities:last" );
         $('#removemorning').fadeIn();
     });
     $("#addafternoon").click(function(){
-        addRow(".afternoon:first",".afternoon:last" );
+        addAfternoonRow(".afternoon:last",".afternoon:last" );
         $('#removeafternoon').fadeIn();
     });
     $("#addevening").click(function(){
-        addRow(".evening:first",".evening:last" );
+        addEveningRow(".evening:last",".evening:last" );
         $('#removeevening').fadeIn();
     });
 
     //Remoe input box from the event
     $("#removemorning").click(function(){
-        removeRow(".clone:last",".add_morning");
+        removeRow(".morning-activities:last",".add_morning");
         var size = $('.clone').length;
 
          //hide remove button when div count = 1
@@ -34,7 +34,7 @@
         }
     });
     $("#removeevening").click(function(){
-        removeRow(".evening:last",".addevening_div");
+        removeRow(".evening:last",".add_evening_div");
         var size = $('.evening').length;
 
          //hide remove button when div count = 1
@@ -43,9 +43,84 @@
         }
     });
 
-    function addRow(current,beforeAdd){
-        $(current).clone().insertAfter(beforeAdd);
+      function addMorningRow(current,beforeAdd){
+
+        // var id = $(current).find('.trip-morning-place').attr('id');
+        // var name = $(current).find('.trip-morning-place').attr('name');
+        var appendDiv = $(current).clone();
+
+        var index = Math.random(); 
+        appendDiv.find(".trip-morning-place").attr("name",'trip[trip_activities_attributes]['+index+'][place]');
+        appendDiv.find(".trip-morning-place").attr("id", 'trip_trip_activities_attributes_'+index+'_place');
+
+        appendDiv.find(".trip-morning-desc").attr("name",'trip[trip_activities_attributes]['+index+'][description]');
+        appendDiv.find(".trip-morning-desc").attr("id", 'trip_trip_activities_attributes_'+index+'_description');
+
+        appendDiv.find(".trip-morning-photo").attr("name",'trip[trip_activities_attributes]['+index+'][pictures_attributes]['+index+'][name]');
+        appendDiv.find(".trip-morning-photo").attr("id", 'trip_trip_activities_attributes_'+index+'_pictures_attributes_'+index+'_name');
+
+
+        appendDiv.find(".trip-morning-type").attr("name",'trip[trip_activities_attributes]['+index+'][activity_type]');
+        appendDiv.find(".trip-morning-type").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_type');
+      
+        appendDiv.find(".trip-morning-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
+        appendDiv.find(".trip-morning-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
+
+        
+        appendDiv.insertAfter(beforeAdd);
+      }
+      function addAfternoonRow(current,beforeAdd){
+
+      // var id = $(current).find('.trip-morning-place').attr('id');
+      // var name = $(current).find('.trip-morning-place').attr('name');
+      var appendDiv = $(current).clone();
+
+      var index =Math.random(); 
+      appendDiv.find(".trip-afternoon-place").attr("name",'trip[trip_activities_attributes]['+index+'][place]');
+      appendDiv.find(".trip-afternoon-place").attr("id", 'trip_trip_activities_attributes_'+index+'_place');
+
+      appendDiv.find(".trip-afternoon-desc").attr("name",'trip[trip_activities_attributes]['+index+'][description]');
+      appendDiv.find(".trip-afternoon-desc").attr("id", 'trip_trip_activities_attributes_'+index+'_description');
+
+      appendDiv.find(".trip-afternoon-photo").attr("name",'trip[trip_activities_attributes]['+index+'][pictures_attributes]['+index+'][name]');
+      appendDiv.find(".trip-afternoon-photo").attr("id", 'trip_trip_activities_attributes_'+index+'_pictures_attributes_'+index+'_name');
+
+
+      appendDiv.find(".trip-afternoon-type").attr("name",'trip[trip_activities_attributes]['+index+'][activity_type]');
+      appendDiv.find(".trip-afternoon-type").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_type');
+
+      appendDiv.find(".trip-afternoon-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
+        appendDiv.find(".trip-afternoon-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
+
+      appendDiv.insertAfter(beforeAdd);
     }
+      function addEveningRow(current,beforeAdd){
+
+      // var id = $(current).find('.trip-morning-place').attr('id');
+      // var name = $(current).find('.trip-morning-place').attr('name');
+      var appendDiv = $(current).clone();
+
+      var index = Math.random(); 
+      appendDiv.find(".trip-evening-place").attr("name",'trip[trip_activities_attributes]['+index+'][place]');
+      appendDiv.find(".trip-evening-place").attr("id", 'trip_trip_activities_attributes_'+index+'_place');
+
+      appendDiv.find(".trip-evening-desc").attr("name",'trip[trip_activities_attributes]['+index+'][description]');
+      appendDiv.find(".trip-evening-desc").attr("id", 'trip_trip_activities_attributes_'+index+'_description');
+
+      appendDiv.find(".trip-evening-photo").attr("name",'trip[trip_activities_attributes]['+index+'][pictures_attributes]['+index+'][name]');
+      appendDiv.find(".trip-evening-photo").attr("id", 'trip_trip_activities_attributes_'+index+'_pictures_attributes_'+index+'_name');
+
+
+      appendDiv.find(".trip-evening-type").attr("name",'trip[trip_activities_attributes]['+index+'][activity_type]');
+      appendDiv.find(".trip-evening-type").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_type');
+
+      appendDiv.find(".trip-evening-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
+      appendDiv.find(".trip-evening-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
+      appendDiv.insertAfter(beforeAdd);
+    }
+
+
+
 
     function removeRow(current,beforeAdd){
         $(current).remove().before(beforeAdd); 
@@ -75,5 +150,28 @@
     $(".single-trip-add-com").geocomplete();
 
     $(".dpd").datepicker();
-    
+    $(".act-date").datepicker();
 });
+
+
+//   $(document).ready(function(){
+//     $(".add-more").on("click", function(event){
+//        event.preventDefault();
+//       var id = $(".nested-resource:last").find('input:text').attr('id');
+//       var name = $(".nested-resource:last").find('input:text').attr('name')
+//       var appendDiv = jQuery($(".nested-resource:last").clone());
+
+//       var index = parseInt(appendDiv.find(".cl_obj").attr("name").match(/\d+/)[0]) +1;
+//       appendDiv.find(".cl_obj").attr("name", 'post[comments_attributes]'+index+'[name]');
+//       appendDiv.find(".cl_obj").attr("id", 'post_comments_attributes_'+index+'_name');
+//       appendDiv.insertAfter(".nested-resource:last")
+//     });
+
+//   $(".remove").on("click", function(event){
+//     if ($(".nested-resource").length > 1){
+//       $(".nested-resource").remove(".nested-resource:last");
+//     }
+
+//   });
+
+// });

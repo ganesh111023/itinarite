@@ -4,7 +4,7 @@ class CreateTripActivities < ActiveRecord::Migration
       t.string :place
       t.text :description
       t.datetime :activity_date
-      t.string :type
+      t.string :activity_type
       t.integer :trip_id
 
       t.timestamps null: false

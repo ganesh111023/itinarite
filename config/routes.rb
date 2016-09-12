@@ -8,6 +8,8 @@ Rails.application.routes.draw do
    get '/profile', to: 'user_dashboard#profile'
 
   resources :trips do
+    resources :activities do
+    end
     collection do
       get "my_trip"
       get "gallery"

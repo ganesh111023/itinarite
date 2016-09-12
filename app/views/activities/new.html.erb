@@ -1,0 +1,249 @@
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper site-min-height">
+    <div class="row">
+      <div class="col-lg-12">
+        <section class="panel">
+          <header class="panel-heading">
+            <h4><b>Add Trip Activities</b></h4>
+          </header>
+          <div class="panel-body">
+            <div class="stepy-tab">
+              <ul id="default-titles" class="stepy-titles clearfix">
+                <li id="default-title-0" class="current-step ">
+                </li>
+                <li id="default-title-1" class="">
+                </li>
+                <li id="default-title-2" class="">
+                </li>
+              </ul>
+            </div>
+            <%= form_for @activity,  class: "form-horizontal" id: "default" %>
+              <fieldset title="Step 2" class="step" id="default-step-3" >
+                <legend>  </legend>
+                <div class="trip-detail-container margin-button-none">
+                  <div class="row ">
+                      <div class="container-fluid">
+                          <div class="trip-detail ">
+                              <div class="trip-item trip-heading">
+                                  <h4><b>Morning- <small class="text-white">Activities</small></b></h4>
+                              </div>
+                          </div>    
+                      </div>
+                      <div class="panel-body clearfix">
+                          <div class="clone">
+                              <div class="col-md-4">
+                                  <div class="form-group-margin">
+                                      <label class=" ">What did u Do ?</label>
+                                      <input id="a" type="text" class="form-control" placeholder="What did u Do ?">
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="form-group-margin">
+                                      <label class=" ">Where ?</label>
+                                      <input id="b" type="text" class="form-control geocomplete single-trip-add-com" placeholder="Where ?">
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="form-group-margin">
+                                      <label class=" ">Upload Image</label>
+                                      <div class="fileUpload btn btn-primary btn-block">
+                                          <span>Upload</span>
+                                          <input type="file" class="upload" multiple />
+                                      </div>
+                                  </div>                      
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row add_morning">
+                      <div class="col-md-8">
+                          <div class="col-lg-6">
+                              <a id="addmorning" href="#;"> <i class="fa fa-plus"></i> Add More Location
+                              </a>
+                          </div>
+                          <div class="col-lg-6">
+                              <a id="removemorning" href="#;"> <i class="fa fa-plus"></i> Remove Location
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="trip-detail-container margin-button-none">
+                  <div class="row">
+                    <div class="container-fluid">
+                      <div class="trip-detail ">
+                        <div class="trip-item trip-heading">
+                          <h4><b>Afternoon- <small class="text-white">Activities</small></b></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-body clearfix">
+                      <div class="afternoon">
+                        <div class="col-md-4">
+                          <div class="form-group-margin">
+                            <label class=" ">What did u Do ?</label>
+                            <input type="text" class="form-control" placeholder="What did u Do ?">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group-margin">
+                            <label class=" ">Where ?</label>
+                            <input type="text" class="form-control single-trip-add-com" placeholder="Where ?">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group-margin">
+                            <label class=" ">Upload Image</label>
+                            <div class="fileUpload btn btn-primary btn-block">
+                              <span>Upload</span>
+                              <input type="file" class="upload" multiple />
+                            </div>
+                          </div>                     
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row add_afternoon_div">
+                    <div class="col-md-8">
+                      <div class="col-lg-6">
+                        <a id="addafternoon" href="#;"> <h6><i class="fa fa-plus"></i> Add More Location</h6>
+                        </a>
+                      </div>
+                      <div class="col-lg-6">
+                        <a id="removeafternoon" href="#;"> <h6><i class="fa fa-plus"></i> Remove Location</h6>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="trip-detail-container margin-button-none">
+                  <div class="row">
+                    <div class="container-fluid">
+                        <div class="trip-detail ">
+                            <div class="trip-item trip-heading">
+                                <h4><b>Evening-<small class="text-white">Activities</small></b></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body clearfix">
+                        <div class="evening">                                                
+                            <div class="col-md-4">
+                                <div class="form-group-margin">
+                                    <label class=" ">What did u Do ?</label>
+                                    <input type="text" class="form-control" placeholder="What did u Do ?">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group-margin">
+                                    <label class=" ">Where ?</label>
+                                    <input type="text" class="form-control single-trip-add-com" placeholder="Where ?">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group-margin">
+                                    <label class=" ">Upload Image</label>
+                                    <div class="fileUpload btn btn-primary btn-block">
+                                        <span>Upload</span>
+                                        <input type="file" class="upload" multiple />
+                                    </div>
+                                </div>                        
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                      <div class="row addevening_div">
+                          <div class="col-md-8">
+                              <div class="col-lg-6">
+                                  <a id="addevening" href="#;"> <h6><i class="fa fa-plus"></i> Add More Location</h6>
+                                  </a>
+                              </div>
+                              <div class="col-lg-6">
+                                  <a id="removeevening" href="#;"> <h6><i class="fa fa-plus"></i> Remove Location</h6>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+              </fieldset>
+             <!--  <fieldset title="Step 3" class="step" id="default-step-4" >
+                  <legend></legend>
+                  <div class="form-group">
+                      <label class="col-lg-2 col-sm-4 col-xs-6 ">Trip Name</label>
+                      <div class="col-lg-10 col-sm-4 col-xs-6">
+                          <p class="form-control-static">Demo</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-lg-2 col-sm-4 col-xs-6  ">Trip discriptions</label>
+                      <div class="col-lg-10 col-sm-4 col-xs-6">
+                          <p class="form-control-static">Discriptions</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-lg-2 col-sm-4 col-xs-6 ">Where You go</label>
+                      <div class="col-lg-10 col-sm-4 col-xs-5">
+                          <p class="form-control-static">London</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-lg-6 "><b>Morning</b><small>- Activity</small></label>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-lg-2 col-sm-4 col-xs-7 ">
+                          <p class="form-control-static step3-form-activity">Museum of the Queen :</p>
+
+
+                          <p class="form-control-static step3-form-activity">Park of Place :</p>
+                      </div>
+                      <div  class="col-lg-10 col-sm-8 col-xs-5 ">
+                          <p class="form-control-static step3-form-activity">Demo Data</p>
+                          <p class="form-control-static step3-form-activity">Demo Test Data</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-lg-2 "><b>After noon</b><small>- Activity</small></label>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-lg-2 col-sm-4 col-xs-7">
+                          <p class="form-control-static step3-form-activity">Museum of the Queen :</p>
+
+
+                          <p class="form-control-static step3-form-activity">Park of Place :</p>
+                      </div>
+                      <div class="col-lg-10 col-sm-8 col-xs-5">
+                          <p>Demo Data</p>
+                          <p>Demo Test Data</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-lg-2 "><b>Evening</b><small>- Activity</small></label>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-lg-2 col-sm-4 col-xs-7">
+                          <p class="form-control-static step3-form-activity">Museum of the Queen :</p>
+                          <p class="form-control-static step3-form-activity">Park of Place :</p>
+                      </div>
+                      <div class="col-lg-10 col-sm-8 col-xs-5">
+                          <p>Demo Test Data</p>
+                          <p>Demo Data</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-lg-2 ">Address</label>
+                      <div class="col-lg-10">
+                          <p class="form-control-static">
+                              Dreamland Ave, Suite 73
+                              AU, PC 1361
+                              P: (123) 456-7891 
+                          </p>
+                      </div>
+                  </div>
+              </fieldset> -->
+            <% form %>
+        </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</section>

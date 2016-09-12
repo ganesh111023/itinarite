@@ -23,7 +23,7 @@
   has_many :trips
 
 
-  # accessor
+  #Accessor
   attr_accessor :profile_pic
 
   #validation
@@ -32,7 +32,7 @@
   #validates :address, presence: true
 
   #scope
-    scope :get_list_of_user_except_current_user, -> (id) { where("id !=?", id) }
+  scope :get_list_of_user_except_current_user, -> (id) { where("id !=?", id) }
 
   # Follows a user.
   def follow(other_user)
