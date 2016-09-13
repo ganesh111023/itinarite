@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
 
 	def index
+		@trips = current_user.trips.group_by { |c| c.created_at.strftime("%Y") }
 	end
 
 
@@ -28,7 +29,7 @@ class TripsController < ApplicationController
 
 private
 	def trip_params
-	  params.require(:trip).permit(:name, :description, :address,:start_date, :end_date,:user_id, pictures_attributes: [:id, :name],trip_activities_attributes: [:id, :place, :description,:trip_id, :date, :activity_type,:key => "value", activity_date, pictures_attributes: [:id, :name]])
+	  params.require(:trip).permit(:name, :description, :address,:start_date, :end_date,:user_id, pictures_attributes: [:id, :name],trip_activities_attributes: [:id, :place, :description,:trip_id,:activity_date, :activity_type, pictures_attributes: [:id, :name]])
 	end
 
 end
