@@ -18,11 +18,16 @@ class TripsController < ApplicationController
 	  	render :new
 	  end
 	end
+	# trips/:id
+	def show
+		@trip = current_user.trips.find_by_id params[:id]
+	end
 
 	def my_trip
 	end
 
 	def gallery
+		@trip = current_user.trips.find_by_id params[:id]
 	end
 
 

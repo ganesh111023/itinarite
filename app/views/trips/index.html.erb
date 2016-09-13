@@ -35,7 +35,7 @@
                     <%values.each do |trip| %>
                       <div class="trip-detail">
                         <div class="trip-item">
-                          <a href="#;"><%= trip.address %></a>
+                          <a href="trips/<%=trip.id%>"><%= trip.address %></a>
                         </div>
                         <div class="trip-item">
                             <a href="#;"><%= trip.start_date.strftime("%b-%Y")%></a>

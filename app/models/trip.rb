@@ -9,5 +9,6 @@ class Trip < ActiveRecord::Base
   #Associative attributes
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   accepts_nested_attributes_for :trip_activities, :allow_destroy => true
+
   
 end

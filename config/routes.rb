@@ -6,13 +6,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'user_dashboard#index'
    get '/profile', to: 'user_dashboard#profile'
+   get '/trips/:id/gallery', to: 'trips#gallery'
+
 
   resources :trips do
     resources :activities do
     end
     collection do
       get "my_trip"
-      get "gallery"
     end
   end
 
