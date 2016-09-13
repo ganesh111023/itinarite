@@ -154,24 +154,3 @@
 });
 
 
-//   $(document).ready(function(){
-//     $(".add-more").on("click", function(event){
-//        event.preventDefault();
-//       var id = $(".nested-resource:last").find('input:text').attr('id');
-//       var name = $(".nested-resource:last").find('input:text').attr('name')
-//       var appendDiv = jQuery($(".nested-resource:last").clone());
-
-//       var index = parseInt(appendDiv.find(".cl_obj").attr("name").match(/\d+/)[0]) +1;
-//       appendDiv.find(".cl_obj").attr("name", 'post[comments_attributes]'+index+'[name]');
-//       appendDiv.find(".cl_obj").attr("id", 'post_comments_attributes_'+index+'_name');
-//       appendDiv.insertAfter(".nested-resource:last")
-//     });
-
-//   $(".remove").on("click", function(event){
-//     if ($(".nested-resource").length > 1){
-//       $(".nested-resource").remove(".nested-resource:last");
-//     }
-
-//   });
-
-// });
