@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
 
   resources :trips do
-    resources :activities do
+    resources :activities, only: [] do
+      put "update_photo", to: 'trip_activities#update_photo'
     end
     collection do
       get "my_trip"
