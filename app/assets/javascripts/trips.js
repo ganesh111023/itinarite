@@ -49,7 +49,7 @@
         // var name = $(current).find('.trip-morning-place').attr('name');
         var appendDiv = $(current).clone();
 
-        var index = Math.random(); 
+        var index = Math.floor(100000 + Math.random() * 900000);
         appendDiv.find(".trip-morning-place").attr("name",'trip[trip_activities_attributes]['+index+'][place]');
         appendDiv.find(".trip-morning-place").attr("id", 'trip_trip_activities_attributes_'+index+'_place');
 
@@ -75,7 +75,7 @@
       // var name = $(current).find('.trip-morning-place').attr('name');
       var appendDiv = $(current).clone();
 
-      var index =Math.random(); 
+      var index =Math.floor(100000 + Math.random() * 900000);
       appendDiv.find(".trip-afternoon-place").attr("name",'trip[trip_activities_attributes]['+index+'][place]');
       appendDiv.find(".trip-afternoon-place").attr("id", 'trip_trip_activities_attributes_'+index+'_place');
 
@@ -100,7 +100,7 @@
       // var name = $(current).find('.trip-morning-place').attr('name');
       var appendDiv = $(current).clone();
 
-      var index = Math.random(); 
+      var index = Math.floor(100000 + Math.random() * 900000);
       appendDiv.find(".trip-evening-place").attr("name",'trip[trip_activities_attributes]['+index+'][place]');
       appendDiv.find(".trip-evening-place").attr("id", 'trip_trip_activities_attributes_'+index+'_place');
 

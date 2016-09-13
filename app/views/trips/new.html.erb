@@ -37,13 +37,13 @@
               <% end %>
               <fieldset title="Step 1" class="step" id="default-step-0">
                   <legend></legend>
-                  <!-- <div class="form-group ">
+                  <div class="form-group ">
                       <label class="col-md-2">Trip Name :</label>
                       <div class="col-md-10 ">
                           <%= f.text_field :name, class: "form-control",  placeholder: "Trip Name" %></br >
                       </div>
                   </div>
-                   -->
+                  
                   <div class="form-group">
                       <label class="col-md-2">Trip Description :</label>
                       <div class="col-md-10">
@@ -120,13 +120,13 @@
                           <div class="col-md-3">  
                             <div class="form-group-margin place">
                               <label class=" ">What did u Do ?</label>
-                              <%= t.text_field :place, class:"form-control trip-morning-place", placeholder: "What did u Do ?" %>
+                              <%= t.text_field :description, class:"form-control trip-morning-desc", placeholder: "What did u Do ?" %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin description">
                               <label class=" ">Where ?</label>
-                              <%=t.text_field :description,class:"form-control geocomplete single-trip-add-com trip-morning-desc",placeholder: "Where ?" %>
+                              <%=t.text_field :place,class:"form-control geocomplete single-trip-add-com trip-morning-place",placeholder: "Where ?" %>
                               <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[0],class:"trip-morning-type" %>
                             </div>
                           </div>
@@ -181,13 +181,13 @@
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">What did u Do ?</label>
-                              <%= t.text_field :place, class:"form-control trip-afternoon-place", placeholder: "What did u Do ?" %>
+                              <%= t.text_field :description, class:"form-control trip-afternoon-desc", placeholder: "What did u Do ?" %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">Where ?</label>
-                              <%=t.text_field :description,class:"form-control geocomplete single-trip-add-com trip-afternoon-desc",placeholder: "Where ?" %>
+                              <%=t.text_field :place,class:"form-control geocomplete single-trip-add-com trip-afternoon-place",placeholder: "Where ?" %>
                                 <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[2],class:"trip-afternoon-type" %>
                             </div>
                           </div>
@@ -241,13 +241,13 @@
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">What did u Do ?</label>
-                              <%= t.text_field :place, class:"form-control trip-evening-place", placeholder: "What did u Do ?" %>
+                              <%= t.text_field :description, class:"form-control trip-evening-desc", placeholder: "What did u Do ?" %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">Where ?</label>
-                              <%=t.text_field :description,class:"form-control geocomplete single-trip-add-com trip-evening-desc",placeholder: "Where ?" %>
+                              <%=t.text_field :place,class:"form-control geocomplete single-trip-add-com trip-evening-place",placeholder: "Where ?" %>
                                 <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[1],class:"trip-evening-type" %>
                             </div>
                           </div>
