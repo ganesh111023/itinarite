@@ -18,15 +18,12 @@ class ApplicationController < ActionController::Base
 
   protected
 	  def configure_permitted_parameters
-	    devise_parameter_sanitizer.for(:sign_up) do |u|
-	      u.permit(:name,:address,
-	        :email, :password, :password_confirmation)
-	    end
-	    devise_parameter_sanitizer.for(:account_update) do |u|
-	     	u.permit(:name, :profile_picture,:address,
-	        :email, :password, :password_confirmation)
-	    end
+	    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:address,
+	        :email, :password, :password_confirmation])
+	    devise_parameter_sanitizer.permit(:account_update,keys: [:name, :profile_picture,:address,
+	        :email, :password, :password_confirmation])
   	end
+
     def set_layout
       unless user_signed_in?
         "home"

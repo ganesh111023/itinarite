@@ -44,281 +44,286 @@
             <li><a href="/users/edit"> <i class="fa fa-edit"></i> Edit profile</a></li>
           </ul>
         </section>
-        <div class="panel">
-          <div class="panel-heading">
-            <b>Morning</b>
-          </div>
-          <div class="clearfix"></div>
-          <section class="">  <!-- always use row when define any new column -->
-            <div class="panel">
-              <table class="table no-th-border light-space-border">
-                <tr>
-                  <th><b>Activity</b></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                <% @trip_activities.morning_activities.each do |act|%>
-                  <tr>
-                    <td><%= act.place %></td>
-                    <td class="hidden-xs">
-                        <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
-                            <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="#" class="text-danger">
-                            <span class="fa fa-map-marker fa-2x"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
-                            <span class="fa fa-search fa-1x"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
-                            <i class="fa fa-camera"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
-                            <i class="fa fa-plus fa-2x"></i>
-                        </a>
-                    </td>
-                  </tr>
-                  <div id="description-modal-<%=act.id%>" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Description</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-sm-5">
-                              <img src="<%= act.pictures.first.try(:name).try(:url)%>" class="img-responsive thumbnail center-block" >
-                                <p>Category :- Morning </p>
-                            </div>
-                            <div class="col-sm-7"></div>
-                              <p class=><%= act.description%>,<a href="https://en.wikipedia.org/wiki/<%=act.place%>" class="test-primary">Read more</a></p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="img-upload-modal-<%=act.id%>" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Upload Image</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <%= form_for act, :url => trip_activity_update_photo_path(trip_id: @trip.id, activity_id: act.id), :method => :put do |f| %>
-                              <%= f.fields_for :pictures do |p| %>
-                                <%= p.file_field :name, class:"img-uload" %>
-                                <%= p.submit "upload"%>
-                              <%end%>
-                            <% end %>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                <% end %> 
-              </table>            
+        <% if @trip_activities.morning_activities.present? %>
+          <div class="panel">
+            <div class="panel-heading">
+              <b>Morning</b>
             </div>
-          </section> 
-        <div> 
-        <div class="panel">
-          <div class="panel-heading">
-            <b>Afternoon</b>
-          </div>
-          <div class="clearfix"></div>
-          <section class="">  <!-- always use row when define any new column -->
-            <div class="panel">
-              <table class="table no-th-border light-space-border">
-                <tr>
-                  <th><b>Activity</b></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                <% @trip_activities.afternoon_activities.each do |act|%>
+            <div class="clearfix"></div>
+            <section class="">  <!-- always use row when define any new column -->
+              <div class="panel">
+                <table class="table no-th-border light-space-border">
                   <tr>
-                    <td><%= act.place %></td>
-                    <td class="hidden-xs">
-                        <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
-                            <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="#" class="text-danger">
-                            <span class="fa fa-map-marker fa-2x"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
-                            <span class="fa fa-search fa-1x"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
-                            <i class="fa fa-camera"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
-                            <i class="fa fa-plus fa-2x"></i>
-                        </a>
-                    </td>
+                    <th><b>Activity</b></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                   </tr>
-                  <div id="description-modal-<%=act.id%>" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Description</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-sm-5">
-                              <img src="<%= act.pictures.first.try(:name).try(:url)%>" class="img-responsive thumbnail center-block" >
-                                <p>Category :- Afetrnoon </p>
-                            </div>
-                            <div class="col-sm-7"></div>
-                              <p class=><%= act.description%>,<a href="https://en.wikipedia.org/wiki/<%=act.place%>" class="test-primary">Read more</a></p>
-                            </div>
+                  <% @trip_activities.morning_activities.each do |act|%>
+                    <tr>
+                      <td><%= act.place %></td>
+                      <td class="hidden-xs">
+                          <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
+                              <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
+                          </a>
+                      </td>
+                      <td class="text-center">
+                          <a href="#" class="text-danger">
+                              <span class="fa fa-map-marker fa-2x"></span>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
+                              <span class="fa fa-search fa-1x"></span>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
+                              <i class="fa fa-camera"></i>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
+                              <i class="fa fa-plus fa-2x"></i>
+                          </a>
+                      </td>
+                    </tr>
+                    <div id="description-modal-<%=act.id%>" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Description</h4>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="img-upload-modal-<%=act.id%>" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Upload Image</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <%= form_for act, :url => trip_activity_update_photo_path(trip_id: @trip.id, activity_id: act.id), :method => :put do |f| %>
-                              <%= f.fields_for :pictures do |p| %>
-                                <%= p.file_field :name, class:"img-uload" %>
-                                <%= p.submit "upload"%>
-                              <%end%>
-                            <% end %>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <% end %> 
-              </table>            
-            </div>
-          </section> 
-        <div>
-
-        <div class="panel">
-          <div class="panel-heading">
-            <b>Evening</b>
-          </div>
-          <div class="clearfix"></div>
-          <section class="">  <!-- always use row when define any new column -->
-            <div class="panel">
-              <table class="table no-th-border light-space-border">
-                <tr>
-                  <th><b>Activity</b></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                <% @trip_activities.evening_activities.each do |act|%>
-                  <tr>
-                    <td><%= act.place %></td>
-                    <td class="hidden-xs">
-                        <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
-                            <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="#" class="text-danger">
-                            <span class="fa fa-map-marker fa-2x"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
-                            <span class="fa fa-search fa-1x"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
-                            <i class="fa fa-camera"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
-                            <i class="fa fa-plus fa-2x"></i>
-                        </a>
-                    </td>
-                  </tr>
-                  <div id="description-modal-<%=act.id%>" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Description</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-sm-5">
-                              <img src="<%= act.pictures.first.try(:name).try(:url)%>" class="img-responsive thumbnail center-block" >
-                                <p>Category :- Evening </p>
-                            </div>
-                            <div class="col-sm-7"></div>
-                              <p class=><%= act.description%>,<a href="https://en.wikipedia.org/wiki/<%=act.place%>" class="test-primary">Read more</a></p>
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-sm-5">
+                                <img src="<%= act.pictures.first.try(:name).try(:url)%>" class="img-responsive thumbnail center-block" >
+                                  <p>Category :- Morning </p>
+                              </div>
+                              <div class="col-sm-7"></div>
+                                <p class=><%= act.description%>,<a href="https://en.wikipedia.org/wiki/<%=act.place%>" class="test-primary">Read more</a></p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div id="img-upload-modal-<%=act.id%>" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Upload photo</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <%= form_for act, :url => trip_activity_update_photo_path(trip_id: @trip.id, activity_id: act.id), :method => :put do |f| %>
-                              <%= f.fields_for :pictures do |p| %>
-                                <%= p.file_field :name, class:"img-uload" %>
-                                <%= p.submit "upload"%>
-                              <%end%>
-                            <% end %>
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Upload Image</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <%= form_for act, :url => trip_activity_update_photo_path(trip_id: @trip.id, activity_id: act.id), :method => :put do |f| %>
+                                <%= f.fields_for :pictures do |p| %>
+                                  <%= p.file_field :name, class:"img-uload" %>
+                                  <%= p.submit "upload"%>
+                                <%end%>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  </div>
-                <% end %> 
-              </table>            
+
+                  <% end %> 
+                </table>            
+              </div>
+            </section> 
+          <div> 
+        <%end%>
+        <% if @trip_activities.afternoon_activities.present? %>
+          <div class="panel">
+            <div class="panel-heading">
+              <b>Afternoon</b>
             </div>
-          </section> 
-        <div>    
+            <div class="clearfix"></div>
+            <section class="">  <!-- always use row when define any new column -->
+              <div class="panel">
+                <table class="table no-th-border light-space-border">
+                  <tr>
+                    <th><b>Activity</b></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <% @trip_activities.afternoon_activities.each do |act|%>
+                    <tr>
+                      <td><%= act.place %></td>
+                      <td class="hidden-xs">
+                          <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
+                              <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
+                          </a>
+                      </td>
+                      <td class="text-center">
+                          <a href="#" class="text-danger">
+                              <span class="fa fa-map-marker fa-2x"></span>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
+                              <span class="fa fa-search fa-1x"></span>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
+                              <i class="fa fa-camera"></i>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
+                              <i class="fa fa-plus fa-2x"></i>
+                          </a>
+                      </td>
+                    </tr>
+                    <div id="description-modal-<%=act.id%>" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Description</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-sm-5">
+                                <img src="<%= act.pictures.first.try(:name).try(:url)%>" class="img-responsive thumbnail center-block" >
+                                  <p>Category :- Afetrnoon </p>
+                              </div>
+                              <div class="col-sm-7"></div>
+                                <p class=><%= act.description%>,<a href="https://en.wikipedia.org/wiki/<%=act.place%>" class="test-primary">Read more</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="img-upload-modal-<%=act.id%>" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Upload Image</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <%= form_for act, :url => trip_activity_update_photo_path(trip_id: @trip.id, activity_id: act.id), :method => :put do |f| %>
+                                <%= f.fields_for :pictures do |p| %>
+                                  <%= p.file_field :name, class:"img-uload" %>
+                                  <%= p.submit "upload"%>
+                                <%end%>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %> 
+                </table>            
+              </div>
+            </section> 
+          <div>
+        <%end%>
+        <% if @trip_activities.evening_activities.present? %>
+          <div class="panel">
+            <div class="panel-heading">
+              <b>Evening</b>
+            </div>
+            <div class="clearfix"></div>
+            <section class="">  <!-- always use row when define any new column -->
+              <div class="panel">
+                <table class="table no-th-border light-space-border">
+                  <tr>
+                    <th><b>Activity</b></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <% @trip_activities.evening_activities.each do |act|%>
+                    <tr>
+                      <td><%= act.place %></td>
+                      <td class="hidden-xs">
+                          <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
+                              <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
+                          </a>
+                      </td>
+                      <td class="text-center">
+                          <a href="#" class="text-danger">
+                              <span class="fa fa-map-marker fa-2x"></span>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
+                              <span class="fa fa-search fa-1x"></span>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
+                              <i class="fa fa-camera"></i>
+                          </a>
+                      </td>
+                      <td>
+                          <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
+                              <i class="fa fa-plus fa-2x"></i>
+                          </a>
+                      </td>
+                    </tr>
+                    <div id="description-modal-<%=act.id%>" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Description</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-sm-5">
+                                <img src="<%= act.pictures.first.try(:name).try(:url)%>" class="img-responsive thumbnail center-block" >
+                                  <p>Category :- Evening </p>
+                              </div>
+                              <div class="col-sm-7"></div>
+                                <p class=><%= act.description%>,<a href="https://en.wikipedia.org/wiki/<%=act.place%>" class="test-primary">Read more</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="img-upload-modal-<%=act.id%>" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Upload photo</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <%= form_for act, :url => trip_activity_update_photo_path(trip_id: @trip.id, activity_id: act.id), :method => :put do |f| %>
+                                <%= f.fields_for :pictures do |p| %>
+                                  <%= p.file_field :name, class:"img-uload" %>
+                                  <%= p.submit "upload"%>
+                                <%end%>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  <% end %> 
+                </table>            
+              </div>
+            </section> 
+          <div> 
+        <%end%>   
       </aside>
 
       <aside class="col-lg-8 col-md-6">

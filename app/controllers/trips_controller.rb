@@ -12,8 +12,7 @@ class TripsController < ApplicationController
 	def create
 	  trip = current_user.trips.new(trip_params)
 	  if trip.save
-	  	flash[:notice] = "Trip successully created!"
-	  	redirect_to trips_path
+	  	redirect_to trips_path, notice: "Trip successully created!"
 	  else
 	  	render :new
 	  end
@@ -28,8 +27,6 @@ class TripsController < ApplicationController
 		else
 			@trip_activities = @trip.trip_activities
 		end
-		
-		
 	end
 
 	def my_trip
@@ -38,9 +35,7 @@ class TripsController < ApplicationController
 	def gallery
 		@trip = current_user.trips.find_by_id params[:id]
 	end
-
-
-
+	
 private
 	def trip_params
 	  params.require(:trip).permit(:name, :description, :address,:start_date, :end_date,:user_id, pictures_attributes: [:id, :name],trip_activities_attributes: [:id, :place, :description,:trip_id,:activity_date, :activity_type, pictures_attributes: [:id, :name]])
