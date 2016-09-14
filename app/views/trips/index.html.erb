@@ -9,30 +9,30 @@
       <div class="panel-body">
         <ul class="nav nav-tabs">
           <% @trips.keys.each do |k| %>
-            <li><a data-toggle="tab" href="##{k}"> <%= k %></a></li>
+            <li><a data-toggle="tab" href="#<%=k%>" class="trip-tab"> <%=k%></a></li>
           <% end %>
         </ul>
-        <div class="tab-content">
-          <div id="year14" class="tab-pane fade in active">
-            <div class="">
-              <div class="table-responsive">
-                <div class="trip-detail-container">
-                  <div class="trip-detail ">
-                    <div class="trip-item trip-heading">
-                      <h4><b>Place</b></h4>
+        <% @trips.each do |key, values|%>
+          <div class="tab-content">
+            <div id="<%=key%>" class="tab-pane activity_tab-<%=key%> fade in">
+              <div class="<%=key%>">
+                <div class="table-responsive">
+                  <div class="trip-detail-container">
+                    <div class="trip-detail ">
+                      <div class="trip-item trip-heading">
+                        <h4><b>Place</b></h4>
+                      </div>
+                      <div class="trip-item trip-heading">
+                        <h4><b>Date</b></h4>
+                      </div>
+                      <!--<div class="trip-item trip-heading">
+                        <h4><b>Flag</b></h4>
+                      </div> -->
+                      <div class="trip-item trip-heading">
+                        <h4><b>Cover Picture</b></h4>
+                      </div>
                     </div>
-                    <div class="trip-item trip-heading">
-                      <h4><b>Date</b></h4>
-                    </div>
-                    <!--<div class="trip-item trip-heading">
-                      <h4><b>Flag</b></h4>
-                    </div> -->
-                    <div class="trip-item trip-heading">
-                      <h4><b>Cover Picture</b></h4>
-                    </div>
-                  </div>
-                  <% @trips.each do |key, values|%>
-                    <%values.each do |trip| %>
+                    <% values.each do |trip| %>
                       <div class="trip-detail">
                         <div class="trip-item">
                           <a href="trips/<%=trip.id%>"><%= trip.address %></a>
@@ -52,12 +52,12 @@
                         </div>
                       </div>
                     <%end%>
-                  <% end %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div><!-- end contianer -->
   </section>

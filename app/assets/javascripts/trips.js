@@ -151,6 +151,13 @@
 
     $(".dpd").datepicker();
     $(".act-date").datepicker();
+    $(".tab-pane:first").addClass("active");
+    $(".trip-tab").on("click", function(){
+      var tab_id = $(this).attr('href').replace('#', '');
+      $(".tab-pane").removeClass("active");
+      $(".activity_tab-"+tab_id).addClass("active");
+    });
+
 });
 
 
