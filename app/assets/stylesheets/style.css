@@ -687,7 +687,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     transition: all .3s ease;
     border: 1px solid #fff;
     box-shadow: none;
-    background: url("../img/search-icon.png") no-repeat 10px 8px;
+    background: url("/assets/search-icon.png") no-repeat 10px 8px;
     padding:0 5px 0 35px;
     color: #000;
 }
@@ -6172,7 +6172,7 @@ a.guest-on i {
         transition: all .3s ease;
         border: 1px solid #fff;
         box-shadow: none;
-        background: url("../img/search-icon-white.png") no-repeat 10px 8px;
+        background: url("/assets/search-icon-white.png") no-repeat 10px 8px;
         padding:0 5px 0 35px;
         color: #000;
     }

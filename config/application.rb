@@ -11,43 +11,8 @@ Bundler.require(*Rails.groups)
 module Itinarite
   class Application < Rails::Application
     config.assets.enabled = true
-    Dir.glob("#{Rails.root}/app/assets/global/**/*/").each do |path|
-      config.assets.paths << path
-    end
-     Dir.glob("#{Rails.root}/app/assets/pages/**/*/").each do |path|
-      config.assets.paths << path
-    end
-     Dir.glob("#{Rails.root}/app/assets/themes/**/*/").each do |path|
-      config.assets.paths << path
-    end
-     Dir.glob("#{Rails.root}/app/assets/js/**/*/").each do |path|
-      config.assets.paths << path
-    end
-
-    Dir.glob("#{Rails.root}/app/assets/css/**/*/").each do |path|
-      config.assets.paths << path
-    end
+    
     Dir.glob("#{Rails.root}/app/assets/fonts/**/*/").each do |path|
-      config.assets.paths << path
-    end
-    Dir.glob("#{Rails.root}/app/assets/flag/**/*/").each do |path|
-      config.assets.paths << path
-    end
-
-    Dir.glob("#{Rails.root}/app/assets/fancybox/**/*/").each do |path|
-      config.assets.paths << path
-    end
-    Dir.glob("#{Rails.root}/app/assets/bootstrap-fileupload/**/*/").each do |path|
-      config.assets.paths << path
-    end
-    Dir.glob("#{Rails.root}/app/assets/bootstrap-datetimepicker/**/*/").each do |path|
-      config.assets.paths << path
-    end
-
-    Dir.glob("#{Rails.root}/app/assets/bootstrap-daterangepicker/**/*/").each do |path|
-      config.assets.paths << path
-    end
-    Dir.glob("#{Rails.root}/app/assets/bootstrap-datepicker/**/*/").each do |path|
       config.assets.paths << path
     end
 
