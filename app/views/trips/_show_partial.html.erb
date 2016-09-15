@@ -432,4 +432,61 @@
       dataType: "script"
     });
   });
+  $(document).ready(function(){
+      // smallMap2();
+    var allMaps = $(".map-list");
+
+    allMaps.each(function(index,value){
+        var current = $(this);
+        current.attr('id','map-list'+index);
+        var myCenter=new google.maps.LatLng(43.636476,-79.40692);
+
+        function initialize(){
+            var mapProp = {
+                center:myCenter,
+                zoom:5,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            var map=new google.maps.Map(document.getElementById('map-list'+index),mapProp);
+
+            var marker=new google.maps.Marker({
+                position:myCenter,
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    })
+  });
+
+  var locations = [
+    ['London', 51.508742,-0.120850, 2],
+    ['New York', 40.730610, -73.935242, 1]
+    ];
+
+  var map = new google.maps.Map(document.getElementById('gmap_geocoding'), {
+    zoom: 10,
+    center: new google.maps.LatLng(51.508742,-0.120850),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  var infowindow = new google.maps.InfoWindow();
+
+  var marker, i;
+
+  for (i = 0; i < locations.length; i++) {  
+    marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+        }
+    })(marker, i));
+  }
 </script>

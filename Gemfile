@@ -33,8 +33,8 @@ gem "letter_opener"
 # file upload plug in
 gem 'carrierwave'
 # google map
-gem 'gmaps4rails'
-gem 'underscore-rails'
+#gem 'gmaps4rails'
+#gem 'underscore-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
