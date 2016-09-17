@@ -316,3 +316,6 @@ body.profile{
 .fu_link{
   font-size: 15px !important;
 }
+.ui-datepicker-title{
+  color:black;
+}

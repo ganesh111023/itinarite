@@ -66,6 +66,23 @@
         appendDiv.find(".trip-morning-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
         appendDiv.find(".trip-morning-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
 
+        appendDiv.find(".act-date")
+          .removeClass('hasDatepicker')
+          .removeData('datepicker')
+          .unbind()
+          .datepicker({
+              dateFormat: "dd-mm-yy",
+              changeMonth: true,
+              yearRange: "-100:+0",
+              changeYear: true,
+              maxDate: new Date(),
+              showButtonPanel: false,
+              beforeShow: function() {
+                  setTimeout(function() {
+                      $('.ui-datepicker').css('z-index', 99999999999999);
+                  }, 0);
+              }
+          });
         
         appendDiv.insertAfter(beforeAdd);
       }
@@ -90,7 +107,26 @@
       appendDiv.find(".trip-afternoon-type").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_type');
 
       appendDiv.find(".trip-afternoon-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
-        appendDiv.find(".trip-afternoon-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
+      appendDiv.find(".trip-afternoon-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
+
+      appendDiv.find(".act-date")
+          .removeClass('hasDatepicker')
+          .removeData('datepicker')
+          .unbind()
+          .datepicker({
+              dateFormat: "dd-mm-yy",
+              changeMonth: true,
+              yearRange: "-100:+0",
+              changeYear: true,
+              maxDate: new Date(),
+              showButtonPanel: false,
+              beforeShow: function() {
+                  setTimeout(function() {
+                      $('.ui-datepicker').css('z-index', 99999999999999);
+                      
+                  }, 0);
+              }
+          });
 
       appendDiv.insertAfter(beforeAdd);
     }
@@ -116,6 +152,23 @@
 
       appendDiv.find(".trip-evening-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
       appendDiv.find(".trip-evening-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
+      appendDiv.find(".act-date")
+          .removeClass('hasDatepicker')
+          .removeData('datepicker')
+          .unbind()
+          .datepicker({
+              dateFormat: "dd-mm-yy",
+              changeMonth: true,
+              yearRange: "-100:+0",
+              changeYear: true,
+              maxDate: new Date(),
+              showButtonPanel: false,
+              beforeShow: function() {
+                  setTimeout(function() {
+                      $('.ui-datepicker').css('z-index', 99999999999999);
+                  }, 0);
+              }
+          });
       appendDiv.insertAfter(beforeAdd);
     }
 
@@ -149,8 +202,32 @@
     
     $(".single-trip-add-com").geocomplete();
 
-    $(".dpd").datepicker();
-    $(".act-date").datepicker();
+    $(".dpd").datepicker({
+        dateFormat: "dd-mm-yy",
+        changeMonth: true,
+        yearRange: "-100:+0",
+        changeYear: true,
+        maxDate: new Date(),
+        showButtonPanel: false,
+        beforeShow: function() {
+            setTimeout(function() {
+                $('.ui-datepicker').css('z-index', 99999999999999);
+            }, 0);
+        }
+    });
+    $(".act-date").datepicker({
+        dateFormat: "dd-mm-yy",
+        changeMonth: true,
+        yearRange: "-100:+0",
+        changeYear: true,
+        maxDate: new Date(),
+        showButtonPanel: false,
+        beforeShow: function() {
+            setTimeout(function() {
+                $('.ui-datepicker').css('z-index', 99999999999999);
+            }, 0);
+        }
+    });
     $(".tab-pane:first").addClass("active");
     $(".trip-tab").on("click", function(){
       var tab_id = $(this).attr('href').replace('#', '');
