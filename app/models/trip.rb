@@ -10,5 +10,13 @@ class Trip < ActiveRecord::Base
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   accepts_nested_attributes_for :trip_activities, :allow_destroy => true
 
+  #Validation
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :address, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+
+
   
 end

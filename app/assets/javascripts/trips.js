@@ -66,6 +66,7 @@
         appendDiv.find(".trip-morning-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
         appendDiv.find(".trip-morning-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
 
+        appendDiv.find(".trip-morning-place").geocomplete();
         appendDiv.find(".act-date")
           .removeClass('hasDatepicker')
           .removeData('datepicker')
@@ -75,7 +76,8 @@
               changeMonth: true,
               yearRange: "-100:+0",
               changeYear: true,
-              maxDate: new Date(),
+              minDate: new Date($("#trip_start_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ),
+              maxDate: new Date($("#trip_end_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ),
               showButtonPanel: false,
               beforeShow: function() {
                   setTimeout(function() {
@@ -109,6 +111,7 @@
       appendDiv.find(".trip-afternoon-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
       appendDiv.find(".trip-afternoon-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
 
+      appendDiv.find(".trip-afternoon-place").geocomplete();
       appendDiv.find(".act-date")
           .removeClass('hasDatepicker')
           .removeData('datepicker')
@@ -118,7 +121,8 @@
               changeMonth: true,
               yearRange: "-100:+0",
               changeYear: true,
-              maxDate: new Date(),
+              minDate: new Date($("#trip_start_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ),
+              maxDate: new Date($("#trip_end_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ),
               showButtonPanel: false,
               beforeShow: function() {
                   setTimeout(function() {
@@ -152,6 +156,8 @@
 
       appendDiv.find(".trip-evening-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
       appendDiv.find(".trip-evening-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
+
+      appendDiv.find(".trip-evening-place").geocomplete();
       appendDiv.find(".act-date")
           .removeClass('hasDatepicker')
           .removeData('datepicker')
@@ -161,7 +167,8 @@
               changeMonth: true,
               yearRange: "-100:+0",
               changeYear: true,
-              maxDate: new Date(),
+              minDate: new Date($("#trip_start_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ),
+              maxDate: new Date($("#trip_end_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ),
               showButtonPanel: false,
               beforeShow: function() {
                   setTimeout(function() {
@@ -202,7 +209,21 @@
     
     $(".single-trip-add-com").geocomplete();
 
-    $(".dpd").datepicker({
+    $(".dpd1").datepicker({
+        dateFormat: "dd-mm-yy",
+        changeMonth: true,
+        yearRange: "-100:+0",
+        changeYear: true,
+        maxDate: new Date(),
+        showButtonPanel: false,
+        beforeShow: function() {
+            setTimeout(function() {
+                $('.ui-datepicker').css('z-index', 99999999999999);
+            }, 0);
+        }
+    });
+
+    $(".dpd2").datepicker({
         dateFormat: "dd-mm-yy",
         changeMonth: true,
         yearRange: "-100:+0",
@@ -236,5 +257,45 @@
     });
 
 });
+
+$(document).on("change","#trip_start_date",function(ev) {
+  tripStartDate =  new Date($("#trip_start_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") );
+  tripEndDate =  new Date($("#trip_end_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") );
+  if (tripStartDate > tripEndDate){
+        alert('The start date can not be greater then the end date');
+        $("#trip_start_date").val("");
+    }
+  change_date_dicker_range(tripStartDate, tripEndDate);
+});
+
+$(document).on("change","#trip_end_date",function() {
+  tripStartDate =  new Date($("#trip_start_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") );
+  tripEndDate =  new Date($("#trip_end_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") );
+  if (tripEndDate < tripStartDate ){
+        alert('The end date can not be less then the start date');
+        $("#trip_end_date").val("");
+    }
+  change_date_dicker_range(tripStartDate, tripEndDate);
+});
+
+function change_date_dicker_range(tpStart, tpEnd){
+  $(".act-date").datepicker('destroy');
+  $(".act-date").datepicker({
+    minDate: tpStart,
+    maxDate: tpEnd,
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+    yearRange: "-100:+0",
+    changeYear: true,
+    showButtonPanel: false,
+    beforeShow: function() {
+        setTimeout(function() {
+            $('.ui-datepicker').css('z-index', 99999999999999);
+        }, 0);
+    }
+  });
+
+}
+
 
 

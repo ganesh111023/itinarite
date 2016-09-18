@@ -340,7 +340,7 @@
               </div>
               <div class="panel-body">
                   <div class="form-group">
-                    <%=select_tag :activity_date, options_for_select(@trip_activities_dates), class:"form-control trip-activity-sort",trip_id: @trip.id, style: "width: 100%", include_blank: false %>
+                    <%=select_tag :activity_date, options_for_select(@trip_activities_dates, params[:date]), class:"form-control trip-activity-sort",trip_id: @trip.id, style: "width: 100%", include_blank: false %>
                   </div>
               </div>
           </section>

@@ -319,3 +319,8 @@ body.profile{
 .ui-datepicker-title{
   color:black;
 }
+
+#trip_error_explanation{
+  color: red;
+  margin-left: 15px;
+}

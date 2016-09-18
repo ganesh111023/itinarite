@@ -15,6 +15,11 @@ class TripActivity < ActiveRecord::Base
   scope :morning_activities, -> { where(activity_type: ACTIVITY_TYPE[0]) }
   scope :afternoon_activities, -> { where(activity_type: ACTIVITY_TYPE[2]) }
   scope :evening_activities, -> { where(activity_type: ACTIVITY_TYPE[1]) }
+
+  #Validations
+  validates :place, presence: true
+  validates :description, presence: true
+  validates :activity_date, presence: true
   
   
 end
