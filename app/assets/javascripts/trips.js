@@ -305,4 +305,66 @@ function edit_entire_row() {
   });
 }
 
+function initialize_map(markers){
+    var mapOptions = {
+      center: new google.maps.LatLng(markers[0].lat, markers[0].long),
+      zoom: 5,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("gmap_geocoding"), mapOptions);
+    var infoWindow = new google.maps.InfoWindow();
+    var lat_lng = new Array();
+    var latlngbounds = new google.maps.LatLngBounds();
+    for (i = 0; i < markers.length; i++) {
+      var data = markers[i]
+      var myLatlng = new google.maps.LatLng(data.lat, data.long);
+      lat_lng.push(myLatlng);
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: data.address,
+      });
+      // var label = new ELabel(new GLatLng(data.lat,data.long), data.address);
+      // map.removeOverlay(label)
+      // label.pixelOffset=new GSize(20,10);
+      // map.addOverlay(label)
 
+      latlngbounds.extend(marker.position);
+        (function (marker, data) {
+        google.maps.event.addListener(marker, "click", function (e) {
+          infoWindow.setContent(data.address);
+          infoWindow.open(map, marker);
+        });
+        })(marker, data);
+    }
+    map.setCenter(latlngbounds.getCenter());
+    map.fitBounds(latlngbounds);
+  }
+
+
+function initialize_full_map () {
+
+  var mapOptions = {
+    center: new google.maps.LatLng(0, 0),
+    zoom: 1,
+    minZoom: 1
+  };
+
+  var map = new google.maps.Map(document.getElementById('gmap_geocoding'),mapOptions );
+
+  var allowedBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(85, -180), // top left corner of map
+    new google.maps.LatLng(-85, 180)  // bottom right corner
+  );
+
+  var k = 5.0; 
+  var n = allowedBounds .getNorthEast().lat() - k;
+  var e = allowedBounds .getNorthEast().lng() - k;
+  var s = allowedBounds .getSouthWest().lat() + k;
+  var w = allowedBounds .getSouthWest().lng() + k;
+  var neNew = new google.maps.LatLng( n, e );
+  var swNew = new google.maps.LatLng( s, w );
+  boundsNew = new google.maps.LatLngBounds( swNew, neNew );
+  map .fitBounds(boundsNew);
+
+}

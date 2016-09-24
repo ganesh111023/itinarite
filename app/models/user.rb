@@ -54,4 +54,13 @@
     self.trips.order("created_at desc").limit(2) if self.trips.present?
   end
 
+  # Trips Locations
+  def trips_locations
+    locations = []
+    self.trips.each do |t|
+      locations << t.attributes
+    end
+    locations
+  end
+
 end

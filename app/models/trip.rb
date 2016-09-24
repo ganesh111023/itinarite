@@ -18,5 +18,12 @@ class Trip < ActiveRecord::Base
   validates :end_date, presence: true
 
 
+  # Geocode address to lat. long
+  geocoded_by :address,
+    :latitude => :lat, :longitude => :long
+
+  after_validation :geocode, :if => lambda{ |obj| obj.address_changed? } 
+
+
   
 end

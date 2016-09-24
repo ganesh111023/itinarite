@@ -10,6 +10,7 @@ class UserDashboardController < ApplicationController
      @followings_count = current_user.following.size
      @followers_count = current_user.followers.uniq.size
      @recent_trips = current_user.recent_trips
+     @trips_locations = current_user.trips_locations
   end
 
   #upload_picture_dashboard
