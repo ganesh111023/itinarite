@@ -49,4 +49,9 @@
     following.include?(other_user)
   end
 
+  # Recent trips
+  def recent_trips
+    self.trips.order("created_at desc").limit(2) if self.trips.present?
+  end
+
 end

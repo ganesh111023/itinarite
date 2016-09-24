@@ -255,7 +255,7 @@
       $(".tab-pane").removeClass("active");
       $(".activity_tab-"+tab_id).addClass("active");
     });
-
+    edit_entire_row();
 });
 
 $(document).on("change","#trip_start_date",function(ev) {
@@ -297,5 +297,12 @@ function change_date_dicker_range(tpStart, tpEnd){
 
 }
 
+function edit_entire_row() {
+  $("tr td:not(.disable_link)").click(function () {
+    if (this.closest('tr').attributes["link"] != undefined) {
+        window.location = this.closest('tr').attributes["link"].value
+    }
+  });
+}
 
 

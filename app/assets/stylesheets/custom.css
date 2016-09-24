@@ -324,3 +324,7 @@ body.profile{
   color: red;
   margin-left: 15px;
 }
+
+.entire_row_clickable tr{
+  cursor: pointer;
+}
