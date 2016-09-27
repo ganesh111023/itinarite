@@ -341,11 +341,11 @@
   $(document).ready(function(){
     var markers = <%=raw @trips_locations.to_json %>
     window.onload = function () {
-      if(markers.length > 1){
+      if(markers.length > 0){
         initialize_map(markers);
       }
       else {
-        initialize_full_map();
+          initialize_full_map();
       }
       
     }

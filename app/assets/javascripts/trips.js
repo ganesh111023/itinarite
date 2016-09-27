@@ -66,7 +66,9 @@
         appendDiv.find(".trip-morning-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
         appendDiv.find(".trip-morning-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
 
-        appendDiv.find(".trip-morning-place").geocomplete();
+        appendDiv.find(".trip-morning-place").on("click keypress", function(e){
+          set_google_model_attr(e);
+        });
         appendDiv.find(".act-date")
           .removeClass('hasDatepicker')
           .removeData('datepicker')
@@ -111,7 +113,9 @@
       appendDiv.find(".trip-afternoon-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
       appendDiv.find(".trip-afternoon-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
 
-      appendDiv.find(".trip-afternoon-place").geocomplete();
+      appendDiv.find(".trip-afternoon-place").on("click keypress", function(e){
+        set_google_model_attr(e);
+      });
       appendDiv.find(".act-date")
           .removeClass('hasDatepicker')
           .removeData('datepicker')
@@ -157,7 +161,9 @@
       appendDiv.find(".trip-evening-date").attr("name",'trip[trip_activities_attributes]['+index+'][activity_date]');
       appendDiv.find(".trip-evening-date").attr("id", 'trip_trip_activities_attributes_'+index+'_activity_date');
 
-      appendDiv.find(".trip-evening-place").geocomplete();
+      appendDiv.find(".trip-evening-place").on("click keypress", function(e){
+        set_google_model_attr(e);
+      });
       appendDiv.find(".act-date")
           .removeClass('hasDatepicker')
           .removeData('datepicker')
@@ -187,15 +193,35 @@
     }
 
 
-    $("#map-geo").geocomplete({
-        map: ".map_canvas",
-        mapOptions: {
-            zoom: 150
-        },
-        markerOptions: {
-            draggable: true
-        }
-    })
+    $("#map-geo").on("click keypress", function(e){
+      set_google_model_attr(e);
+    });
+
+    $("#morning-trip-place").on("click keypress", function(e){
+      set_google_model_attr(e);
+    });
+
+    $("#afternoon-trip-place").on("click keypress", function(e){
+      set_google_model_attr(e);
+    });
+
+    $("#evening-trip-place").on("click keypress", function(e){
+      set_google_model_attr(e);
+    });
+
+
+    function set_google_model_attr(e){
+      invoker = e.currentTarget.id
+      $("#us6-dialog").attr("collling-obj", invoker);
+      $("#us6-dialog").modal('show');
+    }
+
+    $(".google-map-selected-location").on("click", function(){
+     invoker_id =  $(this).parent().parent().parent().parent().attr("collling-obj")
+     location_val = $(this).parent().siblings().closest(".modal-body").find("#us3-address").val();
+     $("#"+invoker_id).val(location_val);
+     $("#us6-dialog").modal('hide');
+    });
 
     $(function() {
       $('#default').stepy({
@@ -207,10 +233,10 @@
       });
     });
     
-    $(".single-trip-add-com").geocomplete();
+    $(".single-trip-add-com").locationpicker();
 
     $(".dpd1").datepicker({
-        dateFormat: "dd-mm-yy",
+        dateFormat: "DD M d yy",
         changeMonth: true,
         yearRange: "-100:+0",
         changeYear: true,
@@ -224,7 +250,7 @@
     });
 
     $(".dpd2").datepicker({
-        dateFormat: "dd-mm-yy",
+        dateFormat: "DD M d yy",
         changeMonth: true,
         yearRange: "-100:+0",
         changeYear: true,
@@ -237,7 +263,7 @@
         }
     });
     $(".act-date").datepicker({
-        dateFormat: "dd-mm-yy",
+        dateFormat: "DD M d yy",
         changeMonth: true,
         yearRange: "-100:+0",
         changeYear: true,
@@ -261,6 +287,7 @@
 $(document).on("change","#trip_start_date",function(ev) {
   tripStartDate =  new Date($("#trip_start_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") );
   tripEndDate =  new Date($("#trip_end_date").val().replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") );
+  
   if (tripStartDate > tripEndDate){
         alert('The start date can not be greater then the end date');
         $("#trip_start_date").val("");
@@ -283,7 +310,7 @@ function change_date_dicker_range(tpStart, tpEnd){
   $(".act-date").datepicker({
     minDate: tpStart,
     maxDate: tpEnd,
-    dateFormat: "dd-mm-yy",
+    dateFormat: "DD M d yy",
     changeMonth: true,
     yearRange: "-100:+0",
     changeYear: true,
@@ -308,7 +335,7 @@ function edit_entire_row() {
 function initialize_map(markers){
     var mapOptions = {
       center: new google.maps.LatLng(markers[0].lat, markers[0].long),
-      zoom: 5,
+      zoom: 1,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("gmap_geocoding"), mapOptions);
@@ -324,10 +351,7 @@ function initialize_map(markers){
         map: map,
         title: data.address,
       });
-      // var label = new ELabel(new GLatLng(data.lat,data.long), data.address);
-      // map.removeOverlay(label)
-      // label.pixelOffset=new GSize(20,10);
-      // map.addOverlay(label)
+
 
       latlngbounds.extend(marker.position);
         (function (marker, data) {

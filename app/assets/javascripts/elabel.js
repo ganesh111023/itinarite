@@ -1,133 +1,142 @@
-// ELabel.js 
-//
-//   This Javascript is provided by Mike Williams
-//   Community Church Javascript Team
-//   http://www.bisphamchurch.org.uk/   
-//   http://econym.org.uk/gmap/
-//
-//   This work is licenced under a Creative Commons Licence
-//   http://creativecommons.org/licenses/by/2.0/uk/
-//
-// Version 0.2      the .copy() parameters were wrong
-// version 1.0      added .show() .hide() .setContents() .setPoint() .setOpacity() .overlap
-// version 1.1      Works with GMarkerManager in v2.67, v2.68, v2.69, v2.70 and v2.71
-// version 1.2      Works with GMarkerManager in v2.72, v2.73, v2.74 and v2.75
-// version 1.3      add .isHidden()
-// version 1.4      permit .hide and .show to be used before addOverlay()
-// version 1.5      fix positioning bug while label is hidden
-// version 1.6      added .supportsHide()
-// version 1.7      fix .supportsHide()
-// version 1.8      remove the old GMarkerManager support due to clashes with v2.143
-
-
-      function ELabel(point, html, classname, pixelOffset, percentOpacity, overlap) {
-        // Mandatory parameters
-        this.point = point;
-        this.html = html;
-        
-        // Optional parameters
-        this.classname = classname||"";
-        this.pixelOffset = pixelOffset||new GSize(0,0);
-        if (percentOpacity) {
-          if(percentOpacity<0){percentOpacity=0;}
-          if(percentOpacity>100){percentOpacity=100;}
-        }        
-        this.percentOpacity = percentOpacity;
-        this.overlap=overlap||false;
-        this.hidden = false;
-      } 
-      
-      ELabel.prototype = new GOverlay();
-
-      ELabel.prototype.initialize = function(map) {
-        var div = document.createElement("div");
-        div.style.position = "absolute";
-        div.innerHTML = '<div class="' + this.classname + '">' + this.html + '</div>' ;
-        map.getPane(G_MAP_FLOAT_SHADOW_PANE).appendChild(div);
-        this.map_ = map;
-        this.div_ = div;
-        if (this.percentOpacity) {        
-          if(typeof(div.style.filter)=='string'){div.style.filter='alpha(opacity:'+this.percentOpacity+')';}
-          if(typeof(div.style.KHTMLOpacity)=='string'){div.style.KHTMLOpacity=this.percentOpacity/100;}
-          if(typeof(div.style.MozOpacity)=='string'){div.style.MozOpacity=this.percentOpacity/100;}
-          if(typeof(div.style.opacity)=='string'){div.style.opacity=this.percentOpacity/100;}
-        }
-        if (this.overlap) {
-          var z = GOverlay.getZIndex(this.point.lat());
-          this.div_.style.zIndex = z;
-        }
-        if (this.hidden) {
-          this.hide();
-        }
-      }
-
-      ELabel.prototype.remove = function() {
-        this.div_.parentNode.removeChild(this.div_);
-      }
-
-      ELabel.prototype.copy = function() {
-        return new ELabel(this.point, this.html, this.classname, this.pixelOffset, this.percentOpacity, this.overlap);
-      }
-
-      ELabel.prototype.redraw = function(force) {
-        var p = this.map_.fromLatLngToDivPixel(this.point);
-        var h = parseInt(this.div_.clientHeight);
-        this.div_.style.left = (p.x + this.pixelOffset.width) + "px";
-        this.div_.style.top = (p.y +this.pixelOffset.height - h) + "px";
-      }
-
-      ELabel.prototype.show = function() {
-        if (this.div_) {
-          this.div_.style.display="";
-          this.redraw();
-        }
-        this.hidden = false;
-      }
-      
-      ELabel.prototype.hide = function() {
-        if (this.div_) {
-          this.div_.style.display="none";
-        }
-        this.hidden = true;
-      }
-      
-      ELabel.prototype.isHidden = function() {
-        return this.hidden;
-      }
-      
-      ELabel.prototype.supportsHide = function() {
-        return true;
-      }
-
-      ELabel.prototype.setContents = function(html) {
-        this.html = html;
-        this.div_.innerHTML = '<div class="' + this.classname + '">' + this.html + '</div>' ;
-        this.redraw(true);
-      }
-      
-      ELabel.prototype.setPoint = function(point) {
-        this.point = point;
-        if (this.overlap) {
-          var z = GOverlay.getZIndex(this.point.lat());
-          this.div_.style.zIndex = z;
-        }
-        this.redraw(true);
-      }
-      
-      ELabel.prototype.setOpacity = function(percentOpacity) {
-        if (percentOpacity) {
-          if(percentOpacity<0){percentOpacity=0;}
-          if(percentOpacity>100){percentOpacity=100;}
-        }        
-        this.percentOpacity = percentOpacity;
-        if (this.percentOpacity) {        
-          if(typeof(this.div_.style.filter)=='string'){this.div_.style.filter='alpha(opacity:'+this.percentOpacity+')';}
-          if(typeof(this.div_.style.KHTMLOpacity)=='string'){this.div_.style.KHTMLOpacity=this.percentOpacity/100;}
-          if(typeof(this.div_.style.MozOpacity)=='string'){this.div_.style.MozOpacity=this.percentOpacity/100;}
-          if(typeof(this.div_.style.opacity)=='string'){this.div_.style.opacity=this.percentOpacity/100;}
-        }
-      }
-
-      ELabel.prototype.getPoint = function() {
-        return this.point;
-      }
+/*
+* ELabel.js - v3.0.2 - 12/08/2010
+* https://github.com/erunyon/ELabel
+*
+* Copyright (c) 2010 Erik Runyon
+* Dual licensed under the MIT and GPL licenses.
+* http://weedygarden.net
+*/
+function ELabel(data) {
+/*
+data is an object in the following format:
+new ELabel({
+latlng: new google.maps.LatLng(41.700346,-86.238899),
+label: "Foo",
+classname: "label",
+offset: new google.maps.Size(-18, -12),
+opacity: 100,
+overlap: true,
+clicktarget: false
+});
+*/
+var data = data;
+// Mandatory parameters
+this.point = data.latlng;
+this.html = data.label;
+// Optional parameters
+this.classname = data.classname || "";
+this.pixelOffset = data.offset || new google.maps.Size(0,0);
+if (data.opacity) {
+if(data.opacity < 0){data.opacity = 0;}
+if(data.opacity > 100){data.opacity = 100;}
+}
+this.percentOpacity = data.opacity;
+this.overlap = data.overlap || false;
+this.hidden = false;
+this.clicktarget = (data.clicktarget) ? data.clicktarget : false;
+}
+ELabel.prototype = new google.maps.OverlayView;
+ELabel.prototype.onAdd = function(map) {
+var div = document.createElement("div");
+div.style.position = "absolute";
+div.innerHTML = '<div class="' + this.classname + '">' + this.html + '</div>' ;
+this.getPanes().floatShadow.appendChild(div);
+this.map_ = map;
+this.div_ = div;
+if(this.percentOpacity) {
+if(typeof(div.style.filter)=='string'){div.style.filter='alpha(opacity:'+this.percentOpacity+')';}
+if(typeof(div.style.KHTMLOpacity)=='string'){div.style.KHTMLOpacity=this.percentOpacity/100;}
+if(typeof(div.style.MozOpacity)=='string'){div.style.MozOpacity=this.percentOpacity/100;}
+if(typeof(div.style.opacity)=='string'){div.style.opacity=this.percentOpacity/100;}
+}
+if(this.overlap) {
+// This is a work in progress
+// var z = GOverlay.getZIndex(this.point.lat());
+// this.div_.style.zIndex = z;
+var z = 1000*(90-this.point.lat());
+this.div_.style.zIndex = parseInt(z);
+}
+if(this.hidden) {
+this.hide();
+}
+if(this.clicktarget) {
+var target = this.clicktarget;
+// Can't get this to work, which would be ideal
+// google.maps.event.addListener(this.div_, 'click', function() {
+// google.maps.event.trigger(target, "click");
+// });
+if (typeof jQuery != 'undefined') {
+jQuery(this.div_).click(function(){
+google.maps.event.trigger(target, "click");
+});
+}
+}
+};
+ELabel.prototype.onRemove = function() {
+this.div_.parentNode.removeChild(this.div_);
+};
+ELabel.prototype.copy = function() {
+return new ELabel({
+latlng: this.point,
+label: this.html,
+classname: "label",
+offset: new google.maps.Size(-18, -12),
+opacity: 100,
+overlap: true,
+clicktarget: false
+});
+};
+ELabel.prototype.draw = function() {
+var proj = this.getProjection(),
+pos = proj.fromLatLngToDivPixel(this.point);
+this.div_.style.left = (pos.x + this.pixelOffset.width) + "px";
+this.div_.style.top = (pos.y +this.pixelOffset.height) + "px";
+};
+ELabel.prototype.show = function() {
+if (this.div_) {
+this.div_.style.display="";
+this.draw();
+}
+this.hidden = false;
+};
+ELabel.prototype.hide = function() {
+if (this.div_) {
+this.div_.style.display="none";
+}
+this.hidden = true;
+};
+ELabel.prototype.isHidden = function() {
+return this.hidden;
+};
+ELabel.prototype.supportsHide = function() {
+return true;
+};
+ELabel.prototype.setContents = function(html) {
+this.html = html;
+this.div_.innerHTML = '<div class="' + this.classname + '">' + this.html + '</div>' ;
+this.draw();
+};
+// ELabel.prototype.setPoint = function(point) {
+// this.point = point;
+// if (this.overlap) {
+// var z = GOverlay.getZIndex(this.point.lat());
+// this.div_.style.zIndex = z;
+// }
+// this.draw();
+// };
+ELabel.prototype.setOpacity = function(percentOpacity) {
+if (percentOpacity) {
+if(percentOpacity<0){percentOpacity=0;}
+if(percentOpacity>100){percentOpacity=100;}
+}
+this.percentOpacity = percentOpacity;
+if (this.percentOpacity) {
+if(typeof(this.div_.style.filter)=='string'){this.div_.style.filter='alpha(opacity:'+this.percentOpacity+')';}
+if(typeof(this.div_.style.KHTMLOpacity)=='string'){this.div_.style.KHTMLOpacity=this.percentOpacity/100;}
+if(typeof(this.div_.style.MozOpacity)=='string'){this.div_.style.MozOpacity=this.percentOpacity/100;}
+if(typeof(this.div_.style.opacity)=='string'){this.div_.style.opacity=this.percentOpacity/100;}
+}
+};
+ELabel.prototype.getPoint = function() {
+return this.point;
+};

@@ -7,6 +7,7 @@
       <section class="panel">
           <header class="panel-heading">
               <h4><b>Add Trip</b></h4>
+              <!-- <button data-target="#us6-dialog" data-toggle="modal">Click hear to open dialog</button> -->
           </header>
             <%=  form_for @trip,  class: "form-horizontal", id: "default"  do |f| %>
               <% if @trip.errors.any? %>
@@ -84,7 +85,7 @@
                     <label class="col-md-2">Add Google Location</label>
                       <div class="col-md-10" >
                           <div class=" col-md-12 location-search location-find">
-                            <input class="geocomplete form-control col-md-5" type="text" placeholder="Type in an address"  />
+                            <input class="geo-picker form-control col-md-5" type="text" placeholder="Type in an address"  />
                           </div>
                           
                       </div>
@@ -107,20 +108,20 @@
                           <div class="col-md-3">  
                             <div class="form-group-margin place">
                               <label class=" ">What did u Do ?</label>
-                              <%= t.text_field :description, class:"form-control trip-morning-desc",required: :required , placeholder: "What did u Do ?" %>
+                              <%= t.text_field :description, class:"form-control trip-morning-desc",required: :required , placeholder: "Provide a brief description of what you did" %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin description">
                               <label class=" ">Where ?</label>
-                              <%=t.text_field :place,class:"form-control geocomplete single-trip-add-com trip-morning-place",placeholder: "Where ?",required: :required  %>
+                              <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-morning-place", id: "morning-trip-place" ,placeholder: "Where ?",required: :required  %>
                               <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[0],class:"trip-morning-type" %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">Date</label>
-                              <%=t.text_field :activity_date,class:"form-control geocomplete single-trip-add-com trip-morning-date act-date",placeholder: "Where ?" , required: :required %>
+                              <%=t.text_field :activity_date,class:"form-control geo-picker single-trip-add-com trip-morning-date act-date",placeholder: "Date" , required: :required %>
                             </div>
                           </div>
                           <div class="col-md-3">
@@ -168,20 +169,20 @@
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">What did u Do ?</label>
-                              <%= t.text_field :description, class:"form-control trip-afternoon-desc", placeholder: "What did u Do ?" , required: :required %>
+                              <%= t.text_field :description, class:"form-control trip-afternoon-desc", placeholder: "Provide a brief description of what you did" , required: :required %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">Where ?</label>
-                              <%=t.text_field :place,class:"form-control geocomplete single-trip-add-com trip-afternoon-place",placeholder: "Where ?",required: :required  %>
+                              <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-afternoon-place", id: "afternoon-trip-place" ,placeholder: "Where ?",required: :required  %>
                                 <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[2],class:"trip-afternoon-type" %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">Date</label>
-                              <%=t.text_field :activity_date,class:"form-control geocomplete single-trip-add-com trip-afternoon-date act-date",placeholder: "Where ?", required: :required %>
+                              <%=t.text_field :activity_date,class:"form-control geo-picker single-trip-add-com trip-afternoon-date act-date",placeholder: "Date", required: :required %>
                             </div>
                           </div>
                           <div class="col-md-3">
@@ -228,20 +229,20 @@
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">What did u Do ?</label>
-                              <%= t.text_field :description, class:"form-control trip-evening-desc", placeholder: "What did u Do ?", required: :required  %>
+                              <%= t.text_field :description, class:"form-control trip-evening-desc", placeholder: "Provide a brief description of what you did", required: :required  %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">Where ?</label>
-                              <%=t.text_field :place,class:"form-control geocomplete single-trip-add-com trip-evening-place",placeholder: "Where ?", required: :required  %>
+                              <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-evening-place", id: "evening-trip-place" ,placeholder: "Date", required: :required  %>
                                 <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[1],class:"trip-evening-type" %>
                             </div>
                           </div>
                           <div class="col-md-3">
                             <div class="form-group-margin">
                               <label class=" ">Date</label>
-                              <%=t.text_field :activity_date,class:"form-control geocomplete single-trip-add-com trip-evening-date act-date",placeholder: "Where ?", required: :required  %>
+                              <%=t.text_field :activity_date,class:"form-control geo-picker single-trip-add-com trip-evening-date act-date",placeholder: "Where ?", required: :required  %>
                             </div>
                           </div>
                           <div class="col-md-3">
@@ -272,30 +273,7 @@
                     </div>
                   </div>
                 <%end%>
-              </fieldset>  
-              
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              </fieldset> 
               <%= f.submit "Finish", class: "finish btn btn-danger" %>
             <% end %>
             <!--end form -->
@@ -307,3 +285,79 @@
   </section>
 </section>
 <!--main content end-->
+
+<div id="us6-dialog" class="modal fade" collling-obj ="" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Select Location</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal" style="width: 550px">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="us3-address" />
+                        <input type="hidden" class="form-control" name="radius" id="us3-radius" />
+                        <input type="hidden" class="form-control" name="street1" id="us3-street1" />
+                        <input type="hidden" class="form-control" name="city" id="us3-city" />
+                        <input type="hidden" class="form-control" name="state" id="us3-state" />
+                        <input type="hidden" class="form-control" name="zip" id="us3-zip" />
+                        <input type="hidden" class="form-control" name="country" id="us3-country" />
+                        <input type="hidden" class="form-control" name="country" id="us3-lat" />
+                        <input type="hidden" class="form-control" name="country" id="us3-lon" />
+                    </div>
+                </div>
+                <div id="us3" style="width: 100%; height: 400px;"></div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="clearfix"></div>
+                <script>
+                  function updateControls(addressComponents) {
+                      $('#us3-street1').val(addressComponents.addressLine1);
+                      $('#us3-city').val(addressComponents.city);
+                      $('#us3-state').val(addressComponents.stateOrProvince);
+                      $('#us3-zip').val(addressComponents.postalCode);
+                      $('#us3-country').val(addressComponents.country);
+                  }
+                  $('#us3').locationpicker({
+                    location: {
+                        latitude: 42.00,
+                        longitude: -73.82480799999996
+                    },
+                    radius: 10,
+                    inputBinding: {
+                        latitudeInput: $('#us3-lat'),
+                        longitudeInput: $('#us3-lon'),
+                        radiusInput: $('#us3-radius'),
+                        locationNameInput: $('#us3-address')
+                    },
+                     enableAutocomplete: true,
+                     addressFormat: 'addressLine1,city,stateOrProvince,postalCode,country',
+                    onchanged: function (currentLocation, radius, isMarkerDropped) {
+                        var addressComponents = $(this).locationpicker('map').location.addressComponents;
+                        updateControls(addressComponents);
+                    },
+                    oninitialized: function(component) {
+                        var addressComponents = $(component).locationpicker('map').location.addressComponents;
+                        updateControls(addressComponents);
+                    }
+                  });
+
+                    $('#us6-dialog').on('shown.bs.modal', function () {
+                        $('#us3').locationpicker('autosize');
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary google-map-selected-location">Save changes</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
