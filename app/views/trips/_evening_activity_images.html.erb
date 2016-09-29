@@ -1,0 +1,39 @@
+<%= form_for act, :url => trip_activity_update_photo_path(trip_id: @trip.id, activity_id: act.id), :method => :put,:html => { :multipart => true } do |f| %>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="form-group-margin">
+        <%= f.fields_for :pictures, Picture.new  do |p| %>
+          <div class="evening-act-image-upload">
+            <div class="fileupload fileupload-new" data-provides="fileupload" style="margin-bottom: 10px;"">
+              <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; border: medium none;">
+              </div>
+              <span class="btn btn-white btn-file">
+                <span class="fileupload-new">
+                  <i class="fa fa-paper-clip"></i> Select image
+                </span>
+                <span class="fileupload-exists">
+                  <i class="fa fa-undo"></i> Change
+                </span>
+                  <%= p.file_field :name, class: "image" %>
+                </span>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "upload", class: "btn btn-primary" %>
+<% end %>
+<div class="row add_morning">
+  <div class="col-md-8">
+    <div class="col-lg-6">
+      <a id="addevening-act-image" href="javascript:void(0);"> <i class="fa fa-plus"></i> Add More images
+        </a>
+    </div>
+    <div class="col-lg-6">
+      <a id="removeevening-act-iamge" href="javascript:void(0);"> <i class="fa fa-plus"></i> Remove images
+        </a>
+    </div>
+  </div>
+</div>

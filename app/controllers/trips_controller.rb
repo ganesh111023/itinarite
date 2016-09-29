@@ -12,7 +12,7 @@ class TripsController < ApplicationController
 	def create
 	  @trip = current_user.trips.new(trip_params)
 	  if @trip.save
-	  	redirect_to trips_path, notice: "Trip successully created!"
+	  	redirect_to trip_path(@trip), notice: "Trip successully created!"
 	  else
 	  	render :new
 	  end
@@ -39,7 +39,7 @@ class TripsController < ApplicationController
 
 private
 	def trip_params
-	  params.require(:trip).permit(:name, :description, :address,:start_date, :end_date,:user_id, pictures_attributes: [:id, :name],trip_activities_attributes: [:id, :place, :description,:trip_id,:activity_date, :activity_type, pictures_attributes: [:id, :name]])
+	  params.require(:trip).permit(:name, :description, :address,:start_date, :end_date,:user_id, pictures_attributes: [:id, :name],trip_activities_attributes: [:id, :place, :description,:trip_id,:activity_date, :activity_type])
 	end
 
 end

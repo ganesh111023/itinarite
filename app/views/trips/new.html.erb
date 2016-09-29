@@ -37,9 +37,8 @@
                   <div class="form-group last">
                     <label class=" col-md-2">Add Image :</label>
                     <div class="col-md-10">
-
                       <div class="fileupload fileupload-new" data-provides="fileupload" style="margin-bottom: 10px;"">
-                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; border: none;">
                         </div>
                         <span class="btn btn-white btn-file">
                           <span class="fileupload-new">
@@ -105,35 +104,24 @@
                       </div>  
                       <div class="panel-body clearfix">
                         <div class="morning-activities clone">
-                          <div class="col-md-3">  
+                          <div class="col-md-4">  
                             <div class="form-group-margin place">
                               <label class=" ">What did u Do ?</label>
                               <%= t.text_field :description, class:"form-control trip-morning-desc",required: :required , placeholder: "Provide a brief description of what you did" %>
                             </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin description">
                               <label class=" ">Where ?</label>
                               <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-morning-place", id: "morning-trip-place" ,placeholder: "Where ?",required: :required  %>
                               <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[0],class:"trip-morning-type" %>
                             </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin">
                               <label class=" ">Date</label>
                               <%=t.text_field :activity_date,class:"form-control geo-picker single-trip-add-com trip-morning-date act-date",placeholder: "Date" , required: :required %>
                             </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="form-group-margin picture">
-                              <%= t.fields_for :pictures, Picture.new do |tp| %>
-                                <label class=" ">Upload Image</label>
-                                <div class="fileUpload btn btn-primary btn-block">
-                                  <span>Upload</span>
-                                  <%= tp.file_field :name, class:"trip-morning-photo" %>
-                                </div>
-                              <%end%>
-                            </div>                      
                           </div>
                         </div>
                       </div>
@@ -166,35 +154,24 @@
                       </div>
                       <div class="panel-body clearfix">
                         <div class="afternoon">
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin">
                               <label class=" ">What did u Do ?</label>
                               <%= t.text_field :description, class:"form-control trip-afternoon-desc", placeholder: "Provide a brief description of what you did" , required: :required %>
                             </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin">
                               <label class=" ">Where ?</label>
                               <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-afternoon-place", id: "afternoon-trip-place" ,placeholder: "Where ?",required: :required  %>
                                 <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[2],class:"trip-afternoon-type" %>
                             </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin">
                               <label class=" ">Date</label>
                               <%=t.text_field :activity_date,class:"form-control geo-picker single-trip-add-com trip-afternoon-date act-date",placeholder: "Date", required: :required %>
                             </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="form-group-margin">
-                              <%= t.fields_for :pictures, Picture.new do |tp| %>
-                                <label class=" ">Upload Image</label>
-                                <div class="fileUpload btn btn-primary btn-block">
-                                  <span>Upload</span>
-                                  <%= tp.file_field :name, class:"trip-afternoon-photo" %>
-                                </div>
-                              <%end%>
-                            </div>                     
                           </div>
                         </div>
                       </div>
@@ -226,35 +203,24 @@
                       </div>
                       <div class="panel-body clearfix">
                         <div class="evening">
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin">
                               <label class=" ">What did u Do ?</label>
                               <%= t.text_field :description, class:"form-control trip-evening-desc", placeholder: "Provide a brief description of what you did", required: :required  %>
                             </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin">
                               <label class=" ">Where ?</label>
-                              <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-evening-place", id: "evening-trip-place" ,placeholder: "Date", required: :required  %>
+                              <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-evening-place", id: "evening-trip-place" ,placeholder: "Where ?", required: :required  %>
                                 <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[1],class:"trip-evening-type" %>
                             </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="form-group-margin">
                               <label class=" ">Date</label>
-                              <%=t.text_field :activity_date,class:"form-control geo-picker single-trip-add-com trip-evening-date act-date",placeholder: "Where ?", required: :required  %>
+                              <%=t.text_field :activity_date,class:"form-control geo-picker single-trip-add-com trip-evening-date act-date",placeholder: "Date", required: :required  %>
                             </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="form-group-margin">
-                              <%= t.fields_for :pictures, Picture.new do |tp| %>
-                                <label class=" ">Upload Image</label>
-                                <div class="fileUpload btn btn-primary btn-block">
-                                  <span>Upload</span>
-                                  <%= tp.file_field :name, class:"trip-evening-photo" %>
-                                </div>
-                              <%end%>
-                            </div>                     
                           </div>
                         </div>
                       </div>
