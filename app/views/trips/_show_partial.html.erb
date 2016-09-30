@@ -14,7 +14,7 @@
 
           <div class="panel-body">
             <div class="">
-              <p>We decided to go to london to visit grandmother.Landed in Heasthrow, got picked up by mammy.it was an amazing trip</p>        
+              <p><%= @trip.description %></p>        
             </div>
           </div>
 
@@ -141,8 +141,9 @@
                 </table>            
               </div>
             </section> 
-          <div>
+          </div>
         <%end%>
+        <div class="clearfix"></div>
         <% if @trip_activities.evening_activities.present? %>
           <div class="panel">
             <div class="panel-heading">
@@ -194,6 +195,7 @@
           <div> 
         <%end%>  
       </aside>
+
       <aside class="col-lg-8 col-md-6">
         <section class="panel">
           <header class="panel-heading">

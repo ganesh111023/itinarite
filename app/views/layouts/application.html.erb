@@ -63,7 +63,6 @@
   <script src="/assets/locationpicker.jquery.js"></script>
 
   <!--common script for all pages-->
-  <script type="text/javascript" src="/assets/common-scripts.js"></script>
   <script type="text/javascript" src="/assets/trips.js"></script>
   <script type="text/javascript" src="/assets/form-component.js"></script>
   <script type="text/javascript" src="/assets/gmaps-scripts.js"></script>
@@ -77,6 +76,7 @@
   <link href="/assets/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/bootstrap-reset.css" rel="stylesheet">
   <link href="/assets/custom.css" rel="stylesheet">
+
   <!--external css-->
   <link href="/assets/font-awesome.css" rel="stylesheet" />
 
@@ -106,12 +106,11 @@
   <%= csrf_meta_tags   %>
 </head>
   <body>
-  <%#= render "shared/flash_messages"%>
     <section id="container" class="">
       <!--header start-->
       <header class="header white-bg">
         <div class="sidebar-toggle-box">
-          <div  class="fa fa-bars"> </div>
+          <div class="fa fa-bars"> </div>
         </div>
 
         <!--logo start-->
@@ -560,7 +559,6 @@
         </footer>
       <!--footer end-->
     </section>
-    <!--footer end-->
-    
+    <script src="/assets/common-scripts.js"></script>
   </body>
 </html>
