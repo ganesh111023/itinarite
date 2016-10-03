@@ -213,73 +213,9 @@
           </header>
           <div id="gmap_geocoding" class="gmaps"></div>
         </section>
-        <section class="panel">
-          <div class="panel-heading">
-            <b>Trip Comments</b>
-          </div>
-          <div class="panel-body">
-            <div class="fb-status-container fb-border">
-              <div class="fb-time-action like-info">
-                <a href="#">Jhon Due,</a>
-                <a href="#">Danieal Kalion</a>
-                <span>and</span>
-                <a href="#">40 more</a>
-                <span>Comment on this</span>
-              </div>
-              <ul class="fb-comments">
-                <li>
-                  <a class="cmt-thumb" href="#">
-                      <img alt="" src="/assets/mail-avatar.jpg">
-                  </a>
-                  <div class="cmt-details">
-                      <a href="#">Jhone due</a>
-                      <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
-                      <p>40 minutes ago - <a class="like-link" href="#">Like</a></p>
-                  </div>
-                </li>
-                <li>
-                  <a class="cmt-thumb" href="#">
-                      <img alt="" src="/assets/follower-avatar.jpg">
-                  </a>
-                  <div class="cmt-details">
-                      <a href="#">Tawseef</a>
-                      <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
-                      <p>34 minutes ago - <a class="like-link" href="#">Like</a></p>
-                  </div>
-                </li>
-                <li>
-                    <a class="cmt-thumb" href="#">
-                        <img alt="" src="/assets/mail-avatar.jpg">
-                    </a>
-                    <div class="cmt-details">
-                        <a href="#">Jhone due</a>
-                        <span> is world famous professional photographer.   </span>
-                        <p>15 minutes ago - <a class="like-link" href="#">Like</a></p>
-                    </div>
-                </li>
-                <li>
-                    <a class="cmt-thumb" href="#">
-                        <img alt="" src="/assets/follower-avatar.jpg">
-                    </a>
-                    <div class="cmt-details">
-                        <a href="#">Tawseef</a>
-                        <span> thinking clients to create beautiful world famous professional photographer.  </span>
-                        <p>2 minutes ago - <a class="like-link" href="#">Like</a></p>
-                    </div>
-                </li>
-                <li>
-                    <a class="cmt-thumb" href="#">
-                        <img alt="" src="/assets/follower-avatar.jpg">
-                    </a>
-                    <div class="cmt-form">
-                        <textarea name="" placeholder="Write a comment..." class="form-control"></textarea>
-                    </div>
-                </li>
-              </ul>
-              <div class="clearfix"></div>
-            </div>
-          </div>
-        </section>
+        <div class ="trip_cmt">
+          <%= render 'trip_comment' %>
+        </div>
       </aside>
     </div>
   </section>
@@ -420,4 +356,24 @@
       
     }
   });
+</script>
+
+<script type="text/javascript">
+  $(document).on("submit","#create_trip_comment", function(e){
+      e.preventDefault();
+      $.ajax({
+         type: "POST",
+         url: "/trips/<%= @trip.id %>/comments",
+         data: $(this).serialize()
+      });
+  });
+
+  $(document).on("click",".destroy-cmt", function(){
+    var comment_id = $(this).attr("cmt-id");
+     $.ajax({
+         type: "DELETE",
+         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+         url: "/trips/<%= @trip.id %>/comments/" + comment_id
+      });
+    });
 </script>

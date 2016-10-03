@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
 
   resources :trips do
+    resources :comments
     resources :activities, only: [] do
       put "update_photo", to: 'trip_activities#update_photo'
     end

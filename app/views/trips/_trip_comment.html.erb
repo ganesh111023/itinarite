@@ -1,0 +1,50 @@
+       <section class="panel comment_section">
+          <div class="panel-heading">
+            <b>Trip Comments</b>
+          </div>
+          <div class="panel-body">
+            <div class="fb-status-container fb-border">
+              <div class="fb-time-action like-info">
+                <% if @trip.get_comment_users.present? && @trip.get_comment_users.size > 2 %>
+                  <span><%= @trip.get_comment_users.first %></span>
+                  <span><%= @trip.get_comment_users.second %></span>
+                  <span>and</span>
+                  <span><%= @trip.get_comment_users.size - 2 %> more</span>
+                  <span>Comment on this</span>
+                <%elsif @trip.get_comment_users.present? && @trip.get_comment_users.size < 2 %>
+                  <span><%= @trip.get_comment_users.first %></span>
+                  <span><%= @trip.get_comment_users.try(:second) %></span>
+                <% end %>
+              </div>
+              <ul class="fb-comments">
+                <% @trip.comments.each do |cmt| %>
+                  <li>
+                    <a class="cmt-thumb" href="#">
+                        <img alt="" src="/assets/#{cmt.user.profile_picture.try(:url)}">
+                    </a>
+                    <div class="cmt-details">
+                      <span>
+                        <a href="#"><%= cmt.trip.user.name %></a>
+                       <%= cmt.description %>
+                      </span>
+                      <div> 
+                        <div><%= cmt.get_time_diffrence %> <a class="like-link" href="#">Like</a> <a class="" href="#">Edit</a> <a class="destroy-cmt" href="javascript:void(0);" cmt-id= "<%= cmt.id %>"> Destroy</a> </div>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+                <li>
+                  <div class="cmt-form">
+                    <%= form_tag [@trip, @trip.comments.build],id: "create_trip_comment"  do |f| %>
+                      <%= text_area_tag 'description',nil, placeholder: "Write a comment...", class: "form-control" %>
+                      </br>
+                      <%= submit_tag "Comment", class: "btn btn-primary", id: "create_comment" %>
+                    <% end %>
+                    
+                  </div>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </section>

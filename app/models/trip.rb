@@ -6,6 +6,8 @@ class Trip < ActiveRecord::Base
   has_many :trip_activities
   has_many :pictures, as: :imageable
 
+  has_many :comments
+
   #Associative attributes
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   accepts_nested_attributes_for :trip_activities, :allow_destroy => true
@@ -32,6 +34,10 @@ class Trip < ActiveRecord::Base
       locations << { address: trip_activity.place, lat: trip_activity.lat, long: trip_activity.long }
     end
     locations
+  end
+
+  def get_comment_users
+   self.comments.map(&:user).compact.map(&:name) if self.comments.size > 1
   end
 
 
