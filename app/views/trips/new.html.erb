@@ -289,8 +289,8 @@
                   }
                   $('#us3').locationpicker({
                     location: {
-                        latitude: 42.00,
-                        longitude: -73.82480799999996
+                        latitude:  45.511646,
+                        longitude: -66.119438
                     },
                     radius: 10,
                     inputBinding: {
@@ -300,7 +300,7 @@
                         locationNameInput: $('#us3-address')
                     },
                      enableAutocomplete: true,
-                     addressFormat: 'addressLine1,city,stateOrProvince,postalCode,country',
+                     addressFormat: 'addressLine1,city,postalCode,country',
                     onchanged: function (currentLocation, radius, isMarkerDropped) {
                         var addressComponents = $(this).locationpicker('map').location.addressComponents;
                         updateControls(addressComponents);

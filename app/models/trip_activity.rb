@@ -20,6 +20,13 @@ class TripActivity < ActiveRecord::Base
   validates :place, presence: true
   validates :description, presence: true
   validates :activity_date, presence: true
+
+  #Geocode address to lat. long
+  geocoded_by :place,
+    :latitude => :lat, :longitude => :long
+
+  after_validation :geocode, :if => lambda{ |obj| obj.place_changed? } 
+
   
   
 end

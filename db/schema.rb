@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924132134) do
+ActiveRecord::Schema.define(version: 20161003055656) do
 
   create_table "activity_logs", force: :cascade do |t|
     t.string   "browser",    limit: 255
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20160924132134) do
     t.integer  "trip_id",       limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.float    "lat",           limit: 24
+    t.float    "long",          limit: 24
   end
 
   create_table "trips", force: :cascade do |t|

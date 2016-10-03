@@ -416,7 +416,7 @@ function initialize_map(markers){
       var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
-        title: data.address,
+        title: data.address
       });
 
 
