@@ -40,6 +40,16 @@
             <li><a href="/users/edit"> <i class="fa fa-edit"></i> Edit profile</a></li>
           </ul>
         </section>
+        <section class="panel">
+          <div class="panel-heading">
+            <b>Search by Date</b>
+          </div>
+          <div class="panel-body" style="height: 60px;" >
+            <div class="form-group">
+              <%=select_tag :activity_date, options_for_select(@trip_activities_dates, params[:date]), class:"form-control trip-activity-sort",trip_id: @trip.id, style: "width: 100%", include_blank: false %>
+            </div>
+          </div>
+        </section>
 
         <% if @trip_activities.morning_activities.present? %>
           <div class="panel">
@@ -202,16 +212,6 @@
               Location
           </header>
           <div id="gmap_geocoding" class="gmaps"></div>
-        </section>
-        <section class="panel">
-          <div class="panel-heading">
-            <b>Search by Date</b>
-          </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <%=select_tag :activity_date, options_for_select(@trip_activities_dates, params[:date]), class:"form-control trip-activity-sort",trip_id: @trip.id, style: "width: 100%", include_blank: false %>
-            </div>
-          </div>
         </section>
         <section class="panel">
           <div class="panel-heading">
