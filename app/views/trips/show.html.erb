@@ -1,3 +1,15 @@
 <div class="show_trip">
   <%= render 'show_partial' %>
 </div>
+
+<script type="text/javascript">
+	$(document).on("change",".trip-activity-sort", function(){
+    var date = $("#activity_date option:selected").text();
+    $.ajax({
+     type: "GET",
+     url: "/trips/<%= @trip.id %>",
+     data: {date: date},
+     dataType: "script"
+    });
+  });
+</script>

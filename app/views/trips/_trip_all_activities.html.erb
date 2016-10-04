@@ -1,0 +1,152 @@
+<% if @trip_activities.morning_activities.present? %>
+  <div class="panel">
+    <div class="panel-heading">
+      <b>Morning</b>
+    </div>
+    <div class="clearfix"></div>
+    <section class="">  <!-- always use row when define any new column -->
+      <div class="panel">
+        <table class="table no-th-border light-space-border">
+          <tr>
+            <th><b>Activity</b></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @trip_activities.morning_activities.each do |act| %>
+            <tr>
+              <td><%= act.place %></td>
+              <td class="hidden-xs">
+                <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
+                    <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
+                </a>
+              </td>
+              <td class="text-center">
+                <a href="#" class="text-danger">
+                    <span class="fa fa-map-marker fa-2x"></span>
+                </a>
+              </td>
+              <td>
+                <a href="#description-modal-<%=act.id%>" modal-id="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
+                  <span class="fa fa-search fa-1x"></span>
+                </a>
+              </td>
+              <td>
+                <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
+                  <i class="fa fa-camera"></i>
+                </a>
+              </td>
+              <td>
+                <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
+                    <i class="fa fa-plus fa-2x"></i>
+                </a>
+              </td>
+            </tr>
+          <% end %> 
+        </table>            
+      </div>
+    </section> 
+  </div> 
+<% end %>
+<% if @trip_activities.afternoon_activities.present? %>
+  <div class="panel">
+    <div class="panel-heading">
+      <b>Afternoon</b>
+    </div>
+    <div class="clearfix"></div>
+    <section class="">  <!-- always use row when define any new column -->
+      <div class="panel">
+        <table class="table no-th-border light-space-border">
+          <tr>
+            <th><b>Activity</b></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @trip_activities.afternoon_activities.each do |act|%>
+            <tr>
+              <td><%= act.place %></td>
+              <td class="hidden-xs">
+                  <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
+                      <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
+                  </a>
+              </td>
+              <td class="text-center">
+                  <a href="#" class="text-danger">
+                      <span class="fa fa-map-marker fa-2x"></span>
+                  </a>
+              </td>
+              <td>
+                  <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
+                      <span class="fa fa-search fa-1x"></span>
+                  </a>
+              </td>
+              <td>
+                  <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
+                      <i class="fa fa-camera"></i>
+                  </a>
+              </td>
+              <td>
+                  <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
+                      <i class="fa fa-plus fa-2x"></i>
+                  </a>
+              </td>
+            </tr>
+          <% end %> 
+        </table>            
+      </div>
+    </section> 
+  </div>
+<% end %>
+<% if @trip_activities.evening_activities.present? %>
+  <div class="panel">
+    <div class="panel-heading">
+      <b>Evening</b>
+    </div>
+    <div class="clearfix"></div>
+    <section class="">  <!-- always use row when define any new column -->
+      <div class="panel">
+        <table class="table no-th-border light-space-border">
+          <tr>
+            <th><b>Activity</b></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @trip_activities.evening_activities.each do |act|%>
+            <tr>
+              <td><%= act.place %></td>
+              <td class="hidden-xs">
+                  <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
+                      <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
+                  </a>
+              </td>
+              <td class="text-center">
+                  <a href="#" class="text-danger">
+                      <span class="fa fa-map-marker fa-2x"></span>
+                  </a>
+              </td>
+              <td>
+                  <a href="#description-modal-<%=act.id%>" class="search-link tooltips" data-toggle="modal" title="Search">
+                      <span class="fa fa-search fa-1x"></span>
+                  </a>
+              </td>
+              <td>
+                  <a href="#img-upload-modal-<%=act.id%>" class="img-upload-icon tooltips" data-toggle="modal" title="Upload images">
+                      <i class="fa fa-camera"></i>
+                  </a>
+              </td>
+              <td>
+                  <a href="<%=@trip.id%>/gallery" class="img-upload-icon tooltips"  title="All Images">
+                      <i class="fa fa-plus fa-2x"></i>
+                  </a>
+              </td>
+            </tr>
+          <% end %> 
+        </table>            
+      </div>
+    </section> 
+  <div> 
+<% end %>  
