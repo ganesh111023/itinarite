@@ -37,7 +37,7 @@ class Trip < ActiveRecord::Base
   end
 
   def get_comment_users
-   self.comments.map(&:user).compact.map(&:name) if self.comments.size > 1
+   self.comments.map(&:user).compact.map(&:name) if self.comments.size > 0
   end
 
 

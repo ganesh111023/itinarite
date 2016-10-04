@@ -11,7 +11,7 @@
                   <span>and</span>
                   <span><%= @trip.get_comment_users.size - 2 %> more</span>
                   <span>Comment on this</span>
-                <%elsif @trip.get_comment_users.present? && @trip.get_comment_users.size < 2 %>
+                <%elsif @trip.get_comment_users.present? && @trip.get_comment_users.size > 0 %>
                   <span><%= @trip.get_comment_users.first %></span>
                   <span><%= @trip.get_comment_users.try(:second) %></span>
                 <% end %>
