@@ -25,10 +25,10 @@
                     <div class="cmt-details">
                       <span>
                         <a href="#"><%= cmt.trip.user.name %></a>
-                       <%= cmt.description %>
+                       <span id="trip-desc-<%= cmt.id %>" cmt-id="<%= cmt.id %>" class="trip_description" ><%= cmt.description %></span>
                       </span>
                       <div> 
-                        <div><%= cmt.get_time_diffrence %> <a class="like-link" href="#">Like</a> <a class="" href="#">Edit</a> <a class="destroy-cmt" href="javascript:void(0);" cmt-id= "<%= cmt.id %>"> Destroy</a> </div>
+                        <div><%= cmt.get_time_diffrence %> <a class="like-link" href="#">Like</a> <a class="" href="javascript:void(0);"  onclick="myFunction(<%= cmt.id %>)" >Edit</a> <a class="destroy-cmt" href="javascript:void(0);" cmt-id= "<%= cmt.id %>"> Destroy</a> </div>
                       </div>
                     </div>
                   </li>
@@ -48,3 +48,35 @@
             </div>
           </div>
         </section>
+
+<script>
+function myFunction(comment_id) {
+    var ele = document.getElementById("trip-desc-"+comment_id); 
+    ele.contentEditable = true;
+    $("#"+ele.id).css("border", "1px solid black");
+}
+
+$(".trip_description").focus(function(){
+  focus_ele_id =this.id;
+  $(document).on("focusout","#"+focus_ele_id, function(){
+    var comment_id = $(this).attr("cmt-id");
+    var desc = $(this).text();
+    
+    $(this).css("border", "none");
+    $.ajax({
+       type: "PUT",
+       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+       url: "/trips/<%= @trip.id %>/comments/" + comment_id,
+       data: {description: desc},
+       dataType: "script"
+      });
+  });
+
+});
+
+
+function m1(){
+  alert();
+}
+
+</script>

@@ -1,4 +1,4 @@
-  $(document).ready(function () {
+    $(document).ready(function () {
     //Add input box to the trip event
     $("#addmorning").on("click",function(){
         addMorningRow(".morning-activities:last",".morning-activities:last" );
