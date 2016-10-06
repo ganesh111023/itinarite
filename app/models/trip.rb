@@ -36,6 +36,14 @@ class Trip < ActiveRecord::Base
     locations
   end
 
+  def activities_location_from_date date
+    locations = [] 
+    self.trip_activities.where(activity_date: date).each do |trip_activity|
+      locations << { address: trip_activity.place, lat: trip_activity.lat, long: trip_activity.long }
+    end
+    locations
+  end
+
   def get_comment_users
    self.comments.map(&:user).compact.map(&:name) if self.comments.size > 0
   end

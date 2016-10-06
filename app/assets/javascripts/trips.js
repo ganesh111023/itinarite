@@ -399,7 +399,8 @@ function edit_entire_row() {
 function initialize_map(markers){
     var mapOptions = {
       center: new google.maps.LatLng(markers[0].lat, markers[0].long),
-      zoom: 1,
+      zoom: 0,
+      minZoom: 0,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("gmap_geocoding"), mapOptions);
@@ -434,7 +435,7 @@ function initialize_full_map () {
 
   var mapOptions = {
     center: new google.maps.LatLng(0, 0),
-    zoom: 1,
+    zoom: 0,
     minZoom: 1
   };
 

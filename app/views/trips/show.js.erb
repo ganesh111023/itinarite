@@ -1,1 +1,8 @@
 $('.trip_all_activities').html("<%= escape_javascript render(:partial => 'trips/trip_all_activities') %>");
+var markers = <%=raw @trip_location.to_json %>
+if(markers.length > 0){
+  initialize_map(markers);
+}
+else {
+  initialize_full_map();
+}
