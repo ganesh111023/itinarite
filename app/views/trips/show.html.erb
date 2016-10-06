@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
 	$(document).on("change",".trip-activity-sort", function(){
-    var date = $("#activity_date option:selected").text();
+    var date = $("#activity_date option:selected").val();
     $.ajax({
      type: "GET",
      url: "/trips/<%= @trip.id %>",

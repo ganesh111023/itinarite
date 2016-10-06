@@ -21,7 +21,7 @@ class TripsController < ApplicationController
 	def show
 		@trip = current_user.trips.find_by_id params[:id]
 	  @trip_location = @trip.trip_locations_as_json
-		@trip_activities_dates = @trip.trip_activities.map{|activity| [activity.activity_date.try(:to_date)]}.uniq.reject{ |arr| arr.all?(&:blank?) }
+		@trip_activities_dates = @trip.trip_activities.map{|activity| [activity.activity_date.strftime("%A %b %d %Y"), activity.activity_date.try(:to_date)]}.uniq.reject{ |arr| arr.all?(&:blank?) }
 		if request.xhr?
 			@trip_activities = @trip.trip_activities.where(activity_date: params[:date])
 		else
