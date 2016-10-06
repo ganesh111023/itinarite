@@ -333,3 +333,9 @@ body.profile{
 .entire_row_clickable tr{
   cursor: pointer;
 }
+.location-suggestin{
+  font-family: sans-serif;
+  font-size: 15px;
+  margin: 0 0 10px;
+  text-align: left;
+}
