@@ -10,3 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
+$(function() {
+    $("li.dropdown").hover(
+        function(){ $(this).addClass('open') },
+        function(){ $(this).find('a.user-setting-dropdown').attr("aria-expanded", "true") }
+    );
+});

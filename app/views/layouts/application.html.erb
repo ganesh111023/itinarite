@@ -333,7 +333,7 @@
               </li>
               <!-- user login dropdown start-->
               <li class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                  <a data-toggle="dropdown" class="dropdown-toggle user-setting-dropdown" href="javascript:void(0);">
                       <%= image_tag("#{current_user.profile_picture.try(:url)}", size: "25x25") if current_user %>
                       <span class="username"><%= current_user.name if current_user %></span>
                       <b class="caret"></b>
