@@ -8,7 +8,7 @@
           <!-- <img src="images/london.png" class="img-responsive" /> -->
           <div class="panel-heading">
             <div class="text-center">
-              <b><%= @trip.address%>-<%= @trip.start_date.strftime("%Y") %> </b>
+              <b><%= @trip.address.split(",").last.strip %></b>
             </div>
           </div>
 
