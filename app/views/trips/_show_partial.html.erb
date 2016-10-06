@@ -113,6 +113,27 @@
       <!--end model -->
     </div>
   </div>
+  <div id="google-map-location-<%=act.id%>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Location</h4>
+        </div>
+        <div class="modal-body">
+          <div id="activity_gmap-<%= act.id%>" class="gmaps"></div>
+          <%= act.place %>
+        </div>
+      </div>
+      <!--end model -->
+    </div>
+  </div>
+  <script type="text/javascript">
+    $("#google-map-location-<%=act.id%>").on('shown.bs.modal', function () {
+      init_single_location_on_google(<%=act.id %>, <%= raw act.location_as_json %>);
+    });
+  </script>
 <%end%>
 
 <% @trip_activities.afternoon_activities.each do |act| %>
@@ -152,6 +173,27 @@
       </div>
     </div>
   </div>
+  <div id="google-map-location-<%=act.id%>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Location</h4>
+        </div>
+        <div class="modal-body">
+          <div id="activity_gmap-<%= act.id%>" class="gmaps"></div>
+          <%= act.place %>-<%= act.id%>
+        </div>
+      </div>
+      <!--end model -->
+    </div>
+  </div>
+  <script type="text/javascript">
+   $("#google-map-location-<%=act.id%>").on('shown.bs.modal', function () {
+     init_single_location_on_google(<%=act.id %>, <%= raw act.location_as_json %>);
+    });
+  </script>
 <% end %>
 
 <% @trip_activities.evening_activities.each do |act| %>
@@ -191,6 +233,27 @@
         </div>
       </div>
   </div>
+  <div id="google-map-location-<%=act.id%>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Location</h4>
+        </div>
+        <div class="modal-body">
+         <div id="activity_gmap-<%= act.id%>" class="gmaps"></div>
+          <%= act.place %>
+        </div>
+      </div>
+      <!--end model -->
+    </div>
+  </div>
+  <script type="text/javascript">
+   $("#google-map-location-<%=act.id%>").on('shown.bs.modal', function () {
+      init_single_location_on_google(<%=act.id %>, <%= raw act.location_as_json %>);
+    });
+  </script>
 <%end%>
 
 <script type="text/javascript">
@@ -227,3 +290,5 @@
     });
   });
 </script>
+
+ 

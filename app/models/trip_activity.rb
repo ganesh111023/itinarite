@@ -27,6 +27,10 @@ class TripActivity < ActiveRecord::Base
 
   after_validation :geocode, :if => lambda{ |obj| obj.place_changed? } 
 
-  
+  def location_as_json
+    location = []
+    location << {lat: self.lat, long: self.long, address: self.place }
+    location.to_json
+  end
   
 end

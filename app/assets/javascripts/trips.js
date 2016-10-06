@@ -457,3 +457,37 @@ function initialize_full_map () {
   map .fitBounds(boundsNew);
 
 }
+
+function init_single_location_on_google(act_id, markers){
+  var mapOptions = {
+      center: new google.maps.LatLng(markers[0].lat, markers[0].long),
+      zoom: 0,
+      minZoom: 0,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    
+    var map = new google.maps.Map(document.getElementById("activity_gmap-"+ act_id), mapOptions);
+    var infoWindow = new google.maps.InfoWindow();
+    var lat_lng = new Array();
+    var latlngbounds = new google.maps.LatLngBounds();
+    for (i = 0; i < markers.length; i++) {
+      var data = markers[i]
+      var myLatlng = new google.maps.LatLng(data.lat, data.long);
+      lat_lng.push(myLatlng);
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: data.address
+      });
+
+      latlngbounds.extend(marker.position);
+        (function (marker, data) {
+        google.maps.event.addListener(marker, "click", function (e) {
+          infoWindow.setContent(data.address);
+          infoWindow.open(map, marker);
+        });
+        })(marker, data);
+    }
+    map.setCenter(latlngbounds.getCenter());
+    map.fitBounds(latlngbounds);
+}
