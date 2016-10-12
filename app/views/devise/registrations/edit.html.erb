@@ -1,101 +1,91 @@
-  <!--main content start-->
-  <section id="main-content">
-  <section class="wrapper">
-    <!-- page start-->
-    <div class="row">
-      <aside class="profile-nav col-lg-3">
-          <section class="panel">
-              <div class="user-heading round">
-                  <a href="/">
-                    <%= image_tag("#{current_user.profile_picture.try(:url)}") %>
-                  </a>
-                  <h1><%= current_user.name if current_user%></h1>
-                  <p><%= current_user.email if current_user%></p>
-              </div>
-              <ul class="nav nav-pills nav-stacked">
-                  <li>
-                      <a href="/">
-                          <i class="fa fa-calendar"></i> 
-                          Recent Activity <span class="label primary-bg pull-right r-activity">9</span>
-                      </a>
-                  </li>
-              </ul>
-          </section>
-      </aside>
-      <aside class="profile-info col-lg-9">
-          <section class="panel">
-              <div class="panel-body bio-graph-info">
-                  <h1> Profile Info</h1>
-                   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class:"form-horizontal"  }) do |f| %>
-                     <%= devise_error_messages! %>
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label">First Name</label>
-                          <div class="col-lg-6">
-                            <%= f.text_field :name, autofocus: true, class: "form-control", required: :required %>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label">Profile Picture</label>
-                          <div class="col-lg-6">
-                             <%= f.file_field :profile_picture, class: "form-control" %>
-                          </div>
-                      </div>
-                     <!--  <div class="form-group">
-                          <label class="col-lg-2 control-label">Country</label>
-                          <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="c-name" class="form-control">
-                          </div>
-                      </div> -->
-                      <!-- <div class="form-group">
-                          <label class="col-lg-2 control-label">Birthday</label>
-                          <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="b-day" class="form-control">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label">Occupation</label>
-                          <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="occupation" class="form-control">
-                          </div>
-                      </div> -->
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label">Email</label>
-                          <div class="col-lg-6">
-                              <%= f.email_field :email, autofocus: true, class: "form-control"  %>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label"> Password <i>(leave blank if you don't want to change it)</i></label>
-                          <div class="col-lg-6">
-                            <%= f.password_field :password, autocomplete: "off", class: "form-control"  %>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label">Password Confirmation</label>
-                          <div class="col-lg-6">
-                            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control"  %>
-                          </div>
-                      </div>
-                     <!--  <div class="form-group">
-                          <label class="col-lg-2 control-label">About Me</label>
-                          <div class="col-lg-10">
-                              <textarea rows="10" cols="30" class="form-control" id="" name=""></textarea>
-                          </div>
-                      </div> -->
-                      <div class="form-group">
-                          <div class="col-lg-offset-2 col-lg-10">
-                              <%= f.submit "Update", class: "btn btn-success" %>
-                              <%= link_to "Back", :back,class: "btn btn-default" %>
-                          </div>
-                      </div>
-                  <%end%>
-              </div>
-          </section>
-      </aside>
-  </div>
-  <!-- page end-->
-  </section>
-  </section>
-  <!--main content end-->
+<aside class="profile-nav col-lg-3">
+    <section class="panel">
+        <div class="user-heading round">
+            <a href="/">
+              <%= image_tag("#{current_user.profile_picture.try(:url)}") %>
+            </a>
+            <h1><%= current_user.name if current_user%></h1>
+            <p><%= current_user.email if current_user%></p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a href="/">
+                    <i class="fa fa-calendar"></i> 
+                    Recent Activity <span class="label primary-bg pull-right r-activity">9</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>
+<aside class="profile-info col-lg-9">
+    <section class="panel">
+        <div class="panel-body bio-graph-info">
+            <h1> Profile Info</h1>
+             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class:"form-horizontal"  }) do |f| %>
+               <%= devise_error_messages! %>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">First Name</label>
+                    <div class="col-lg-6">
+                      <%= f.text_field :name, autofocus: true, class: "form-control", required: :required %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Profile Picture</label>
+                    <div class="col-lg-6">
+                       <%= f.file_field :profile_picture, class: "form-control" %>
+                    </div>
+                </div>
+               <!--  <div class="form-group">
+                    <label class="col-lg-2 control-label">Country</label>
+                    <div class="col-lg-6">
+                        <input type="text" placeholder=" " id="c-name" class="form-control">
+                    </div>
+                </div> -->
+                <!-- <div class="form-group">
+                    <label class="col-lg-2 control-label">Birthday</label>
+                    <div class="col-lg-6">
+                        <input type="text" placeholder=" " id="b-day" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Occupation</label>
+                    <div class="col-lg-6">
+                        <input type="text" placeholder=" " id="occupation" class="form-control">
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-6">
+                        <%= f.email_field :email, autofocus: true, class: "form-control"  %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label"> Password <i>(leave blank if you don't want to change it)</i></label>
+                    <div class="col-lg-6">
+                      <%= f.password_field :password, autocomplete: "off", class: "form-control"  %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Password Confirmation</label>
+                    <div class="col-lg-6">
+                      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control"  %>
+                    </div>
+                </div>
+               <!--  <div class="form-group">
+                    <label class="col-lg-2 control-label">About Me</label>
+                    <div class="col-lg-10">
+                        <textarea rows="10" cols="30" class="form-control" id="" name=""></textarea>
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <%= f.submit "Update", class: "btn btn-success" %>
+                        <%= link_to "Back", :back,class: "btn btn-default" %>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </section>
+</aside>
 
 

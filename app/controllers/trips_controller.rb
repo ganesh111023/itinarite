@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  before_action :find_trip, only: [:edit,:update]
 
   def index
     @trips = current_user.trips.group_by { |c| c.start_date.strftime("%Y") }
@@ -7,6 +8,17 @@ class TripsController < ApplicationController
 
   def new
     @trip = current_user.trips.new
+  end
+
+  def edit
+  end
+
+  def update
+    if @trip.update(trip_params)
+      redirect_to trip_path(@trip), notice: "Trip successully updated!"
+    else
+      render :edit
+    end
   end
 
   def create
@@ -40,6 +52,9 @@ class TripsController < ApplicationController
 private
   def trip_params
     params.require(:trip).permit(:name, :description, :address,:start_date, :end_date,:user_id, pictures_attributes: [:id, :name],trip_activities_attributes: [:id, :place, :description,:trip_id,:activity_date, :activity_type])
+  end
+  def find_trip
+    @trip = current_user.trips.find_by_id params[:id]
   end
 
 end

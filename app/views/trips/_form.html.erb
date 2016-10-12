@@ -1,0 +1,311 @@
+<%=  form_for @trip,  class: "form-horizontal", id: "default"  do |f| %>
+  <% if @trip.errors.any? %>
+      <div id="trip_error_explanation">
+        <ul>
+        <% @trip.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+  <% end %>
+  <fieldset title="Step 1" class="step" id="default-step-0">
+      <legend></legend>
+      <div class="form-group ">
+          <label class="col-md-2">Trip Name :</label>
+          <div class="col-md-10 ">
+              <%= f.text_field :name, class: "form-control",required: :required , placeholder: "Trip Name" %></br >
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label class="col-md-2">Trip Description :</label>
+          <div class="col-md-10">
+              <%= f.text_area :description, class:"form-control",required: :required, placeholder: "Trip Description..." %></br>
+          </div>
+      </div>
+      <div class="form-group last">
+        <label class=" col-md-2">Add Image :</label>
+        <div class="col-md-10">
+          <div class="fileupload fileupload-new" data-provides="fileupload" style="margin-bottom: 10px;"">
+            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; border: none;">
+            </div>
+            <span class="btn btn-white btn-file">
+              <span class="fileupload-new">
+                <i class="fa fa-paper-clip"></i> Select image
+              </span>
+              <span class="fileupload-exists">
+                <i class="fa fa-undo"></i> Change
+              </span>
+              <%= f.fields_for :pictures,  f.object.pictures.first || Picture.new do |ff| %>
+                <%= ff.file_field :name  %>
+              <% end %>
+              </span>
+              <a href="" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+            </span>
+          </div>
+        </div>
+      </div>
+      </br>
+
+        <div class="form-group">
+          <label class="col-md-2">Where You go :</label>
+          <div class="col-md-4" style="margin-bottom:15px;">
+            <div class="col-md-12 location-search">
+              <%= f.text_field :address, class: "form-control", placeholder: "Type in an address", id: "map-geo",required: :required, style: "margin-left: -15px;"  %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group input-large" data-date="13/07/2013" data-date-format="mm/dd/yyyy">
+              <%= f.text_field :start_date, value: trip_start_date, class: "form-control dpd1 dpd", placeholder:"Start Date",required: :required  %>
+              <span class="input-group-addon">To</span>
+              <%= f.text_field :end_date,value: trip_end_date, class:"form-control dpd2 dpd",placeholder: "End Date",required: :required  %>
+            </div> 
+          </div>
+          <div class="clearfix">
+            <div class="col-md-12">
+              <div class="input-control col-md-12 location-search">
+                <div class="map_canvas"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- <div class="form-group">
+        <label class="col-md-2">Add Google Location</label>
+          <div class="col-md-10" >
+              <div class=" col-md-12 location-search location-find">
+                <input class="geo-picker form-control col-md-5" type="text" placeholder="Type in an address"  />
+              </div>
+              
+          </div>
+      </div> -->
+  </fieldset>
+  <fieldset title="Step 2" class="step" id="default-step-3" >
+    <legend>  </legend>
+      <div class="trip-detail-container margin-button-none">
+        <div class="row ">
+          <div class="container-fluid">
+            <div class="trip-detail ">
+              <div class="trip-item trip-heading">
+                <h4><b>Morning- <small class="text-white">Activities</small></b></h4>
+              </div>
+            </div>    
+          </div>  
+          <%= f.fields_for :trip_activities, (f.object.trip_activities.morning_activities.present? ? f.object.trip_activities.morning_activities : TripActivity.new) do |t| %>
+            <div class="panel-body clearfix">
+              <div class="morning-activities clone">
+                <div class="col-md-4">  
+                  <div class="form-group-margin place">
+                    <label class=" ">What do you do ?</label>
+                    <%= t.text_field :description, class:"form-control trip-morning-desc",required: :required , placeholder: "Provide a brief description of what you did" %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group-margin description">
+                    <label class=" ">Where ?</label>
+                    <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-morning-place", id: "morning-trip-place" ,placeholder: "Where ?",required: :required  %>
+                    <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[0],class:"trip-morning-type" %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group-margin">
+                    <label class=" ">Date</label>
+                    <%=t.text_field :activity_date, value: trip_activity_date(t.object),class:"form-control geo-picker single-trip-add-com trip-morning-date act-date",placeholder: "Date" , required: :required %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="row add_morning">
+            <div class="col-md-8">
+              <div class="col-lg-6">
+                  <a id="addmorning" href="#;"> <i class="fa fa-plus"></i> Add More Location
+                  </a>
+              </div>
+              <div class="col-lg-6">
+                  <a id="removemorning" href="#;"> <i class="fa fa-plus"></i> Remove Location
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- end morning-->
+  
+    <div class="trip-detail-container margin-button-none">
+      <div class="row">
+        <div class="container-fluid">
+          <div class="trip-detail ">
+            <div class="trip-item trip-heading">
+              <h4><b>Afternoon- <small class="text-white">Activities</small></b></h4>
+            </div>
+          </div>
+        </div>
+        <%= f.fields_for :trip_activities, ( f.object.trip_activities.afternoon_activities.present? ? f.object.trip_activities.afternoon_activities : TripActivity.new) do |t| %>
+          <div class="panel-body clearfix">
+            <div class="afternoon">
+              <div class="col-md-4">
+                <div class="form-group-margin">
+                  <label class=" ">What do you do ?</label>
+                  <%= t.text_field :description, class:"form-control trip-afternoon-desc", placeholder: "Provide a brief description of what you did" , required: :required %>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group-margin">
+                  <label class=" ">Where ?</label>
+                  <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-afternoon-place", id: "afternoon-trip-place" ,placeholder: "Where ?",required: :required  %>
+                    <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[2],class:"trip-afternoon-type" %>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group-margin">
+                  <label class=" ">Date</label>
+                  <%=t.text_field :activity_date, value: trip_activity_date(t.object), class:"form-control geo-picker single-trip-add-com trip-afternoon-date act-date",placeholder: "Date", required: :required %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="row add_afternoon_div">
+          <div class="col-md-8">
+            <div class="col-lg-6">
+              <a id="addafternoon" href="#;"> <h6><i class="fa fa-plus"></i> Add More Location</h6>
+                </a>
+            </div>
+            <div class="col-lg-6">
+              <a id="removeafternoon" href="#;"> <h6><i class="fa fa-plus"></i> Remove Location</h6>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trip-detail-container margin-button-none">
+      <div class="row">
+        <div class="container-fluid">
+          <div class="trip-detail ">
+            <div class="trip-item trip-heading">
+              <h4><b>Evening- <small class="text-white">Activities</small></b></h4>
+            </div>
+          </div>
+        </div>    
+        <%= f.fields_for :trip_activities, ( f.object.trip_activities.evening_activities.present? ? f.object.trip_activities.evening_activities : TripActivity.new) do |t| %>
+          <div class="panel-body clearfix">
+            <div class="evening">
+              <div class="col-md-4">
+                <div class="form-group-margin">
+                  <label class=" ">What do you do ?</label>
+                  <%= t.text_field :description, class:"form-control trip-evening-desc", placeholder: "Provide a brief description of what you did", required: :required  %>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group-margin">
+                  <label class=" ">Where ?</label>
+                  <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-evening-place", id: "evening-trip-place" ,placeholder: "Where ?", required: :required  %>
+                    <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[1],class:"trip-evening-type" %>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group-margin">
+                  <label class=" ">Date</label>
+                  <%=t.text_field :activity_date, value: trip_activity_date(t.object), class:"form-control geo-picker single-trip-add-com trip-evening-date act-date",placeholder: "Date", required: :required  %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="row add_evening_div">
+          <div class="col-md-8">
+            <div class="col-lg-6">
+              <a id="addevening" href="#;"> <h6><i class="fa fa-plus"></i> Add More Location</h6>
+                </a>
+            </div>
+            <div class="col-lg-6">
+              <a id="removeevening" href="#;"> <h6><i class="fa fa-plus"></i> Remove Location</h6>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset> 
+  <%= f.submit "Finish", class: "finish btn btn-danger" %>
+<% end %>
+             
+<div id="us6-dialog" class="modal fade" collling-obj ="" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Select Location</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal" style="width: 550px">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="us3-address" />
+                        <input type="hidden" class="form-control" name="radius" id="us3-radius" />
+                        <input type="hidden" class="form-control" name="street1" id="us3-street1" />
+                        <input type="hidden" class="form-control" name="city" id="us3-city" />
+                        <input type="hidden" class="form-control" name="state" id="us3-state" />
+                        <input type="hidden" class="form-control" name="zip" id="us3-zip" />
+                        <input type="hidden" class="form-control" name="country" id="us3-country" />
+                        <input type="hidden" class="form-control" name="country" id="us3-lat" />
+                        <input type="hidden" class="form-control" name="country" id="us3-lon" />
+                    </div>
+                </div>
+                <div id="us3" style="width: 100%; height: 400px;"></div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="clearfix"></div>
+                <script>
+                  function updateControls(addressComponents) {
+                      $('#us3-street1').val(addressComponents.addressLine1);
+                      $('#us3-city').val(addressComponents.city);
+                      $('#us3-state').val(addressComponents.stateOrProvince);
+                      $('#us3-zip').val(addressComponents.postalCode);
+                      $('#us3-country').val(addressComponents.country);
+                  }
+                  $('#us3').locationpicker({
+                    location: {
+                        latitude:  45.511646,
+                        longitude: -66.119438
+                    },
+                    radius: 10,
+                    inputBinding: {
+                        latitudeInput: $('#us3-lat'),
+                        longitudeInput: $('#us3-lon'),
+                        radiusInput: $('#us3-radius'),
+                        locationNameInput: $('#us3-address')
+                    },
+                     enableAutocomplete: true,
+                     addressFormat: 'addressLine1,city,postalCode,country',
+                    onchanged: function (currentLocation, radius, isMarkerDropped) {
+                        var addressComponents = $(this).locationpicker('map').location.addressComponents;
+                        updateControls(addressComponents);
+                    },
+                    oninitialized: function(component) {
+                        var addressComponents = $(component).locationpicker('map').location.addressComponents;
+                        updateControls(addressComponents);
+                    }
+                  });
+
+                    $('#us6-dialog').on('shown.bs.modal', function () {
+                        $('#us3').locationpicker('autosize');
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="location-suggestin">Drap and drop the location Pin to identify the location you were at.</p>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary google-map-selected-location">Save changes</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

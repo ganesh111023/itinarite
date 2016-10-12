@@ -1,75 +1,66 @@
-<!--main content start-->
-<section id="main-content">
-  <section class="wrapper">
-    <!-- page start-->
-    <div class="row">
-      <aside class=" profile-nav col-lg-4 col-md-6">
-        <section class="panel">
-          <!-- <img src="images/london.png" class="img-responsive" /> -->
-          <div class="panel-heading">
-            <div class="text-center">
-              <b><%= @trip.address.split(",").last.strip %></b>
-            </div>
-          </div>
+<aside class=" profile-nav col-lg-4 col-md-6">
+  <section class="panel">
+    <!-- <img src="images/london.png" class="img-responsive" /> -->
+    <div class="panel-heading">
+      <div class="text-center">
+        <b><%= @trip.address.split(",").last.strip %></b>
+      </div>
+    </div>
 
-          <div class="panel-body">
-            <div class="">
-              <p><%= @trip.description %></p>        
-            </div>
-          </div>
+    <div class="panel-body">
+      <div class="">
+        <p><%= @trip.description %></p>        
+      </div>
+    </div>
 
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide" style="background-image: url(<%= @trip.pictures.first.try(:name).try(:url)%>);">
-              </div>
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination swiper-pagination-white"></div>
-            <!-- Add Arrows -->
-            <div class="swiper-button-next swiper-button-white"></div>
-            <div class="swiper-button-prev swiper-button-white"></div>
-          </div>
-
-          <ul class="nav nav-pills nav-stacked">
-            <li>
-              <a href="/">
-                <i class="fa fa-calendar"></i> 
-                Recent Activity <span class="label primary-bg pull-right">9</span>
-              </a>
-            </li>
-            <li><a href="/users/edit"> <i class="fa fa-edit"></i> Edit profile</a></li>
-          </ul>
-        </section>
-        <section class="panel">
-          <div class="panel-heading">
-            <b>Search by Date</b>
-          </div>
-          <div class="panel-body" style="height: 60px;" >
-            <div class="form-group">
-              <%=select_tag :activity_date, options_for_select(@trip_activities_dates, params[:date]), class:"form-control trip-activity-sort",trip_id: @trip.id, style: "width: 100%", include_blank: false %>
-            </div>
-          </div>
-        </section>
-        <section class="trip_all_activities">
-          <%= render 'trip_all_activities' %>
-        </section>
-        
-      </aside>
-
-      <aside class="col-lg-8 col-md-6">
-        <section class="panel">
-          <header class="panel-heading">
-              Location
-          </header>
-          <div id="gmap_geocoding" class="gmaps"></div>
-        </section>
-        <div class ="trip_cmt">
-          <%= render 'trip_comment' %>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image: url(<%= @trip.pictures.first.try(:name).try(:url)%>);">
         </div>
-      </aside>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination swiper-pagination-white"></div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next swiper-button-white"></div>
+      <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+
+    <ul class="nav nav-pills nav-stacked">
+      <li>
+        <a href="/">
+          <i class="fa fa-calendar"></i> 
+          Recent Activity <span class="label primary-bg pull-right">9</span>
+        </a>
+      </li>
+      <li><a href="/users/edit"> <i class="fa fa-edit"></i> Edit profile</a></li>
+    </ul>
+  </section>
+  <section class="panel">
+    <div class="panel-heading">
+      <b>Search by Date</b>
+    </div>
+    <div class="panel-body" style="height: 60px;" >
+      <div class="form-group">
+        <%=select_tag :activity_date, options_for_select(@trip_activities_dates, params[:date]), class:"form-control trip-activity-sort",trip_id: @trip.id, style: "width: 100%", include_blank: false %>
+      </div>
     </div>
   </section>
-</section>
+  <section class="trip_all_activities">
+    <%= render 'trip_all_activities' %>
+  </section>   
+</aside>
+
+<aside class="col-lg-8 col-md-6">
+  <section class="panel">
+    <header class="panel-heading">
+        Location
+    </header>
+    <div id="gmap_geocoding" class="gmaps"></div>
+  </section>
+  <div class ="trip_cmt">
+    <%= render 'trip_comment' %>
+  </div>
+</aside>
 
 
 

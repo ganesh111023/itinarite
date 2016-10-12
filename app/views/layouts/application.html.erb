@@ -402,8 +402,18 @@
         </div>
       </aside>
       <!--sidebar end-->
+      <!--main content start-->
+      <section id="main-content">
+        <section class="wrapper site-min-height">
+          <!-- page start-->
+          <div class="row">
+            <%= render 'shared/flash_messages'%>
+            <%= yield  %>
+           </div>
+            <!-- page end-->
+        </section>
+      </section>
 
-      <%= yield  %>
       <!-- Right Slidebar start -->
       <div class="sb-slidebar sb-right sb-style-overlay">
         <h5 class="side-title">Online Customers</h5>

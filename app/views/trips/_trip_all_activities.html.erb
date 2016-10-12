@@ -17,7 +17,9 @@
           </tr>
           <% @trip_activities.morning_activities.each do |act| %>
             <tr>
-              <td><%= act.place %></td>
+              <td><%= act.place %>
+                <span><%= act.description.truncate(100)%></span>
+              </td>
               <td class="hidden-xs">
                 <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
                     <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
