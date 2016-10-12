@@ -17,8 +17,9 @@
           </tr>
           <% @trip_activities.morning_activities.each do |act| %>
             <tr>
-              <td><%= act.place %>
-                <span><%= act.description.truncate(100)%></span>
+              <td>
+                <div class="trip_desc"><%= act.description.truncate(50)%></div>
+                <%= act.place %>  
               </td>
               <td class="hidden-xs">
                 <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
@@ -69,7 +70,10 @@
           </tr>
           <% @trip_activities.afternoon_activities.each do |act|%>
             <tr>
-              <td><%= act.place %></td>
+              <td>
+                <div class="trip_desc"><%= act.description.truncate(50)%></div>
+                <%= act.place %>  
+              </td>
               <td class="hidden-xs">
                   <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
                       <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">
@@ -119,7 +123,10 @@
           </tr>
           <% @trip_activities.evening_activities.each do |act|%>
             <tr>
-              <td><%= act.place %></td>
+              <td>
+                <div class="trip_desc"><%= act.description.truncate(50)%></div>
+                <%= act.place %>  
+              </td>
               <td class="hidden-xs">
                   <a href="<%= act.pictures.first.try(:name).try(:url)%>" class="fancybox">
                       <img src="<%= act.pictures.first.try(:name).try(:url)%>" alt="screen" width="50" class="">

@@ -339,3 +339,6 @@ body.profile{
   margin: 0 0 10px;
   text-align: left;
 }
+.trip_desc{
+  font-weight: bold;
+}
