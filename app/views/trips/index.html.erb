@@ -29,6 +29,9 @@
                     <div class="trip-item trip-heading">
                       <h4><b>Cover Picture</b></h4>
                     </div>
+                    <div class="trip-item trip-heading">
+                      <h4><b>Action</b></h4>
+                    </div>
                   </div>
                   <% values.each do |trip| %>
                     <div class="trip-detail">
@@ -44,10 +47,14 @@
                           </a>
                       </div> -->
                       <div class="trip-item">
-                          <a href="#;">
+                          <a href="javascript:void(0);">
                               <%= image_tag(trip.pictures.first.try(:name).try(:url))%>
                           </a>
                       </div>
+                       <div class="trip-item">
+                          <a href="/trips/<%= trip.id %>/edit">Edit Trip </a>
+                      </div>
+                       
                     </div>
                   <%end%>
                 </div>
