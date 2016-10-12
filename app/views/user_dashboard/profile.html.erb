@@ -1,7 +1,7 @@
 <aside class="profile-nav col-md-4">
   <section class="panel">
-    <div class="user-heading round">
-      <a href="#">
+    <div class="user-heading">
+      <a href="javascript:void(0);">
          <%= image_tag("#{current_user.try(:profile_picture).try(:url)}") if current_user %>
       </a>
       <h1><%= current_user.name if current_user %></h1>
