@@ -41,7 +41,7 @@
             <% @recent_trips.each do |trip| %>
               <tr link = "trips/<%=trip.id%>" >
                 <td>
-                  <%= trip.address %>
+                  <%= trip.address.split(",").last.strip %>
                 </td>
                 <td>
                   <%= trip.start_date.strftime("%b-%Y")%>
@@ -90,7 +90,7 @@
      </footer>
   </section>
   <% if @recent_trips.present? %>
-    <section class="panel">
+    <!-- <section class="panel">
        <div class="panel-body">
           <div class="fb-user-thumb">
              <img src="/assets/pro-ac-1.png" alt="">
@@ -179,7 +179,7 @@
           </div>
 
        </div>
-    </section>
+    </section> -->
   <% end %>
 </aside>
 

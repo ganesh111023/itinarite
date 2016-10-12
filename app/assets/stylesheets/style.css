@@ -2354,7 +2354,7 @@ ul.inbox-pagination li {
     color: #fff;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
-    text-align: center;
+        text-align: center;
 }
 
 .profile-nav .user-heading.round a  {
