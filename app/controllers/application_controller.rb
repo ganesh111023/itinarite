@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   layout :set_layout
 
   before_filter :configure_permitted_parameters,if: :devise_controller?
-  before_filter :get_user_followers
+  # before_filter :get_user_followers
 
 	def after_sign_in_path_for(resource)
   	root_path
@@ -34,10 +34,10 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    def get_user_followers
-      @followers_count = current_user.followers.uniq.size
-      @followings_count = current_user.following.uniq.size
-    end
+    # def get_user_followers
+    #   @followers_count = current_user.followers.uniq.size
+    #   @followings_count = current_user.following.uniq.size
+    # end
 
 
     def record_activity(note, description = nil )
