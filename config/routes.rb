@@ -22,7 +22,8 @@ Rails.application.routes.draw do
 
    resources :user_dashboard, only: :index do
     member do
-      post 'upload_picture'
+      post 'comment_activity'
+      get 'follow_unfollow'
       post 'follow_user'
       post 'unfollow_user'
       get 'user_following'

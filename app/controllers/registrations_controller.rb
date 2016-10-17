@@ -2,12 +2,10 @@ class RegistrationsController < Devise::RegistrationsController
 
 
 	def update
-		if current_user.address != params[:user][:address] && current_user.name != params[:user][:name]
-			record_activity("#{current_user.name.capitalize} updated his Name & Address")
-		elsif current_user.name != params[:user][:name]
-			record_activity("#{current_user.name.capitalize} updated his name.")
-		elsif current_user.address != params[:user][:address]
-			record_activity("#{current_user.name.capitalize} updated his address.")
+		if current_user.name != params[:user][:name]
+			record_activity("updated his name.")
+		elsif current_user.profile_picture.file.try(:filename) !=  params[:user][:profile_picture].try(:original_filename)
+			record_activity("updated his profile picture.")
 		end
 
 		super

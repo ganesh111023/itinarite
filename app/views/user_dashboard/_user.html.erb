@@ -1,0 +1,26 @@
+<table style="width:100%">
+  <tr>
+    <th style="width:150px">
+      Name
+    </th>
+    <th style="width:150px">
+      Email
+    </th>
+    <th style="width:150px">
+      follow/unfollow
+    </th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td style="width:150px">
+        <%= user.name || "N/A" %>
+      </td>
+      <td style="width:150px">
+        <%= user.email %>
+      </td>
+      <td style="width:150px">
+        <%= get_follow_unfollow_link(user) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

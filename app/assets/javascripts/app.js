@@ -11,13 +11,13 @@ var App = function() {
 
     var resizeHandlers = [];
 
-    var assetsPath = '../assets/';
+    var assetsPath = '/assets/';
 
-    var globalImgPath = 'global/img/';
+    var globalImgPath = '/assets/';
 
-    var globalPluginsPath = 'global/plugins/';
+    var globalPluginsPath = '/assets/';
 
-    var globalCssPath = 'global/css/';
+    var globalCssPath = '/assets/';
 
     // theme layout color set
 

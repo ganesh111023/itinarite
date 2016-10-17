@@ -32,16 +32,18 @@
   #validates :address, presence: true
 
   #scope
-  scope :get_list_of_user_except_current_user, -> (id) { where("id !=?", id) }
+  scope :get_list_of_user_except_current_user, -> (id) { where.not(id: id) }
 
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
+    self.reload
   end
 
   # Unfollows a user.
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
+    self.reload
   end
 
   # Returns true if the current user is following the other user.

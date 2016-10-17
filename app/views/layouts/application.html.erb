@@ -10,7 +10,10 @@
 
   <title>Dashboard</title>
 
-
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tag %>
+  
   <!-- js -->
   <script src="/assets/jquery.js"></script>
   <script src="/assets/bootstrap.min.js"></script>
@@ -94,16 +97,9 @@
   <link rel="stylesheet" type="text/css" href="/assets/jquery-ui-1.10.1.custom.min.css">
   <!-- Custom styles for this template -->
   <link href="/assets/style.css" rel="stylesheet">
- 
+  
+  
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-  <!--[if lt IE 9]>
-  <script src="js/html5shiv.js"></script>
-  <script src="js/respond.min.js"></script>
-  <![endif]-->
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tag %>
 </head>
   <body>
     <section id="container" class="">
@@ -361,7 +357,7 @@
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
               <li>
-                  <a href="#;">
+                  <a href="/">
                       <i class="fa fa-dashboard"></i>
                       <span>New feeds</span>
                   </a>
@@ -373,9 +369,21 @@
                   </a>
               </li>
               <li>
-                  <a href="#;">
+                <a href="/user_dashboard/<%= current_user.id%>/follow_unfollow">
+                    <i class="fa fa-code-fork"></i>
+                    <span>Foloow/Unfollow</span>
+                </a>
+              </li>
+              <li>
+                  <a href="/user_dashboard/<%= current_user.id%>/user_followers">
                       <i class="fa fa-code-fork"></i>
                       <span>Followers</span>
+                  </a>
+              </li>
+               <li>
+                  <a href="/user_dashboard/<%= current_user.id%>/user_following">
+                      <i class="fa fa-code-fork"></i>
+                      <span>Following</span>
                   </a>
               </li>
               <li>
