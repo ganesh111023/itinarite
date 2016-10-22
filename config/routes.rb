@@ -21,13 +21,17 @@ Rails.application.routes.draw do
 
 
    resources :user_dashboard, only: :index do
+    collection do
+      get :search_user_profile
+      get :autocomplete_user_name
+    end
     member do
+      get 'profile_search'
       post 'comment_activity'
-      get 'follow_unfollow'
-      post 'follow_user'
-      post 'unfollow_user'
-      get 'user_following'
-      get 'user_followers'
+      post 'follow'
+      post 'unfollow'
+      get 'following'
+      get 'followers'
     end
    end
 

@@ -5,6 +5,6 @@ module UserDashboardHelper
 	end
 
 	def get_follow_unfollow_link(user)
-		current_user.following.include?(user) ? (link_to "unfollow", unfollow_user_user_dashboard_path(id: 	user.id), method: :post, remote: true,  class: "btn btn-success btn-xs") : (link_to "follow", follow_user_user_dashboard_path(id: user.id) ,method: :post, remote: true, class: "btn btn-success btn-xs") 
+		current_user.following.include?(user) ? (link_to "following", "javascript:void(0);", class: "btn btn-success btn-xs") : (link_to "follow", follow_user_dashboard_path(id: user.id) ,method: :post, remote: true, class: "btn btn-success btn-xs") 
 	end
 end

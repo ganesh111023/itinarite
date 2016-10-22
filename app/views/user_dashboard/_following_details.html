@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <table class="table-hover" style="width:100%">
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+      <% @followings.each do |user| %>
+        <tr>
+          <td>
+            <%= user.name || "N/A" %>
+          </td>
+          <td>
+            <%= user.email %>
+          </td>
+          <td>
+            <%= link_to "unfollow", unfollow_user_dashboard_path(id: user.id), method: :post, remote: true,  class: "btn btn-success btn-xs" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -152,7 +152,6 @@ body.profile{
     white-space: nowrap;
 }
 .user_dashboard{
-  margin-top: 50px;
   background-color: rgb(255,255,255);
 }
 .profile_page{
@@ -344,4 +343,23 @@ body.profile{
 }
 h3 > .activity_notes{
   font-size: 14px;
+}
+
+ul.ui-autocomplete{
+  padding-top: 20px;
+  background-color: white;
+  font-weight: 12px;
+
+}
+.UTable{
+    width:100%; 
+    margin-top: 20px;
+}
+.UTable td{ 
+  padding:7px;
+}
+
+.img-user{
+  padding-right: 10px;
+  width: 70px;
 }

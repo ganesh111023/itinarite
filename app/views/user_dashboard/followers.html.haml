@@ -1,0 +1,16 @@
+.container.main_block.user_dashboard.UTabled
+  .row
+    .col-sm-12.col-md-12
+      %table.table-hover{style: 'width: 100%'}
+        %tr
+          %th
+            Name
+          %th 
+            Email
+        - @followers.each do |user|
+          %tr
+            %td
+              = user.name || "N/A"
+            %td
+              = user.email
+           

@@ -1,6 +1,7 @@
 class UserDashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :get_all_user_except_current, only: [:profile, :follow_user, :unfollow_user,:follow_unfollow]
+  autocomplete :user, :name, :display_value => :name_capitalize,:full => true
 
   def index
     @recent_activities = ActivityLog.following_user_activities(current_user)    
@@ -27,27 +28,38 @@ class UserDashboardController < ApplicationController
   #     redirect_to profile_path
   # end
 
-  def follow_unfollow
+  def search_user_profile
+    @users = User.where("LOWER(name) LIKE ?","%#{params[:search_user].downcase}%") if params[:search_user]
+    if @users.present? && @users.count == 1
+      redirect_to profile_search_user_dashboard_path(@users.first.id)
+    end
   end
 
-  def follow_user
-    user = User.find_by_id params[:id]
-    current_user.follow(user)
-    record_activity("Follow #{user.name.capitalize}.")
+  def profile_search
+    @user = User.find_by_id params[:id]
+    @recent_trips = @user.recent_trips
+    @trips_locations = @user.trips_locations
   end
 
-  def unfollow_user
-    user = User.find_by_id params[:id]
-    current_user.unfollow(user)
-    record_activity("UnFollow #{user.name.capitalize}.")
+  def follow
+    @user = User.find_by_id params[:id]
+    current_user.follow(@user)
+    record_activity("Follow #{@user.name.capitalize}.")
   end
 
-  def user_following
+  def unfollow
+    @user = User.find_by_id params[:id]
+    current_user.unfollow(@user)
+    @followings = current_user.following.uniq
+    record_activity("UnFollow #{@user.name.capitalize}.")
+  end
+
+  def following
     @user = User.find_by_id params[:id]
     @followings = @user.following.uniq
   end
 
-  def user_followers
+  def followers
     @user = User.find_by_id params[:id]
     @followers = @user.followers.uniq
   end

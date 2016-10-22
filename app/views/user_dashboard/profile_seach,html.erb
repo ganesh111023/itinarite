@@ -1,0 +1,336 @@
+<aside class="profile-nav col-md-4">
+  <section class="panel">
+    <div class="user-heading">
+      <a href="javascript:void(0);">
+         <%= image_tag("#{@user.try(:profile_picture).try(:url)}") if @user %>
+      </a>
+      <h1><%= @user.name if @user %></h1>
+    </div>
+    <ul class="nav nav-pills nav-stacked">
+      <li><%= get_follow_unfollow_link(@user) %></li>
+    </ul>
+  </section>
+  <section class="panel">
+     <header class="panel-heading">
+        Recent Trips
+     </header>
+    <% if@recent_trips.present? %>
+      <div class="table-responsive">
+          <table class="table table-hover entire_row_clickable">
+            <tr>
+              <th>
+                 Place
+              </th>
+              <th>
+                 From
+              </th>
+              <th>
+                 To
+              </th>
+              <th>
+                 Cover Photo
+              </th>
+            </tr>
+            <% @recent_trips.each do |trip| %>
+              <tr link = "trips/<%=trip.id%>" >
+                <td>
+                  <%= trip.address.split(",").last.strip %>
+                </td>
+                <td>
+                  <%= trip.start_date.strftime("%b-%Y")%>
+                </td>
+                <td>
+                  <%= trip.end_date.strftime("%b-%Y")%>
+                </td>
+                <td>
+                  <%= image_tag(trip.pictures.first.try(:name).try(:url), size: "50x50", alt: "Trip image")%>
+                </td>
+              </tr>
+            <% end %>
+          </table>        
+       </div>
+    <% end %>
+  </section>
+</aside>
+<aside class="profile-info col-md-8">
+  <section class="panel">
+     <header class="panel-heading">
+        Location
+     </header>
+     <div id="gmap_geocoding" class="gmaps"></div>
+  </section>
+  <br>
+  <section class="panel profile-info">
+     <form style="padding-top: 15px;">
+      <textarea class="form-control input-lg p-text-area form" rows="2" placeholder="Whats in your mind today?"></textarea>
+     </form>
+     <footer class="panel-footer">
+        <button class="btn btn-primary pull-right">Post</button>
+        <ul class="nav nav-pills">
+           <li>
+              <a href="#"><i class="fa fa-map-marker"></i></a>
+           </li>
+           <li>
+              <a href="#"><i class="fa fa-camera"></i></a>
+           </li>
+           <li>
+              <a href="#"><i class=" fa fa-film"></i></a>
+           </li>
+           <li>
+              <a href="#"><i class="fa fa-microphone"></i></a>
+           </li>
+        </ul>
+     </footer>
+  </section>
+  <% if @recent_trips.present? %>
+    <!-- <section class="panel">
+       <div class="panel-body">
+          <div class="fb-user-thumb">
+             <img src="/assets/pro-ac-1.png" alt="">
+          </div>
+          <div class="fb-user-details">
+             <h3><a href="#" class="#">Margarita Elina</a></h3>
+             <p>7 minutes ago near Alaska, USA</p>
+          </div>
+          <div class="clearfix"></div>
+          <p class="fb-user-status">John is world famous professional photographer.  with forward thinking clients to create beautiful, honest and amazing things that bring positive results. John is world famous professional photographer.  with forward thinking clients to create beautiful, honest and amazing things that bring positive results.
+          </p>
+          <div class="fb-status-container fb-border">
+             <div class="fb-time-action">
+                <a href="#" title="Like this">Like</a>
+                <span>-</span>
+                <a href="#" title="Leave a comment">Comments</a>
+                <span>-</span>
+                <a href="#" title="Send this to friend or post it on your time line">Share</a>
+             </div>
+          </div>
+
+
+          <div class="fb-status-container fb-border fb-gray-bg">
+             <div class="fb-time-action like-info">
+                <a href="#">Jhon Due,</a>
+                <a href="#">Danieal Kalion</a>
+                <span>and</span>
+                <a href="#">40 more</a>
+                <span>like this</span>
+             </div>
+
+             <ul class="fb-comments">
+                <li>
+                   <a href="#" class="cmt-thumb">
+                      <img src="/assets/mail-avatar.jpg" alt="">
+                   </a>
+                   <div class="cmt-details">
+                      <a href="#">Jhone due</a>
+                      <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
+                      <p>40 minutes ago - <a href="#" class="like-link">Like</a></p>
+                   </div>
+                </li>
+                <li>
+                   <a href="#" class="cmt-thumb">
+                      <img src="/assets/follower-avatar.jpg" alt="">
+                   </a>
+                   <div class="cmt-details">
+                      <a href="#">Tawseef</a>
+                      <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
+                      <p>34 minutes ago - <a href="#" class="like-link">Like</a></p>
+                   </div>
+                </li>
+
+                <li>
+                   <a href="#" class="cmt-thumb">
+                      <img src="/assets/mail-avatar.jpg" alt="">
+                   </a>
+                   <div class="cmt-details">
+                      <a href="#">Jhone due</a>
+                      <span> is world famous professional photographer.   </span>
+                      <p>15 minutes ago - <a href="#" class="like-link">Like</a></p>
+                   </div>
+                </li>
+                <li>
+                   <a href="#" class="cmt-thumb">
+                      <img src="/assets/follower-avatar.jpg" alt="">
+                   </a>
+                   <div class="cmt-details">
+                      <a href="#">Tawseef</a>
+                      <span> thinking clients to create beautiful world famous professional photographer.  </span>
+                      <p>2 minutes ago - <a href="#" class="like-link">Like</a></p>
+                   </div>
+                </li>
+                <li>
+                   <a href="#" class="cmt-thumb">
+                      <img src="/assets/follower-avatar.jpg" alt="">
+                   </a>
+                   <div class="cmt-form">
+                      <textarea class="form-control" placeholder="Write a comment..." name=""  ></textarea>
+                   </div>
+                </li>
+             </ul>
+
+             <div class="clearfix"></div>
+
+          </div>
+
+       </div>
+    </section> -->
+  <% end %>
+</aside>
+
+  <!-- Right Slidebar start -->
+  <div class="sb-slidebar sb-right sb-style-overlay">
+    <h5 class="side-title">Online Customers</h5>
+    <ul class="quick-chat-list">
+      <li class="online">
+         <div class="media">
+            <a href="#" class="pull-left media-thumb">
+               <img alt="" src="/assets/chat-avatar2.jpg" class="media-object">
+            </a>
+            <div class="media-body">
+               <strong>John Doe</strong>
+               <small>Dream Land, AU</small>
+            </div>
+         </div><!-- media -->
+      </li>
+      <li class="online">
+         <div class="media">
+            <a href="#" class="pull-left media-thumb">
+               <img alt="" src="/assets/chat-avatar.jpg" class="media-object">
+            </a>
+            <div class="media-body">
+               <div class="media-status">
+                  <span class=" badge bg-important">3</span>
+               </div>
+               <strong>Jonathan Smith</strong>
+               <small>United States</small>
+            </div>
+         </div><!-- media -->
+      </li>
+
+      <li class="online">
+         <div class="media">
+            <a href="#" class="pull-left media-thumb">
+               <img alt="" src="/assets/pro-ac-1.png" class="media-object">
+            </a>
+            <div class="media-body">
+               <div class="media-status">
+                  <span class=" badge bg-success">5</span>
+               </div>
+               <strong>Jane Doe</strong>
+               <small>ABC, USA</small>
+            </div>
+         </div><!-- media -->
+      </li>
+      <li class="online">
+         <div class="media">
+            <a href="#" class="pull-left media-thumb">
+               <img alt="" src="/assets/avatar1.jpg" class="media-object">
+            </a>
+            <div class="media-body">
+               <strong>Anjelina Joli</strong>
+               <small>Fockland, UK</small>
+            </div>
+         </div><!-- media -->
+      </li>
+      <li class="online">
+         <div class="media">
+            <a href="#" class="pull-left media-thumb">
+               <img alt="" src="/assets/mail-avatar.jpg" class="media-object">
+            </a>
+            <div class="media-body">
+               <div class="media-status">
+                  <span class=" badge bg-warning">7</span>
+               </div>
+               <strong>Mr Tasi</strong>
+               <small>Dream Land, USA</small>
+            </div>
+         </div><!-- media -->
+      </li>
+    </ul>
+   <h5 class="side-title"> pending Task</h5>
+   <ul class="p-task tasks-bar">
+      <li>
+         <a href="#">
+            <div class="task-info">
+               <div class="desc">Dashboard v1.3</div>
+               <div class="percent">40%</div>
+            </div>
+            <div class="progress progress-striped">
+               <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success">
+                  <span class="sr-only">40% Complete (success)</span>
+               </div>
+            </div>
+         </a>
+      </li>
+      <li>
+         <a href="#">
+            <div class="task-info">
+               <div class="desc">Database Update</div>
+               <div class="percent">60%</div>
+            </div>
+            <div class="progress progress-striped">
+               <div style="width: 60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-warning">
+                  <span class="sr-only">60% Complete (warning)</span>
+               </div>
+            </div>
+         </a>
+      </li>
+      <li>
+         <a href="#">
+            <div class="task-info">
+               <div class="desc">Iphone Development</div>
+               <div class="percent">87%</div>
+            </div>
+            <div class="progress progress-striped">
+               <div style="width: 87%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                  <span class="sr-only">87% Complete</span>
+               </div>
+            </div>
+         </a>
+      </li>
+      <li>
+         <a href="#">
+            <div class="task-info">
+               <div class="desc">Mobile App</div>
+               <div class="percent">33%</div>
+            </div>
+            <div class="progress progress-striped">
+               <div style="width: 33%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" class="progress-bar progress-bar-danger">
+                  <span class="sr-only">33% Complete (danger)</span>
+               </div>
+            </div>
+         </a>
+      </li>
+      <li>
+         <a href="#">
+            <div class="task-info">
+               <div class="desc">Dashboard v1.3</div>
+               <div class="percent">45%</div>
+            </div>
+            <div class="progress progress-striped active">
+               <div style="width: 45%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" role="progressbar" class="progress-bar">
+                  <span class="sr-only">45% Complete</span>
+               </div>
+            </div>
+
+         </a>
+      </li>
+      <li class="external">
+         <a href="#">See All Tasks</a>
+      </li>
+   </ul>
+  </div>
+   <!-- Right Slidebar end -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    var markers = <%=raw @trips_locations.to_json %>
+    window.onload = function () {
+      if(markers.length > 0){
+        initialize_map(markers);
+      }
+      else {
+          initialize_full_map();
+      }
+      
+    }
+  });
+</script>

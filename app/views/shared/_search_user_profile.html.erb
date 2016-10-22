@@ -1,0 +1,17 @@
+<%= form_tag(search_user_profile_user_dashboard_index_path, :method => "get", id: "search-form", format: :js) do %>
+<!-- text field tag=action,args,identifier,placeholdertext... -->
+ 	<%= text_field_tag :search_user, params[:search_user], class: "form-control search", placeholder: "search user", type: "search" %>  
+<%end%>
+
+<script type="text/javascript" charset="utf-8">
+  $("#search_user").autocomplete({
+    source : '/user_dashboard/autocomplete_user_name',
+    minLength : 1,
+    autoSelect: true,
+    autoFocus: true,
+    change : function(event, ui) {
+      $("#search-form").submit();
+    }
+  });
+
+</script>

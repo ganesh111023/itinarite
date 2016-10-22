@@ -1,0 +1,11 @@
+<section class="panel">
+  <div class="user-heading">
+    <a href="javascript:void(0);">
+       <%= image_tag("#{@user.try(:profile_picture).try(:url)}") if @user %>
+    </a>
+    <h1><%= @user.name if @user %></h1>
+  </div>
+  <ul class="nav nav-pills nav-stacked follow-btn">
+    <li><%= get_follow_unfollow_link(@user) %> </li>
+  </ul>
+</section>

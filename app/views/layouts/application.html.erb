@@ -325,7 +325,7 @@
         <div class="top-nav ">
           <ul class="nav pull-right top-menu">
               <li>
-                  <input type="text" class="form-control search" placeholder="Search">
+                  <%= render 'shared/search_user_profile' %>
               </li>
               <!-- user login dropdown start-->
               <li class="dropdown">
@@ -369,21 +369,15 @@
                   </a>
               </li>
               <li>
-                <a href="/user_dashboard/<%= current_user.id%>/follow_unfollow">
-                    <i class="fa fa-code-fork"></i>
-                    <span>Foloow/Unfollow</span>
-                </a>
-              </li>
-              <li>
-                  <a href="/user_dashboard/<%= current_user.id%>/user_followers">
+                  <a href="/user_dashboard/<%= current_user.id%>/followers">
                       <i class="fa fa-code-fork"></i>
-                      <span>Followers</span>
+                      <span> My Followers </span>
                   </a>
               </li>
                <li>
-                  <a href="/user_dashboard/<%= current_user.id%>/user_following">
+                  <a href="/user_dashboard/<%= current_user.id%>/following">
                       <i class="fa fa-code-fork"></i>
-                      <span>Following</span>
+                      <span> I'm Following</span>
                   </a>
               </li>
               <li>

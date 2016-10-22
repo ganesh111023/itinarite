@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+	<section class="panel">
+    <div class="user-heading">
+      <%= image_tag("#{user.try(:profile_picture).try(:url)}", class: "img-user") %>
+     <%= link_to user.name, profile_search_user_dashboard_path(user.id) %>
+    </div>
+  </section>
+<% end %>
