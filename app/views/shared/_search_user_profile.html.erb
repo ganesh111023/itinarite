@@ -3,13 +3,13 @@
  	<%= text_field_tag :search_user, params[:search_user], class: "form-control search", placeholder: "search user", type: "search" %>  
 <%end%>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   $("#search_user").autocomplete({
     source : '/user_dashboard/autocomplete_user_name',
     minLength : 1,
     autoSelect: true,
     autoFocus: true,
-    change : function(event, ui) {
+    select : function(event, ui) {
       $("#search-form").submit();
     }
   });
