@@ -11,40 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015190832) do
+ActiveRecord::Schema.define(version: 20161102135605) do
 
-  create_table "activity_comments", force: :cascade do |t|
-    t.integer  "user_id",         limit: 4
-    t.integer  "activity_log_id", limit: 4
-    t.text     "description",     limit: 65535
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "activity_logs", force: :cascade do |t|
     t.string   "browser",     limit: 255
     t.string   "ip_address",  limit: 255
     t.string   "controller",  limit: 255
     t.string   "action",      limit: 255
-    t.text     "params",      limit: 65535
+    t.text     "params"
     t.string   "note",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",     limit: 4
-    t.text     "description", limit: 65535
+    t.integer  "user_id"
+    t.text     "description"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string   "description", limit: 255
-    t.integer  "trip_id",     limit: 4
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "description",      limit: 255
+    t.integer  "commentable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "commentable_type"
   end
 
   create_table "pictures", force: :cascade do |t|
     t.string   "name",           limit: 255
-    t.integer  "imageable_id",   limit: 4
+    t.integer  "imageable_id"
     t.string   "imageable_type", limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -53,53 +49,53 @@ ActiveRecord::Schema.define(version: 20161015190832) do
   add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "relationships", force: :cascade do |t|
-    t.integer  "follower_id", limit: 4
-    t.integer  "followed_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "trip_activities", force: :cascade do |t|
     t.string   "place",         limit: 255
-    t.text     "description",   limit: 65535
+    t.text     "description"
     t.datetime "activity_date"
     t.string   "activity_type", limit: 255
-    t.integer  "trip_id",       limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.float    "lat",           limit: 24
-    t.float    "long",          limit: 24
+    t.integer  "trip_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.float    "lat"
+    t.float    "long"
   end
 
   create_table "trips", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
+    t.text     "description"
     t.string   "address",     limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.float    "lat",         limit: 24
-    t.float    "long",        limit: 24
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.float    "lat"
+    t.float    "long"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255,   default: "", null: false
-    t.string   "encrypted_password",     limit: 255,   default: "", null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,     default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "name",                   limit: 255
     t.string   "profile_picture",        limit: 255
-    t.text     "address",                limit: 65535
+    t.text     "address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

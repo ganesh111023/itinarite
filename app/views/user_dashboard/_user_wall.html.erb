@@ -60,7 +60,7 @@
           <%  end%>
           
           <ul class="fb-comments">
-            <% act.activity_comments.each do |cmt| %>
+            <% act.comments.each do |cmt| %>
               <li>
                 <a href="#" class="cmt-thumb">
                     <img src="<%= cmt.user.profile_picture.url %>" alt="">

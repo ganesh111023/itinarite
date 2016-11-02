@@ -6,7 +6,7 @@ class Trip < ActiveRecord::Base
   has_many :trip_activities
   has_many :pictures, as: :imageable
 
-  has_many :comments
+  has_many :comments, as: :commentable
 
   #Associative attributes
   accepts_nested_attributes_for :pictures, :allow_destroy => true
@@ -45,7 +45,7 @@ class Trip < ActiveRecord::Base
   end
 
   def get_comment_users
-   self.comments.map(&:user).compact.map(&:name) if self.comments.size > 0
+   self.comments.map(&:user).compact.map(&:name).uniq if self.comments.size > 0
   end
 
 

@@ -1,21 +1,21 @@
 class ActivitiesController < ApplicationController
-	
-	def index
-	end
+  before_action :find_trip
 
-	def new
-		find_trip
-		@activity = @trip.trip_activities.new
-	end
+  def index
+  end
 
-	def create
-	end
+  def new
+    @activity = @trip.trip_activities.new
+  end
 
-	def update
-	end
+  def create
+  end
 
-	private
-		def find_trip
-			@trip = current_user.trips.find_by_id params[:trip_id]
-		end
+  def update
+  end
+
+  private
+    def find_trip
+      @trip = current_user.trips.find_by_id params[:trip_id]
+    end
 end

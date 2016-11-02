@@ -67,7 +67,7 @@ class UserDashboardController < ApplicationController
   def comment_activity
     @recent_activities = ActivityLog.following_user_activities(current_user)
     activity = @recent_activities.find_by_id params[:id]
-    comment = activity.activity_comments.new({description: params[:description]})
+    comment = activity.comments.new({description: params[:description]})
     comment.user_id = current_user.id
     comment.save
   end
