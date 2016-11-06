@@ -6,7 +6,7 @@
         </div>
         <% unless ["", "", ""].any?(&:present?) %>
 	        <div class="fb-user-details">
-	           <h3><%= current_user.try(:name).capitalize %> Checked-in <%= post.address %></h3>
+	           <h3><%= post.user.name.capitalize  %> Checked-in <%= post.address %></h3>
 	           <p><%= post.get_time_diffrence %></p>
 	        </div>
 	        <div class="clearfix"></div>

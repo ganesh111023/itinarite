@@ -76,16 +76,16 @@
      <footer class="panel-footer" >
         <ul class="nav nav-pills">
            <li>
-              <a href="#"><i class="fa fa-map-marker"></i></a>
+              <a href="javascript:void(0);"><i class="fa fa-map-marker check-in"></i></a>
            </li>
            <li>
-              <a href="#"><i class="fa fa-camera"></i></a>
+              <a href="javascript:void(0);" ><i class="fa fa-camera"></i></a>
            </li>
            <li>
-              <a href="#"><i class=" fa fa-film"></i></a>
+              <a href="javascript:void(0);" ><i class=" fa fa-film"></i></a>
            </li>
            <li>
-              <a href="#"><i class="fa fa-microphone"></i></a>
+              <a href="javascript:void(0);" ><i class="fa fa-microphone"></i></a>
            </li>
         </ul>
      </footer>
@@ -333,6 +333,7 @@
    <!-- Right Slidebar end -->
 <script type="text/javascript">
   $(document).ready(function(){
+    $(".location").css("display", "none");
     var markers = <%=raw @trips_locations.to_json %>
     window.onload = function () {
       if(markers.length > 0){
@@ -346,7 +347,8 @@
   });
 
   $(".location").geocomplete();
-  $("#submit_post").on("click", function(){
-
-  });
+   $(".check-in").click(
+        function(){
+          $(".location").css({"display": "block"});
+    });
 </script>
