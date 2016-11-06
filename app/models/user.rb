@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   #Trip association
   has_many :trips
+  has_many :posts
 
 
   #Accessor

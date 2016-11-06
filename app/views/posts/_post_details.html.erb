@@ -1,0 +1,71 @@
+  <% @posts.each do |post| %>
+   <section class="panel">
+     <div class="panel-body">
+        <div class="fb-user-thumb">
+           <img src="<%= current_user.profile_picture.url%>" alt="Profile Picture">
+        </div>
+        <% unless ["", "", ""].any?(&:present?) %>
+	        <div class="fb-user-details">
+	           <h3><%= current_user.try(:name).capitalize %> Checked-in <%= post.address %></h3>
+	           <p><%= post.get_time_diffrence %></p>
+	        </div>
+	        <div class="clearfix"></div>
+	        <p class="fb-user-status"><%= post.description %> </p>
+        <% else %>
+        	"dkfjsdkfjks"
+        <% end %>
+        <div class="fb-status-container fb-border">
+           <div class="fb-time-postion">
+              <a href="#" title="Like this">Like</a>
+              <span>-</span>
+              <a href="#" title="Leave a comment">Comments</a>
+              <span>-</span>
+              <a href="#" title="Send this to friend or post it on your time line">Share</a>
+           </div>
+        </div>
+        <div class="fb-status-container fb-border fb-gray-bg">
+          <%   if post.get_comment_users.present?  %>
+            <div class="fb-time-postion like-info">
+              <% if post.get_comment_users.size > 2 %>
+                <span><%= post.get_comment_users.first %></span>
+                <span><%= post.get_comment_users.second %></span>
+                <span>and</span>
+                <span><%= post.get_comment_users.size - 2 %> more</span>
+                <span>Comment on this</span>
+              <%elsif post.get_comment_users.present? && post.get_comment_users.size > 0 %>
+                <span><%= post.get_comment_users.first %></span>
+                <span><%= post.get_comment_users.try(:second) %> Comment on this</span>
+              <% end %>
+            </div>
+          <%  end%>
+          
+          <ul class="fb-comments">
+	          <% if post.comments.present? %>
+	            <% post.comments.each do |cmt| %>
+	              <li>
+	                <a href="#" class="cmt-thumb">
+	                    <img src="<%= cmt.user.profile_picture.url %>" alt="">
+	                </a>
+	                <div class="cmt-details">
+	                    <a href="#"><%= cmt.user.name %></a>
+	                    <span> <%= cmt.description %> </span>
+	                    <p><%= cmt.get_time_diffrence %> - <a href="#" class="like-link">Like</a></p>
+	                </div>
+	              </li>
+	            <%end%>
+	          <% end %>
+            <li>
+              <div class="cmt-form">
+                <%= form_tag comment_post_path(post),method: :post, remote: :true  do |f| %>
+                  <%= text_area_tag 'description',nil, placeholder: "Write a comment...", class: "form-control" %>
+                  </br>
+                  <%= submit_tag "Comment", class: "btn btn-primary", id: "create_postivity_comment" %>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div
+     </div>
+    </section>
+  <% end %>

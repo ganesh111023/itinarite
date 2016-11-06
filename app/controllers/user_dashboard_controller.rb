@@ -8,8 +8,9 @@ class UserDashboardController < ApplicationController
   end
 
   def profile
-     @recent_trips = current_user.recent_trips
-     @trips_locations = current_user.trips_locations
+    @posts = Post.self_and_following_user_post(current_user)
+    @recent_trips = current_user.recent_trips
+    @trips_locations = current_user.trips_locations
   end
 
   #upload_picture_dashboard

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
 
-   resources :user_dashboard, only: :index do
+  resources :user_dashboard, only: :index do
     collection do
       get :search_user_profile
       get :autocomplete_user_name
@@ -34,6 +34,11 @@ Rails.application.routes.draw do
       get 'followers'
     end
    end
+  resources :posts, only: :create do
+    member do 
+      post 'comment'
+    end
+  end
 
 
   # Example of regular route:

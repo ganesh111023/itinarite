@@ -67,12 +67,13 @@
      <div id="gmap_geocoding" class="gmaps"></div>
   </section>
   <br>
-  <section class="panel profile-info">
-     <form style="padding-top: 15px;">
-      <textarea class="form-control input-lg p-text-area form" rows="2" placeholder="Whacha thinking?"></textarea>
-     </form>
-     <footer class="panel-footer">
-        <button class="btn btn-primary pull-right">Post</button>
+  <section class="panel profile-info" >
+    <%= form_tag posts_path ,method: :post, remote: :true do |f| %>
+      <%= text_area_tag 'description',nil, placeholder: "Whacha thinking?", class: "form-control" %>
+      <%= text_field_tag 'address',nil, placeholder: "Location", class: "form-control location" %>
+      <%= submit_tag "Post", class: "btn btn-primary pull-right", id: "submit_post" %>
+    <% end %>
+     <footer class="panel-footer" >
         <ul class="nav nav-pills">
            <li>
               <a href="#"><i class="fa fa-map-marker"></i></a>
@@ -89,6 +90,9 @@
         </ul>
      </footer>
   </section>
+  <div id="user-post">
+     <%= render 'posts/posts' %>
+  </div>
   <% if @recent_trips.present? %>
     <!-- <section class="panel">
        <div class="panel-body">
@@ -339,5 +343,10 @@
       }
       
     }
+  });
+
+  $(".location").geocomplete();
+  $("#submit_post").on("click", function(){
+
   });
 </script>
