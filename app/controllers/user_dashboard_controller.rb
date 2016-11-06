@@ -4,7 +4,9 @@ class UserDashboardController < ApplicationController
   autocomplete :user, :name, :display_value => :name_capitalize,:full => true
 
   def index
-    @recent_activities = ActivityLog.following_user_activities(current_user)    
+    @recent_activities = ActivityLog.following_user_activities(current_user)
+    @recent_activities << Post.self_and_following_user_post(current_user) 
+    @recent_activities = @recent_activities.flatten.sort{ |a,b| b.created_at <=> a.created_at }
   end
 
   def profile

@@ -26,21 +26,51 @@
         <div class="fb-user-thumb">
             <img src="<%= act.user.profile_picture.url %>" alt="profile picture">
         </div>
-        <div class="fb-user-details">
-            <h3><a href="#" class="#"><%= act.user.name.capitalize %></a> <span class="activity_notes"><%= act.note  %></span></h3>
-            <p><%= act.get_time_diffrence %></p>
-        </div>
-        <div class="clearfix"></div>
-        <p class="fb-user-status"><%= act.description  %></p>
-        <div class="fb-status-container fb-border">
+        <% if act.class.name == "ActivityLog" %>
+          <div class="fb-user-details">
+              <h3><a href="#" class="#"><%= act.user.name.capitalize %></a>
+               <span class="activity_notes"><%= act.note %></span></h3>
+              <p><%= act.get_time_diffrence %></p>
+          </div>
+          <div class="clearfix"></div>
+          <p class="fb-user-status"><%= act.description  %></p>
+          <div class="fb-status-container fb-border">
             <div class="fb-time-action">
-                <a href="#" title="Like this">Like</a>
-                <span>-</span>
-                <a href="#" title="Leave a comment">Comments</a>
-                <span>-</span>
-                <a href="#" title="Send this to friend or post it on your time line">Share</a>
+              <a href="#" title="Like this">Like</a>
+              <span>-</span>
+              <a href="#" title="Leave a comment">Comments</a>
+              <span>-</span>
+              <a href="#" title="Send this to friend or post it on your time line">Share</a>
             </div>
-        </div>
+          </div>
+        <% elsif %>
+          <% unless ["", "", ""].any?(&:present?)  %>
+            <div class="fb-user-details">
+                <h3><a href="#" class="#"><%= act.user.name.capitalize %></a>
+                 <span class="activity_notes">Checked-in <%= act.address %></span></h3>
+                <p><%= act.get_time_diffrence %></p>
+            </div>
+            <div class="clearfix"></div>
+            <p class="fb-user-status"><%= act.description  %></p>
+          <% else %>
+            <div class="fb-user-details">
+                <h3><a href="#" class="#"><%= act.user.name.capitalize %></a>
+                 <span class="activity_notes"><%= "videos" %></span></h3>
+                <p><%= act.get_time_diffrence %></p>
+            </div>
+            <div class="clearfix"></div>
+            <p class="fb-user-status"><%= act.description  %></p>
+          <% end %>
+          <div class="fb-status-container fb-border">
+            <div class="fb-time-action">
+              <a href="#" title="Like this">Like</a>
+              <span>-</span>
+              <a href="#" title="Leave a comment">Comments</a>
+              <span>-</span>
+              <a href="#" title="Send this to friend or post it on your time line">Share</a>
+            </div>
+          </div>
+        <% end %>
 
 
         <div class="fb-status-container fb-border fb-gray-bg">
@@ -74,7 +104,7 @@
             <%end%>
               <li>
                 <div class="cmt-form">
-                  <%= form_tag comment_activity_user_dashboard_path(id: act),method: :post, remote: :true  do |f| %>
+                  <%= form_tag (act.class.name == "ActivityLog" ? comment_activity_user_dashboard_path(id: act) : comment_post_path(act)),method: :post, remote: :true  do |f| %>
                     <%= text_area_tag 'description',nil, placeholder: "Write a comment...", class: "form-control" %>
                     </br>
                     <%= submit_tag "Comment", class: "btn btn-primary", id: "create_activity_comment" %>

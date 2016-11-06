@@ -8,12 +8,18 @@ class PostsController < ApplicationController
   end
 
   def comment
-    if request.xhr?
+    if request.xhr? 
       @post = Post.find params[:id]
-      @posts = Post.self_and_following_user_post(current_user)
       comment = @post.comments.new(description: params[:description])
       comment.user_id = current_user.id
       comment.save
+      if URI(request.referer).path == "/profile"
+        @posts = Post.self_and_following_user_post(current_user)
+      else
+        @recent_activities = ActivityLog.following_user_activities(current_user)
+        @recent_activities << Post.self_and_following_user_post(current_user) 
+        @recent_activities = @recent_activities.flatten.sort{ |a,b| b.created_at <=> a.created_at }
+      end
     end
   end
 

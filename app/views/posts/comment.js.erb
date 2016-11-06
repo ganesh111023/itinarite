@@ -1,1 +1,5 @@
-$(".post_details").html("<%= escape_javascript render 'posts/post_details' %>")
+<% if URI(request.referer).path == "/profile" %>
+  $(".post_details").html("<%= escape_javascript render 'posts/post_details' %>")
+<% else %>
+  $(".user-wall").html("<%= escape_javascript render 'user_dashboard/user_wall' %>")
+<% end %>
