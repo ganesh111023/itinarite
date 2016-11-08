@@ -4,15 +4,34 @@
         <div class="fb-user-thumb">
            <img src="<%= current_user.profile_picture.url%>" alt="Profile Picture">
         </div>
-        <% unless ["", "", ""].any?(&:present?) %>
+        <% if ![post.pictures, "", ""].any?(&:present?) %>
 	        <div class="fb-user-details">
 	           <h3><%= post.user.name.capitalize  %> Checked-in <%= post.address %></h3>
 	           <p><%= post.get_time_diffrence %></p>
 	        </div>
 	        <div class="clearfix"></div>
 	        <p class="fb-user-status"><%= post.description %> </p>
-        <% else %>
-        	"dkfjsdkfjks"
+        <% elsif post.pictures.present? %>
+          <div class="fb-user-details">
+             <h3><%= post.user.name.capitalize  %> Shared pictures </h3>
+             <p><%= post.get_time_diffrence %></p>
+          </div>
+          <div class="clearfix"></div>
+        	<%= image_tag post.pictures.first.name.try(:url), size: "100x100", alt: "Edit Entry" %>
+        <% elsif post.videos.present? %>
+          <div class="fb-user-details">
+             <h3><%= post.user.name.capitalize  %> Shared Videos </h3>
+             <p><%= post.get_time_diffrence %></p>
+          </div>
+          <div class="clearfix"></div>
+          <%= "Videos"%>
+        <% elsif post.audios.present? %>
+          <div class="fb-user-details">
+             <h3><%= post.user.name.capitalize  %> Shared Videos </h3>
+             <p><%= post.get_time_diffrence %></p>
+          </div>
+          <div class="clearfix"></div>
+          <%= "audios"%>
         <% end %>
         <div class="fb-status-container fb-border">
            <div class="fb-time-postion">

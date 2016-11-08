@@ -68,9 +68,10 @@
   </section>
   <br>
   <section class="panel profile-info" >
-    <%= form_tag posts_path ,method: :post, remote: :true do |f| %>
-      <%= text_area_tag 'description',nil, placeholder: "Whacha thinking?", class: "form-control" %>
-      <%= text_field_tag 'address',nil, placeholder: "Location", class: "form-control location" %>
+    <%= form_tag posts_path ,method: :post,:multipart => true ,remote: :true  do %>
+      <%= text_area_tag 'post[description]',nil, placeholder: "Whacha thinking?", class: "form-control" %>
+      <%= text_field_tag 'post[address]',nil, placeholder: "Location", class: "form-control location" %>
+      <%= file_field_tag 'post[pictures_attributes[0][name]]', class: "form-control" %>
       <%= submit_tag "Post", class: "btn btn-primary pull-right", id: "submit_post" %>
     <% end %>
      <footer class="panel-footer" >

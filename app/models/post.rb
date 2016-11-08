@@ -4,13 +4,15 @@ class Post < ActiveRecord::Base
 	scope :self_and_following_user_post, -> (current_user){ where("user_id IN (?)", current_user.following.ids.uniq << current_user.id).order('created_at desc')}
 
 	#Association
-	has_many :videos
-	has_many :images
-	has_many :audios
-	has_many :comments, as: :commentable
+	has_many :videos, dependent: :destroy
+	has_many :pictures, as: :imageable, dependent: :destroy
+	has_many :audios, dependent: :destroy
+	has_many :comments, as: :commentable, dependent: :destroy
 
 	belongs_to :user
 
+
+	accepts_nested_attributes_for :pictures
   # Geocode address to lat. long
   geocoded_by :address,
     :latitude => :lat, :longitude => :long

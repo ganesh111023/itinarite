@@ -44,22 +44,34 @@
             </div>
           </div>
         <% elsif %>
-          <% unless ["", "", ""].any?(&:present?)  %>
+          <% if ![act.pictures, "", ""].any?(&:present?) %>
             <div class="fb-user-details">
-                <h3><a href="#" class="#"><%= act.user.name.capitalize %></a>
-                 <span class="activity_notes">Checked-in <%= act.address %></span></h3>
-                <p><%= act.get_time_diffrence %></p>
+               <h3><%= act.user.name.capitalize  %> Checked-in <%= act.address %></h3>
+               <p><%= act.get_time_diffrence %></p>
             </div>
             <div class="clearfix"></div>
-            <p class="fb-user-status"><%= act.description  %></p>
-          <% else %>
+            <p class="fb-user-status"><%= act.description %> </p>
+          <% elsif act.pictures.present? %>
             <div class="fb-user-details">
-                <h3><a href="#" class="#"><%= act.user.name.capitalize %></a>
-                 <span class="activity_notes"><%= "videos" %></span></h3>
-                <p><%= act.get_time_diffrence %></p>
+               <h3><%= act.user.name.capitalize  %> Shared pictures </h3>
+               <p><%= act.get_time_diffrence %></p>
             </div>
             <div class="clearfix"></div>
-            <p class="fb-user-status"><%= act.description  %></p>
+            <%= image_tag act.pictures.first.name.try(:url), size: "100x100", alt: "Edit Entry" %>
+          <% elsif post.videos.present? %>
+            <div class="fb-user-details">
+               <h3><%= act.user.name.capitalize  %> Shared Videos </h3>
+               <p><%= act.get_time_diffrence %></p>
+            </div>
+            <div class="clearfix"></div>
+            <%= "Videos"%>
+          <% elsif act.audios.present? %>
+            <div class="fb-user-details">
+               <h3><%= act.user.name.capitalize  %> Shared Videos </h3>
+               <p><%= act.get_time_diffrence %></p>
+            </div>
+            <div class="clearfix"></div>
+            <%= "audios"%>
           <% end %>
           <div class="fb-status-container fb-border">
             <div class="fb-time-action">

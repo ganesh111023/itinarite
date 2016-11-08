@@ -36,7 +36,7 @@ gem "letter_opener"
 gem 'carrierwave'
 # Geocode address
 gem 'geocoder'
-
+gem 'remotipart', '~> 1.2'
 # Autocomplete
 gem 'rails4-autocomplete'
 
