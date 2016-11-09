@@ -33,7 +33,13 @@ gem "twitter-bootstrap-rails"
 # mail preview
 gem "letter_opener"
 # file upload plug in
-gem 'carrierwave'
+gem "carrierwave", github: 'carrierwaveuploader/carrierwave'
+# video upload
+gem 'carrierwave-video'
+gem 'carrierwave-ffmpeg'
+gem 'carrierwave-video-thumbnailer'
+gem 'carrierwave-audio'
+gem 'jw_player_helper'
 # Geocode address
 gem 'geocoder'
 gem 'remotipart', '~> 1.2'

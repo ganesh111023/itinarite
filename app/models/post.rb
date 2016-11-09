@@ -13,6 +13,8 @@ class Post < ActiveRecord::Base
 
 
 	accepts_nested_attributes_for :pictures
+	accepts_nested_attributes_for :videos
+	accepts_nested_attributes_for :audios
   # Geocode address to lat. long
   geocoded_by :address,
     :latitude => :lat, :longitude => :long

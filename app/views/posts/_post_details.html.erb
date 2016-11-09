@@ -4,7 +4,7 @@
         <div class="fb-user-thumb">
            <img src="<%= current_user.profile_picture.url%>" alt="Profile Picture">
         </div>
-        <% if ![post.pictures, "", ""].any?(&:present?) %>
+        <% if ![post.pictures, post.videos, post.audios].any?(&:present?) %>
 	        <div class="fb-user-details">
 	           <h3><%= post.user.name.capitalize  %> Checked-in <%= post.address %></h3>
 	           <p><%= post.get_time_diffrence %></p>
@@ -24,14 +24,14 @@
              <p><%= post.get_time_diffrence %></p>
           </div>
           <div class="clearfix"></div>
-          <%= "Videos"%>
+          <%= video_tag post.videos.first.video.url, :size => "320x240", :controls => true %>
         <% elsif post.audios.present? %>
           <div class="fb-user-details">
              <h3><%= post.user.name.capitalize  %> Shared Videos </h3>
              <p><%= post.get_time_diffrence %></p>
           </div>
           <div class="clearfix"></div>
-          <%= "audios"%>
+          <%= audio_tag post.audios.first.audio.url, :size => "320x240", :controls => true %>
         <% end %>
         <div class="fb-status-container fb-border">
            <div class="fb-time-postion">

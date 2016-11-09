@@ -44,7 +44,7 @@
             </div>
           </div>
         <% elsif %>
-          <% if ![act.pictures, "", ""].any?(&:present?) %>
+          <% if ![act.pictures, act.videos, act.audios].any?(&:present?) %>
             <div class="fb-user-details">
                <h3><%= act.user.name.capitalize  %> Checked-in <%= act.address %></h3>
                <p><%= act.get_time_diffrence %></p>
@@ -58,20 +58,20 @@
             </div>
             <div class="clearfix"></div>
             <%= image_tag act.pictures.first.name.try(:url), size: "100x100", alt: "Edit Entry" %>
-          <% elsif post.videos.present? %>
-            <div class="fb-user-details">
+          <% elsif act.videos.present? %>
+            <div class="fbuser-details">
                <h3><%= act.user.name.capitalize  %> Shared Videos </h3>
                <p><%= act.get_time_diffrence %></p>
             </div>
             <div class="clearfix"></div>
-            <%= "Videos"%>
+            <%= video_tag act.videos.first.video.url, :size => "320x240", :controls => true %>
           <% elsif act.audios.present? %>
             <div class="fb-user-details">
                <h3><%= act.user.name.capitalize  %> Shared Videos </h3>
                <p><%= act.get_time_diffrence %></p>
             </div>
             <div class="clearfix"></div>
-            <%= "audios"%>
+            <%= audio_tag act.audios.first.audio.url, :size => "320x240", :controls => true %>>
           <% end %>
           <div class="fb-status-container fb-border">
             <div class="fb-time-action">
