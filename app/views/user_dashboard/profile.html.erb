@@ -71,28 +71,32 @@
     <%= form_tag posts_path ,method: :post,:multipart => true ,remote: :true  do %>
       <%= text_area_tag 'post[description]',nil, placeholder: "Whacha thinking?", class: "form-control" %>
       <%= text_field_tag 'post[address]',nil, placeholder: "Location", class: "form-control location" %>
-      <%= file_field_tag 'post[pictures_attributes[0][name]]', class: "form-control" %>
-      <%= file_field_tag 'post[videos_attributes[0][video]]', class: "form-control" %>
-      <%= file_field_tag 'post[audios_attributes[0][audio]]', class: "form-control" %>
-      
       <%= submit_tag "Post", class: "btn btn-primary pull-right", id: "submit_post" %>
-    <% end %>
-     <footer class="panel-footer" >
+      <footer class="panel-footer" >
         <ul class="nav nav-pills">
            <li>
+            <span class="btn btn-white btn-file">
               <a href="javascript:void(0);"><i class="fa fa-map-marker check-in"></i></a>
+            </span
            </li>
            <li>
-              <a href="javascript:void(0);" ><i class="fa fa-camera"></i></a>
+             <span class="btn btn-white btn-file">
+              <i class="fa fa-camera"><%= file_field_tag 'post[pictures_attributes[0][name]]' %></i>
+            </span>
            </li>
            <li>
-              <a href="javascript:void(0);" ><i class=" fa fa-film"></i></a>
+            <span class="btn btn-white btn-file">
+              <i class=" fa fa-film"><%= file_field_tag 'post[videos_attributes[0][video]]'%></i>
+            </span>
            </li>
            <li>
-              <a href="javascript:void(0);" ><i class="fa fa-microphone"></i></a>
+            <span class="btn btn-white btn-file">
+              <i class="fa fa-microphone"><%= file_field_tag 'post[audios_attributes[0][audio]]' %></i>
+            </span>
            </li>
         </ul>
-     </footer>
+      </footer>
+    <% end %>
   </section>
   <div id="user-post">
      <%= render 'posts/posts' %>

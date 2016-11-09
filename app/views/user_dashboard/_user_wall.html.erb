@@ -53,24 +53,27 @@
             <p class="fb-user-status"><%= act.description %> </p>
           <% elsif act.pictures.present? %>
             <div class="fb-user-details">
-               <h3><%= act.user.name.capitalize  %> Shared pictures </h3>
+               <h3><%= act.user.name.capitalize  %> Shared pictures  <%= "At #{act.address}" if act.address.present? %> </h3>
                <p><%= act.get_time_diffrence %></p>
             </div>
             <div class="clearfix"></div>
+            <p class="fb-user-status"><%= act.description %> </p>
             <%= image_tag act.pictures.first.name.try(:url), size: "100x100", alt: "Edit Entry" %>
           <% elsif act.videos.present? %>
             <div class="fbuser-details">
-               <h3><%= act.user.name.capitalize  %> Shared Videos </h3>
+               <h3><%= act.user.name.capitalize  %> Shared Videos <%= "At #{act.address}" if act.address.present? %> </h3>
                <p><%= act.get_time_diffrence %></p>
             </div>
             <div class="clearfix"></div>
+            <p class="fb-user-status"><%= act.description %> </p>
             <%= video_tag act.videos.first.video.url, :size => "320x240", :controls => true %>
           <% elsif act.audios.present? %>
             <div class="fb-user-details">
-               <h3><%= act.user.name.capitalize  %> Shared Videos </h3>
+               <h3><%= act.user.name.capitalize  %> Shared Aduio  <%= "At #{act.address}" if act.address.present? %> </h3>
                <p><%= act.get_time_diffrence %></p>
             </div>
             <div class="clearfix"></div>
+            <p class="fb-user-status"><%= act.description %> </p>
             <%= audio_tag act.audios.first.audio.url, :size => "320x240", :controls => true %>>
           <% end %>
           <div class="fb-status-container fb-border">

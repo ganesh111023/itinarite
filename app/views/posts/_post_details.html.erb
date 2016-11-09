@@ -13,24 +13,27 @@
 	        <p class="fb-user-status"><%= post.description %> </p>
         <% elsif post.pictures.present? %>
           <div class="fb-user-details">
-             <h3><%= post.user.name.capitalize  %> Shared pictures </h3>
+             <h3><%= post.user.name.capitalize  %> Shared pictures <%= "At #{post.address}" if post.address.present? %></h3>
              <p><%= post.get_time_diffrence %></p>
           </div>
           <div class="clearfix"></div>
+          <p class="fb-user-status"><%= post.try(:description) %> </p>
         	<%= image_tag post.pictures.first.name.try(:url), size: "100x100", alt: "Edit Entry" %>
         <% elsif post.videos.present? %>
           <div class="fb-user-details">
-             <h3><%= post.user.name.capitalize  %> Shared Videos </h3>
+             <h3><%= post.user.name.capitalize  %> Shared Videos <%= "At #{post.address}" if post.address.present? %>  </h3>
              <p><%= post.get_time_diffrence %></p>
           </div>
           <div class="clearfix"></div>
+           <p class="fb-user-status"><%= post.description %> </p>
           <%= video_tag post.videos.first.video.url, :size => "320x240", :controls => true %>
         <% elsif post.audios.present? %>
           <div class="fb-user-details">
-             <h3><%= post.user.name.capitalize  %> Shared Videos </h3>
+             <h3><%= post.user.name.capitalize  %> Shared Audio <%= "At #{post.address}" if post.address.present? %> </h3>
              <p><%= post.get_time_diffrence %></p>
           </div>
           <div class="clearfix"></div>
+          <p class="fb-user-status"><%= post.description %> </p>
           <%= audio_tag post.audios.first.audio.url, :size => "320x240", :controls => true %>
         <% end %>
         <div class="fb-status-container fb-border">
