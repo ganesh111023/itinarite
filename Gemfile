@@ -46,6 +46,10 @@ gem 'remotipart', '~> 1.2'
 # Autocomplete
 gem 'rails4-autocomplete'
 
+# chalt feature
+gem 'private_pub'
+gem 'thin'
+    
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   #Trip association
   has_many :trips
   has_many :posts
+  #conversation
+  has_many :conversations, :foreign_key => :sender_id
 
 
   #Accessor

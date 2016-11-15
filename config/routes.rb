@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       get "my_trip"
     end
   end
+  resources :conversations do
+    resources :messages
+  end
 
 
   resources :user_dashboard, only: :index do

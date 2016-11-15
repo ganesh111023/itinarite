@@ -10,11 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require jquery-ui
 //= require autocomplete-rails
 //= require jquery.remotipart
+//= require private_pub
+//= require conversation
+//= require chat
 //
 
 

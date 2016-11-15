@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
   <meta name="author" content="Mosaddek">
   <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <link rel="shortcut icon" href="/assets/favicon.png">
@@ -256,6 +257,13 @@
                     <span>New Trip</span>
                 </a>
               </li>
+              <li>
+                <a href="/conversations">
+                <i class="fa fa-comments" aria-hidden="true"></i>
+                    <span>Conversation</span>
+                </a>
+              </li>
+
               <!--multi level menu end-->
           </ul>
           <!-- sidebar menu end-->
