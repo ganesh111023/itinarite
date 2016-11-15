@@ -1,8 +1,9 @@
 development:
-  server: "https://private-hub-server.herokuapp.com/fype"
-  secret_token: "114dc15f850d93000f6a9c6a37b1d2e5ac8bbc1c3d631fd98dddd17dec9276d3"
-  signature_expiration: 3600 # one hour
-production:
-  server: "https://private-hub-server.herokuapp.com/faye"
+  server: "http://localhost:9292/faye"
   secret_token: "batkaro"
-  signature_expiration: 3600 # one hour
+  signature_expiration: 86400 # one day
+
+production:
+  server: "http://private-hub-server.herokuapp.com/faye"
+  secret_token: "batkaro"
+  signature_expiration: 86400 # one day
