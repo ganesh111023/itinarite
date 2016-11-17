@@ -1,10 +1,19 @@
-<% @users.each_with_index do |user, index| %>
+<div class="user-list">
+	<% @users.each_with_index do |user, index| %>
     <tr>
-      <td><%= index +=1 %></td>
-      <td><%= user.email %></td>
-      <td>
-        <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+    	<div class = "user-div" >
+      	<td><%= index +=1 %></td>
+      	<td><%= user.email %></td>
+      	<td>
+        	<%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
                     "data-sid" => current_user.id, "data-rip" => user.id %>
-      </td>
+      	</td>
+      </div>
     </tr>
-<% end %>
+	<% end %>
+</div>
+<div class="chatting-area">
+	
+
+
+</div>

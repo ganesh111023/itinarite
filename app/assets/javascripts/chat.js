@@ -23,9 +23,14 @@ var ready = function () {
          */
 
         chatWith: function (conversation_id) {
+             $.get("conversations/" + conversation_id, function () {
+                // $('#chatbox_' + conversation_id).html(data);
+                // $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
+            }, "script");
 
-            chatBox.createChatBox(conversation_id);
-            $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
+            // chatBox.createChatBox(conversation_id);
+
+            // $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
         },
 
         /**
@@ -96,10 +101,10 @@ var ready = function () {
 
             $("body").append('<div id="chatbox_' + conversation_id + '" class="chatbox"></div>')
 
-            $.get("conversations/" + conversation_id, function (data) {
-                $('#chatbox_' + conversation_id).html(data);
-                $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
-            }, "html");
+            // $.get("conversations/" + conversation_id, function (data) {
+            //     $('#chatbox_' + conversation_id).html(data);
+            //     $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
+            // }, "html");
 
             $("#chatbox_" + conversation_id).css('bottom', '0px');
 

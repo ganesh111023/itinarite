@@ -363,3 +363,55 @@ ul.ui-autocomplete{
   padding-right: 10px;
   width: 70px;
 }
+.user-list{
+  background-color: white;
+  border: 4px solid azure;
+  margin-left: 10px;
+  min-height: 800px;
+  padding: 11px 0 8px 20px;
+  width: 200px;
+  float: left;
+}
+.chatting-area{
+  background-color: white;
+  border: 4px solid azure;
+  float: left;
+  margin-left: 10px;
+  min-height: 800px;
+  padding-left: 10px;
+  min-width: 800px;
+}
+
+.chat-box-head .chat-box-title{
+
+}
+.chat-rec-title{
+  font-size: 25px;
+  font-weight: bold;
+}
+.chat-box-head > .chat-box-title > .fa-comments{
+  font-size: 25px;
+  margin-right: 20px;
+}
+
+.chat-img{
+  float: left;
+}
+.chat-img img{
+  width: 30px;
+  height: 30px;
+}
+.chat-content{
+  padding-bottom: 8px;
+}
+.chat-content li {
+  list-style: none;
+  padding-left: 12px;
+}
+.chatbox-message-content{
+  float: left;
+  padding-left: 10px;
+}
+.chatboxtextarea{
+  width: 770px;
+}

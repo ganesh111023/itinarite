@@ -1,0 +1,4 @@
+// var myURL = document.location;
+// document.location = myURL + "?thread=<%=  @reciever.id %>";
+
+$(".chatting-area").html("<%= escape_javascript render(:partial => 'conversations/conversation') %>");
