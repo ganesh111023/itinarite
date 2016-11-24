@@ -21,7 +21,7 @@
   <% end %>
 </div>
 
-<%= subscribe_to conversation_path(@conversation) %>
+<%= subscribe_to "/messages/private/#{@conversation.sender_id}/#{@conversation.recipient_id}" %>
 
 <script type="text/javascript">
   $("#conversation_form_<%= @conversation.id %>").submit(function (e) {
