@@ -4,6 +4,6 @@ development:
   signature_expiration: 86400 # one day
 
 production:
-  server: "http://private-hub-server.herokuapp.com/faye"
+  server: "http://52.15.83.199:9292/faye"
   secret_token: "batkaro"
   signature_expiration: 86400 # one day

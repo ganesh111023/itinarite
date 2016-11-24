@@ -8,7 +8,7 @@
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 set :stage, :production
 set :deploy_to, '/home/ubuntu/itinarite'
-server '52.15.136.194', user: 'ubuntu', roles: %w{web app db}
+server '52.15.83.199', user: 'ubuntu', roles: %w{web app db}
 set :branch,  'master'
 
 
