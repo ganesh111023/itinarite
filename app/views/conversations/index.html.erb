@@ -1,18 +1,17 @@
 <div class="user-list">
-   <%= render 'user_list' %>
+  <% @users.each_with_index do |user, index| %>
+	  <tr> 
+	  	<div class ="user-div " >
+	      	<td><%= index +=1 %> 
+	        </td>
+	      	<td><%= user.email %></td>
+	      	<td>
+	        	<%= link_to "Conversation", "#", class: "btn btn-success btn-xs start-conversation",
+	                    "data-sid" => current_user.id, "data-rip" => user.id %>
+	      	</td>
+	    </div>
+	  </tr>
+	<% end %>
 </div>
 <div class="chatting-area">
 </div>
-
-<!-- <script>
-$(document).ready(function(){
-  var auto_refresh = setInterval(function(){
-    $.ajax({
-     type: "GET",
-      url: "/conversations",
-     dataType: "js"
-    });
-
-  },30000);
-  });
-</script> -->
