@@ -67,6 +67,11 @@ group :development, :test do
   gem 'pry'
   # pretty console outpul
   gem 'hirb'
+  gem 'capistrano', '~> 3.4'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails', '~> 1.1', '>= 1.1.5'
+  gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano-passenger', '~> 0.2.0'
 end
 
 group :development do
