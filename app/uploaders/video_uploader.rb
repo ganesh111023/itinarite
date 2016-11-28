@@ -9,7 +9,7 @@ class VideoUploader < CarrierWave::Uploader::Base
   #include CarrierWave::Video::Thumbnailer
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  #storage RAILS.env ="production" ? :fog : :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.

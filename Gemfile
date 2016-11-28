@@ -49,6 +49,8 @@ gem 'rails4-autocomplete'
 # chalt feature
 gem 'private_pub'
 gem 'thin'
+# for aws cloud storage
+gem 'fog'
     
 # Use Unicorn as the app server
 # gem 'unicorn'
