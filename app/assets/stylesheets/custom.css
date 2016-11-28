@@ -369,7 +369,7 @@ ul.ui-autocomplete{
   margin-left: 10px;
   min-height: 800px;
   padding: 11px 0 8px 20px;
-  width: 200px;
+  width: 250px;
   float: left;
 }
 .chatting-area{
@@ -379,7 +379,7 @@ ul.ui-autocomplete{
   margin-left: 10px;
   min-height: 800px;
   padding-left: 10px;
-  min-width: 800px;
+  min-width: 750px;
 }
 
 .chat-box-head .chat-box-title{
@@ -415,9 +415,9 @@ ul.ui-autocomplete{
 .chatboxtextarea{
   width: 770px;
 }
-
-/*.right-al{
-  float: right;
-  padding-left: 45px;
-  width: 100%;
-}*/
+.user-div {
+  height: 40px;
+}
+.img-circle {
+    border-radius: 50%;
+}
