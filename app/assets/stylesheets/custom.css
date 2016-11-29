@@ -1,3 +1,30 @@
+/*spinner css*/
+
+#spinner{
+    background: url(/assets/ajax-loader.gif) no-repeat scroll center center;
+    position: fixed;
+    z-index: 200;
+    top: 0px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity:0.2;
+    background-color: grey ;
+}
+
+.hid-spinner{
+  display: none;
+}
+
+.display-spinner{
+  display: block;
+}
+
+
+
+
 .main_block{
 	min-height: 560px;
 }

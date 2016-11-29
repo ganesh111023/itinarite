@@ -27,3 +27,21 @@ $(function() {
         function(){ $(this).find('a.user-setting-dropdown').attr("aria-expanded", "true") }
     );
 });
+
+
+
+$(document).ready(function(){
+	 $("#spinner").hide();
+});
+
+$(document).ajaxStart(function() {
+   $("#spinner").fadeIn('slow');
+}).ajaxStop(function() {
+    $("#spinner").hide();
+});
+
+
+
+$(window).load(function() {
+	$("#spinner").fadeOut("slow");
+})
