@@ -1,3 +1,30 @@
+/*spinner css*/
+
+#spinner{
+    background: url(/assets/ajax-loader.gif) no-repeat scroll center center;
+    position: fixed;
+    z-index: 200;
+    top: 0px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity:0.2;
+    background-color: grey ;
+}
+
+.hid-spinner{
+  display: none;
+}
+
+.display-spinner{
+  display: block;
+}
+
+
+
+
 .main_block{
 	min-height: 560px;
 }
@@ -369,7 +396,7 @@ ul.ui-autocomplete{
   margin-left: 10px;
   min-height: 800px;
   padding: 11px 0 8px 20px;
-  width: 200px;
+  width: 250px;
   float: left;
 }
 .chatting-area{
@@ -379,7 +406,7 @@ ul.ui-autocomplete{
   margin-left: 10px;
   min-height: 800px;
   padding-left: 10px;
-  min-width: 800px;
+  min-width: 750px;
 }
 
 .chat-box-head .chat-box-title{
@@ -415,7 +442,6 @@ ul.ui-autocomplete{
 .chatboxtextarea{
   width: 770px;
 }
-
 .site-features{
   padding:20px;
     width:710px;
@@ -434,4 +460,10 @@ ul.ui-autocomplete{
 }
 .feature-list ul li:before{
   content: "\00BB \0020";  
+}
+.user-div {
+  height: 40px;
+}
+.img-circle {
+    border-radius: 50%;
 }
