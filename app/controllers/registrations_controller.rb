@@ -1,5 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
+	def create
+		session[:first_sign_in] = true
+		super 
+	end
+
 
 	def update
 		if current_user.name != params[:user][:name]

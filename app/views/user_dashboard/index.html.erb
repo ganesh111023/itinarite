@@ -1,3 +1,13 @@
+<script type="text/javascript">
+     $(window).load(function(){
+        <% if session[:first_sign_in] %>
+          $("#first_sign_in_pop_up").modal('show');
+          <% session[:first_sign_in] = nil %>
+        <% end %>
+    });
+</script>
+
+
 <div class="col-md-9 user-wall">
   <%= render 'user_dashboard/user_wall' %>
 </div>
@@ -189,3 +199,32 @@
   </ul>
 </div>
 <!-- Right Slidebar end -->
+
+
+
+
+
+
+<!-- Modal -->
+<div id="first_sign_in_pop_up" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content site-features">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><center>Please Read itinarite features </center></h4>
+      </div>
+      <div class="modal-body feature-list">
+        <ul>
+          <li> Click on News feed to show all Activities of you and your followings, you can make comment on perticular activities and see other user comments too. </li>
+          <li> Click on My Follower to show list of all your follower users. </li>
+          <li> Click on I'm Following to show list of all your following users and you can remove user to your following list by just simply clicking by unfollow button. </li>
+          <li> Click on My Trips to show list of your trips, you can see more detail of your trip to click on that trip and also you can add comment on trip, upload images for trip activities etc.. </li>
+          <li> Click on New trip to add your new trip, here you can add your trip, trip activities like morning, after-noon, evening activities. you can add any number on activities by clicking add more activities button present on this page. you can add images for your trip, you can add location of your trip and trip activities by simply search your location on google map or just drag and drop your location on google map. </li>
+          <li> Click on Conversation to send message to other itinarite user by simply clicking on user name and if user online than you can make live conversation with them. </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
