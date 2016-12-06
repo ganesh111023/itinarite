@@ -458,12 +458,24 @@ ul.ui-autocomplete{
   text-align: justify;
 
 }
+.informatin-box-header{
+  background-color: rgb(0,184,231);
+  border-radius: 50%;
+}
 .feature-list ul li:before{
   content: "\00BB \0020";  
+  color : rgb(0,184,231);
 }
 .user-div {
   height: 40px;
 }
 .img-circle {
     border-radius: 50%;
+}
+.info-title{
+  font-size: 20px;
+  font-style: bold;
+  color: white;
+  font-weight: 800px;
+  font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
