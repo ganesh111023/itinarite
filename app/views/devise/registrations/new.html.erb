@@ -8,8 +8,16 @@
   <!-- <h1>LOGO</h1> -->
 </div>
 <!-- END LOGO -->
-<div class="container">
-  <div class="content">
+<div class="main-content">
+  <div class="content-left">
+    <h3 class="form-title">Itinarite Is</h3>
+    <ul>
+      <li><i class="fa fa-car" aria-hidden="true"></i> Personalized Travel Profile </li></br>
+      <li><i class="fa fa-plane" aria-hidden="true"></i> Exclusive travel tips/guidelines </li></br>
+      <li><i class="fa fa-comments" aria-hidden="true"></i>  Interaction with other travelers </li></br>
+    </ul>
+  </div>
+  <div class="content content-right">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <h2>Sign up</h2> 
       <% if devise_error_messages!.present?   %>
@@ -60,6 +68,6 @@
       </div>
 
     <% end %>
-    </div>
   </div>
+</div>
 

@@ -15,12 +15,22 @@ Login page
   background-color: #666 !important; 
 }
 
-.login .logo {
+/*.login .logo {
   margin: 60px auto 0px auto;
   padding: 15px;
   text-align: center; 
 }
+*/
 
+.login .content-left{
+  background:rgba(0, 0, 0, 0.68) url(/assets/bg-white-lock.png) repeat;
+  float: left;
+  width: 450px;
+  margin-left: 90px;
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
 .login .content {
   background:rgba(0, 0, 0, 0.68) url(/assets/bg-white-lock.png) repeat;
   width: 360px;
@@ -29,23 +39,38 @@ Login page
   padding: 30px;
   padding-top: 20px;
   padding-bottom: 15px;
+  margin-right: 200px;
+  float: right;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
   -o-border-radius: 7px;
   border-radius: 7px; 
 }
+.content-left ul{
+  list-style: none;
+}
 
-.login .content h3 {
+.content-left ul li{
+  color: #eee; 
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.content-left ul li i{
+  padding-right: 3px;
+  width: 22px;
+}
+.login .content,.content-left h3 {
   color: #eee; 
 }
 
-.login .content h4 {
+.login .content,.content-left h4 {
   color: #eee; 
 }
 
-.login .content p,
-.login .content label {
+.login .content,.content-left p,
+.login .content,.content-left label {
   color: #fff; 
 }
 
@@ -150,10 +175,7 @@ Login page
 
 .login-logo a{
   display: block;
-  
-  width: 350px;
   margin: 0px auto;
-  text-align: center;
   padding-top: 10px;
 }
 .login-logo a img{
@@ -187,12 +209,18 @@ Login page
     font-size: 13px; 
   } 
   .login-logo a{
-    width: 300px;
+    width: 200px;
   }
   .login-logo a img{
-    width: 250px;
+    width: 150px;
   }
 
+}
+
+#user_remember_me{
+   float: left;
+    margin-left: -42px;
+    margin-top: 1px;
 }
 
 #uniform-user_remember_me{
