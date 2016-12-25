@@ -62,9 +62,11 @@ class User < ActiveRecord::Base
   # Trips Locations
   def trips_locations
     locations = []
-    self.trips.each do |t|
-      locations << t.attributes
-    end
+      self.trips.each do |t|
+        locations << {
+          lat: t.lat, long: t.long, address: t.address, formated_address: (t.address.split(",").last.strip + ":" + t.start_date.strftime("%b %y"))
+        }
+      end  
     locations
   end
 

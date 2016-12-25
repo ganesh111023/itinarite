@@ -417,11 +417,10 @@ function initialize_map(markers){
         title: data.address
       });
 
-
       latlngbounds.extend(marker.position);
         (function (marker, data) {
         google.maps.event.addListener(marker, "click", function (e) {
-          infoWindow.setContent(data.address);
+          infoWindow.setContent(data.formated_address);
           infoWindow.open(map, marker);
         });
         })(marker, data);
@@ -472,6 +471,7 @@ function init_single_location_on_google(act_id, markers){
     var latlngbounds = new google.maps.LatLngBounds();
     for (i = 0; i < markers.length; i++) {
       var data = markers[i]
+      console.log(data);
       var myLatlng = new google.maps.LatLng(data.lat, data.long);
       lat_lng.push(myLatlng);
       var marker = new google.maps.Marker({

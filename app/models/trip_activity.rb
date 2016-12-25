@@ -29,7 +29,7 @@ class TripActivity < ActiveRecord::Base
 
   def location_as_json
     location = []
-    location << {lat: self.lat, long: self.long, address: self.place }
+    location << {lat: self.lat, long: self.long, address: self.place, formated_address: (self.place.split(",").last.strip + ":" + self.created_at.strftime("%b %y"))}
     location.to_json
   end
   

@@ -30,8 +30,8 @@ class Trip < ActiveRecord::Base
   def trip_locations_as_json
     locations = [] 
     #locations << self.as_json(only: [:addess, :lat,:long])
-    self.trip_activities.each do |trip_activity|
-      locations << { address: trip_activity.place, lat: trip_activity.lat, long: trip_activity.long }
+    self.trip_activities.each do |trip_activity| 
+     locations << { address: trip_activity.place, lat: trip_activity.lat, long: trip_activity.long }
     end
     locations
   end
