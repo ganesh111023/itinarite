@@ -12,7 +12,7 @@
 </div>
 <div class="chat-box-content">
   <% if @messages.any? %>
-      <%= render @messages %>
+      <%= render @messages,conversation_id: @conversation.id %>
   <% end %>
 </div>
 <div class="chat-box-input">

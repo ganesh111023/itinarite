@@ -1,0 +1,3 @@
+<% publish_to @channel do %>
+    $(".chat-box-content").append("<%= j render( partial: @message ) %>");
+<% end %>
