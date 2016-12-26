@@ -227,6 +227,9 @@
     $(".single-trip-add-com").locationpicker();
 
     $(".dpd1").datepicker({
+        onSelect: function(date) {
+          $(".dpd2").datepicker("setDate",$(".dpd1").datepicker('getDate'));
+        },
         dateFormat: "DD M d yy",
         changeMonth: true,
         yearRange: "-100:+0",
@@ -253,6 +256,21 @@
             }, 0);
         }
     });
+    // $(".dpd1").datepicker({
+
+    //     onSelect: function(){
+    //         alert();
+    //         var fecha = $(this).datepicker('getDate');
+
+    //         $(".dpd2").datepicker("setDate", new Date(fecha.getTime()));
+
+    //         $(".dpd1").datepicker("setDate", "+15d");
+
+    //     }
+
+    // });
+
+
     $(".act-date").datepicker({
         dateFormat: "DD M d yy",
         changeMonth: true,
