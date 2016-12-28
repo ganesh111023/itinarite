@@ -1,6 +1,6 @@
 <% publish_to @channel do %>
-    $(".chat-box-content").append("<%= j render( partial: @message ) %>");
+    $(".chat-box-content").append("<%= j render( partial: @message,locals: { conversation_id: @conversation.id } ) %>");
 <% end %>
 <% publish_to @channel1 do %>
-    $(".chat-box-content").append("<%= j render( partial: @message ) %>");
+    $(".chat-box-content").append("<%= j render( partial: @message, locals: { conversation_id: @conversation.id } ) %>");
 <% end %>

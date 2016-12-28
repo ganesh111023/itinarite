@@ -11,9 +11,10 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    message = @conversation.messages.find_by_id params[:id]
-    message.destroy
+    @message = @conversation.messages.find_by_id params[:id]
+    @message.destroy
     @channel = "/messages/private/#{@conversation.recipient_id}/#{@conversation.sender_id}"
+    @channel1 = "/messages/private/#{@conversation.sender_id}/#{@conversation.recipient_id}"
   end
 
   private

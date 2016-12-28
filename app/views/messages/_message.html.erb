@@ -6,7 +6,7 @@
 	  <div class="chatbox-message-content">
 
 	    <p><%= message.body %></p>
-	    <%= link_to "delete", conversation_message_path(conversation_id: conversation_id, id: message.id ), method: :delete, remote: true %>
+	    <%= link_to "delete", conversation_message_path(conversation_id: conversation_id, id: message.id ), method: :delete,remote: true  %>
 	 <!--  <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%d %b  %Y at %I:%M%p") %>">
 	      <%#= message_interlocutor(message).name %> • <%= message.created_at.strftime("%H:%M %p") %>
 	    </time> -->
