@@ -1,0 +1,6 @@
+$("#search_conv_user").val("");
+$.ajax({
+  type: 'GET',
+  url: "conversations/" + "<%= @conversation.id %>",
+  dataType: "script"
+});

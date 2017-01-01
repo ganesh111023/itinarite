@@ -1,0 +1,18 @@
+<%= form_tag(search_conversation_user_conversations_path, :method => "get", id: "search-conversation-user-form") do %>
+<!-- text field tag=action,args,identifier,placeholdertext... -->
+ 	<%= text_field_tag :search_conv_user, params[:search_conv_user], class: "form-control search", placeholder: "search user", type: "search" %>  
+<%end%>
+
+<script type="text/javascript">
+  $("#search_conv_user").autocomplete({
+    source : '/conversations/autocomplete_user_name',
+    minLength : 2,
+    select : function(event, ui) {
+      $.ajax({
+      	url: "<%= search_conversation_user_conversations_path %>",
+      	data: { id: ui.item.id, name: ui.item.label},
+      	dataType: 'script'
+      })
+    }
+  });
+</script>

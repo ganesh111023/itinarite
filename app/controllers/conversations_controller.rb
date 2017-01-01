@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
 	before_filter :authenticate_user!
+  autocomplete :user, :name, :display_value => :name_capitalize
 
   layout false, except: [:index]
 
@@ -9,12 +10,7 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
-      @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
-    else
-      @conversation = Conversation.create!(conversation_params)
-    end
-
+    find_or_create_conversation
     render json: { conversation_id: @conversation.id }
   end
 
@@ -25,6 +21,13 @@ class ConversationsController < ApplicationController
     @message = Message.new
   end
 
+  def search_conversation_user
+    user = User.find_by_id params[:id]
+    params[:sender_id] = current_user.id
+    params[:recipient_id] = user.id
+    find_or_create_conversation
+  end
+
   private
   def conversation_params
     params.permit(:sender_id, :recipient_id)
@@ -32,6 +35,14 @@ class ConversationsController < ApplicationController
 
   def interlocutor(conversation)
     current_user == conversation.recipient ? conversation.sender : conversation.recipient
+  end
+
+  def find_or_create_conversation
+    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
+      @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
+    else
+      @conversation = Conversation.create!(conversation_params)
+    end
   end
 end
 
