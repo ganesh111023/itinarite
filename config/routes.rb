@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     end
   end
   resources :conversations do
+    collection do
+      get :search_conversation_user
+      get :autocomplete_user_name
+    end
     resources :messages
   end
 
