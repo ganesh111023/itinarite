@@ -21,7 +21,7 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
     @reciever = interlocutor(@conversation)
-    @messages = @conversation.messages
+    @messages = @conversation.messages.select{|m| m if m.message_infos.available_message(current_user.id).present? }
     @message = Message.new
   end
 

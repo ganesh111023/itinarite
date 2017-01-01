@@ -5,8 +5,8 @@
 	  </div>
 	  <div class="chatbox-message-content">
 
-	    <p><%= message.body %></p>
-	    <%= link_to "delete", conversation_message_path(conversation_id: conversation_id, id: message.id ), method: :delete, remote: true %>
+	    <div style="float: left; min-width: 675px;"><%= message.body %></div>
+	    <div style="float: right; padding-right: 0px;"><%= link_to "delete", conversation_message_path(conversation_id: conversation_id, id: message.id ), method: :delete, remote: true  %></div>
 	 <!--  <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%d %b  %Y at %I:%M%p") %>">
 	      <%#= message_interlocutor(message).name %> • <%= message.created_at.strftime("%H:%M %p") %>
 	    </time> -->
