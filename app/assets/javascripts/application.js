@@ -31,7 +31,31 @@ $(function() {
 
 
 $(document).ready(function(){
-	 $("#spinner").hide();
+	$("#spinner").hide();
+	user_id = $('meta[name=user-id]').attr("content");
+	debugger	
+	current_path = window.location.pathname;
+	if(current_path == "/"){
+		$(".new_feed").addClass("active_link");
+	}
+	else if(current_path == "/trips"){
+		$(".my_trip").addClass("active_link");
+	}
+	else if(current_path == "/trips/new"){
+		$(".new_trip_m").addClass("active_link");
+	}
+	else if(current_path == "/conversations"){
+		$(".conv").addClass("active_link");
+	}
+	else if(current_path == "/future_trip"){
+		$(".future_trip").addClass("active_link");
+	}
+	else if(current_path == "/user_dashboard/"+ user_id +"/followers"){
+		$(".my_followers").addClass("active_link");
+	}
+	else if(current_path == "/user_dashboard/"+ user_id +"/following"){
+		$(".i_m_following").addClass("active_link");
+	}	
 });
 
 $(document).ajaxStart(function() {
@@ -40,8 +64,6 @@ $(document).ajaxStart(function() {
     $("#spinner").hide();
 });
 
-
-
 $(window).load(function() {
 	$("#spinner").fadeOut("slow");
-})
+});

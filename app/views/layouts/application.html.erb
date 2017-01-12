@@ -224,45 +224,51 @@
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
               <li>
-                  <a href="/">
+                  <a href="/" class="new_feed">
                       <i class="fa fa-dashboard"></i>
                       <span>New feeds</span>
                   </a>
               </li>
               <li>
-                  <a href="#;">
+                  <a href="javascript:void(0);" class="message">
                       <i class="fa fa-envelope-o"></i>
                       <span>Message</span>
                   </a>
               </li>
               <li>
-                  <a href="/user_dashboard/<%= current_user.id%>/followers">
+                  <a href="/user_dashboard/<%= current_user.id%>/followers" class="my_followers" >
                       <i class="fa fa-code-fork"></i>
                       <span> My Followers </span>
                   </a>
               </li>
                <li>
-                  <a href="/user_dashboard/<%= current_user.id%>/following">
+                  <a href="/user_dashboard/<%= current_user.id%>/following" class="i_m_following">
                       <i class="fa fa-code-fork"></i>
                       <span> I'm Following</span>
                   </a>
               </li>
               <li>
-                  <a href="/trips">
+                  <a href="/trips" class="my_trip" >
                   <i class="fa fa-car" aria-hidden="true"></i>
                       <span>My Trips</span>
                   </a>
               </li>
               <li>
-                <a href="/trips/new">
+                <a href="/trips/new" class="new_trip_m">
                 <i class="fa fa-bus" aria-hidden="true"></i>
                     <span>New Trip</span>
                 </a>
               </li>
               <li>
-                <a href="/conversations">
+                <a href="<%= conversations_path %>" class="conv" >
                 <i class="fa fa-comments" aria-hidden="true"></i>
                     <span>Conversation</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="future_trip">
+                <i class="fa fa-bus" aria-hidden="true"></i>
+                    <span>Future Trip</span>
                 </a>
               </li>
 

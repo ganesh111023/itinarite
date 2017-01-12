@@ -479,3 +479,10 @@ ul.ui-autocomplete{
   font-weight: 800px;
   font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+
+.active_link{
+  background: rgb(53,64,77) none repeat scroll 0 0;
+  color: white !important;
+  font-weight: 700;
+}
