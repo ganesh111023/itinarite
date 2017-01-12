@@ -22,4 +22,28 @@ module ApplicationHelper
     trip_activity.activity_date.strftime("%A %b %d %Y") unless trip_activity.new_record?
   end
 
+
+  def get_current_page_title
+    if params[:controller] == "user_dashboard" && params[:action] == "index"
+      "itinarite || News Feed"
+    elsif params[:controller] == "user_dashboard" && params[:action] == "followers"
+      "itinarite || Followers"
+    elsif params[:controller] == "user_dashboard" && params[:action] == "following"
+      "itinarite || Following"
+    elsif  params[:controller] == "user_dashboard" && params[:action] == "profile"
+      "itinarite || Profile"
+    elsif  params[:controller] == "registrations" && params[:action] == "edit"
+      "itinarite || Setting"
+    elsif params[:controller] == "trips" 
+      if params[:action] == "new"
+        "itinarite || New Trip"
+      else 
+        "itinarite || Trips"
+      end
+    elsif params[:controller] == "conversations" && params[:action] == "index"
+      "itinarite || conversations"
+    else
+      "itinarite || " + params[:controller].classify
+     end   
+  end
 end

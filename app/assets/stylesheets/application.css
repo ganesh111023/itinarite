@@ -13,3 +13,19 @@
  *= require_self
  *= require chat
  */
+
+
+.social-icons li{
+	list-style: none;
+}
+
+.social-icons li a i{
+	color: #fff;
+	width: 10px;
+}
+
+.social-icons li a span{
+	font-size: 18px;
+	padding-left: 8px;
+	color:white;
+}

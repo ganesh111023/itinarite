@@ -7,9 +7,9 @@
   <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
   <meta name="author" content="Mosaddek">
   <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <link rel="shortcut icon" href="/assets/favicon.png">
+  <link rel="shortcut icon" href="/assets/itinarite-logov.png" type="image/x-icon">
 
-  <title>Dashboard</title>
+  <title><%= get_current_page_title %></title>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
