@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {registrations: 'registrations'}
+  devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "callbacks"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rakeget routes".
 
+  #error pages
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#server_error'
+  get '/401', to: 'errors#unauthorized'
+  
   # You can have the root of your site routed with "root"
    root 'user_dashboard#index'
    get '/profile', to: 'user_dashboard#profile'

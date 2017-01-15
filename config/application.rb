@@ -11,6 +11,7 @@ Bundler.require(*Rails.groups)
 module Itinarite
   class Application < Rails::Application
     config.assets.enabled = true
+    config.exceptions_app = self.routes
     
     Dir.glob("#{Rails.root}/app/assets/fonts/**/*/").each do |path|
       config.assets.paths << path

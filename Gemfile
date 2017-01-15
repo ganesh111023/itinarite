@@ -51,6 +51,10 @@ gem 'private_pub'
 gem 'thin'
 # for aws cloud storage
 gem 'fog'
+
+#social media login facebook
+gem 'omniauth'
+gem 'omniauth-facebook'
     
 # Use Unicorn as the app server
 # gem 'unicorn'
