@@ -55,7 +55,9 @@ gem 'fog'
 #social media login facebook
 gem 'omniauth'
 gem 'omniauth-facebook'
-    
+gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
+gem 'omniauth-linkedin'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
           :rememberable, :trackable, :validatable, :timeoutable,
-          :omniauthable, :omniauth_providers => [:facebook] 
+          :omniauthable, :omniauth_providers => [:facebook, :twitter,:linkedin, :google ] 
   #mount uploader to upload photo
   mount_uploader :profile_picture, PhotoUploader
 
@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.password = Devise.friendly_token[0,20]
       user.email = auth.info.email
+      user.name = auth.info.name
       user.save(:validate => false)
     end
   end
