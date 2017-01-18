@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 	    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:address,
 	        :email, :password, :password_confirmation])
 	    devise_parameter_sanitizer.permit(:account_update,keys: [:name, :profile_picture,:address,
-	        :email, :password, :password_confirmation])
+	        :email, :password])
   	end
 
     def set_layout
