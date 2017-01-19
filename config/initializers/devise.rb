@@ -262,6 +262,22 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth
-   #Add your ID and secret here #ID first, secret second
+   #Add your ID and secret here #ID first, secret second #52.15.68.171
+   #Server callback and secret,keys
+
+   
    config.omniauth :facebook, "930934167042247", "53b286b3f740df0dcc66dd2af3cf1d87" ,callback_url: "http://52.15.68.171/users/auth/facebook/callback"
+   config.omniauth :twitter, "JXHNyK7XGuK3oODQPUAWq8wHj", "NHKQhF8q1TXQYAM3i2GXwYuQccOluAvNBsYSJSDa78iQxhJ8M0" ,callback_url: "http://localhost:52.15.68.171/users/auth/twitter/callback"
+   config.omniauth :linkedin, "811s5tu08d6qvs", "mK9xSX3rAaLDE2ZW" ,callback_url: "http://52.15.68.171/users/auth/linkedin/callback"
+   config.omniauth :google_oauth2, "945040186299-pl6pqvlr04tol8ialat3q6q5j6lt6kvm.apps.googleusercontent.com", "47qeRid2z4JVsnv8veU30lIL" ,callback_url: "http://52.15.68.171/users/auth/google_oauth2/callback"
+
+   #Local callback and secret,keys
+   # config.omniauth :facebook, "930934167042247", "53b286b3f740df0dcc66dd2af3cf1d87" ,callback_url: "http://localhost:3000/users/auth/facebook/callback"
+   # config.omniauth :twitter, "JXHNyK7XGuK3oODQPUAWq8wHj", "NHKQhF8q1TXQYAM3i2GXwYuQccOluAvNBsYSJSDa78iQxhJ8M0" ,callback_url: "http://localhost:3000/users/auth/twitter/callback"
+   # config.omniauth :linkedin, "811s5tu08d6qvs", "mK9xSX3rAaLDE2ZW" ,callback_url: "http://localhost:3000/users/auth/linkedin/callback"
+   # config.omniauth :google_oauth2, "945040186299-pl6pqvlr04tol8ialat3q6q5j6lt6kvm.apps.googleusercontent.com", "47qeRid2z4JVsnv8veU30lIL" ,callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
+
+
+   
+
 end

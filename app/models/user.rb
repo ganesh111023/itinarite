@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
           :rememberable, :trackable, :validatable, :timeoutable,
-          :omniauthable, :omniauth_providers => [:facebook, :twitter,:linkedin, :google ] 
+          :omniauthable, :omniauth_providers => [:facebook, :twitter,:linkedin, :google_oauth2 ] 
   #mount uploader to upload photo
   mount_uploader :profile_picture, PhotoUploader
 
@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :posts
   #conversation
   has_many :conversations, :foreign_key => :sender_id
+
+  has_many :social_providers
 
 
   #Accessor
@@ -74,17 +76,24 @@ class User < ActiveRecord::Base
     self.name.camelize
   end
 
-
- 
-   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.password = Devise.friendly_token[0,20]
-      user.email = auth.info.email
-      user.name = auth.info.name
-      user.save(:validate => false)
-    end
+  def create_social_provider(auth)
+    social_providers.create(provider: auth.provider, uid: auth.uid)
   end
 
+
+ 
+  def self.from_omniauth(auth)
+    if usr = where(email: auth.info.email).first
+      if user = usr.social_providers.where(provider: auth.provider, uid: auth.uid).present?
+         usr
+      else
+        usr.create_social_provider(auth)
+        usr
+      end
+    else
+      new_user = create(name: auth.info.name, email: auth.info.email, password: (Devise.friendly_token[0,20]) )
+      new_user.create_social_provider(auth)
+      new_user
+    end
+  end
 end
