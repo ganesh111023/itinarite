@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rakeget routes".
 
   #error pages
-  get '/404', to: 'errors#not_found'
-  get '/500', to: 'errors#server_error'
-  get '/401', to: 'errors#unauthorized'
+  # get '/404', to: 'errors#not_found'
+  # get '/500', to: 'errors#server_error'
+  # get '/401', to: 'errors#unauthorized'
   
   # You can have the root of your site routed with "root"
    root 'user_dashboard#index'
