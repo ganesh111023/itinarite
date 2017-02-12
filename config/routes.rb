@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
 
   resources :trips do
+    collection do 
+      get "future_trip"
+      post "create_future_trip"
+    end
     resources :comments
     resources :activities, only: [] do
       put "update_photo", to: 'trip_activities#update_photo'

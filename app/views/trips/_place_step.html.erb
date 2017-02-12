@@ -1,0 +1,140 @@
+ <div class="form-group ">
+ 	<label class="col-md-2">Trip Name :</label>
+      <div class="col-md-10 ">
+          <%= f.text_field :name, class: "form-control",required: :required , placeholder: "Trip Name" %></br >
+      </div>
+  </div>
+  
+  <div class="form-group">
+      <label class="col-md-2">Trip Description :</label>
+      <div class="col-md-10">
+          <%= f.text_area :description, class:"form-control",required: :required, placeholder: "Trip Description..." %></br>
+      </div>
+  </div>
+  <!-- <div class="form-group last">
+    <label class=" col-md-2">Add Image :</label>
+    <div class="col-md-10">
+      <div class="fileupload fileupload-new" data-provides="fileupload" style="margin-bottom: 10px;"">
+        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; border: none;">
+        </div>
+        <span class="btn btn-white btn-file">
+          <span class="fileupload-new">
+            <i class="fa fa-paper-clip"></i> Select image
+          </span>
+          <span class="fileupload-exists">
+            <i class="fa fa-undo"></i> Change
+          </span>
+          <%#= f.fields_for :pictures,  f.object.pictures.first || Picture.new do |ff| %>
+            <%#= ff.file_field :name  %>
+          <%# end %>
+          </span>
+          <a href="" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+        </span>
+      </div>
+    </div>
+  </div> -->
+  </br>
+
+<div class="form-group">
+  <label class="col-md-2">Where You go :</label>
+  <div class="col-md-4" style="margin-bottom:15px;">
+    <div class="col-md-12 location-search">
+      <%= f.text_field :address, class: "form-control", placeholder: "Type in an address", id: "map-geo",required: :required, style: "margin-left: -15px;"  %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group input-large" data-date="13/07/2013" data-date-format="mm/dd/yyyy">
+      <%= f.text_field :start_date, value: trip_start_date, class: "form-control future_trip_date_picker", placeholder:"Start Date",required: :required  %>
+      <span class="input-group-addon">To</span>
+      <%= f.text_field :end_date,value: trip_end_date, class: "form-control future_trip_date_picker future_end_date",placeholder: "End Date",required: :required  %>
+    </div> 
+  </div>
+  <div class="clearfix">
+    <div class="col-md-12">
+      <div class="input-control col-md-12 location-search">
+        <div class="map_canvas"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Model code start -->
+
+<div id="us6-dialog" class="modal fade" collling-obj ="" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Select Location</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal" style="width: 550px">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="us3-address" />
+                        <input type="hidden" class="form-control" name="radius" id="us3-radius" />
+                        <input type="hidden" class="form-control" name="street1" id="us3-street1" />
+                        <input type="hidden" class="form-control" name="city" id="us3-city" />
+                        <input type="hidden" class="form-control" name="state" id="us3-state" />
+                        <input type="hidden" class="form-control" name="zip" id="us3-zip" />
+                        <input type="hidden" class="form-control" name="country" id="us3-country" />
+                        <input type="hidden" class="form-control" name="country" id="us3-lat" />
+                        <input type="hidden" class="form-control" name="country" id="us3-lon" />
+                    </div>
+                </div>
+                <div id="us3" style="width: 100%; height: 400px;"></div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="clearfix"></div>
+                <script>
+                  function updateControls(addressComponents) {
+                      $('#us3-street1').val(addressComponents.addressLine1);
+                      $('#us3-city').val(addressComponents.city);
+                      $('#us3-state').val(addressComponents.stateOrProvince);
+                      $('#us3-zip').val(addressComponents.postalCode);
+                      $('#us3-country').val(addressComponents.country);
+                  }
+                  $('#us3').locationpicker({
+                    location: {
+                        latitude:  45.511646,
+                        longitude: -66.119438
+                    },
+                    radius: 10,
+                    inputBinding: {
+                        latitudeInput: $('#us3-lat'),
+                        longitudeInput: $('#us3-lon'),
+                        radiusInput: $('#us3-radius'),
+                        locationNameInput: $('#us3-address')
+                    },
+                     enableAutocomplete: true,
+                     addressFormat: 'addressLine1,city,postalCode,country',
+                    onchanged: function (currentLocation, radius, isMarkerDropped) {
+                        var addressComponents = $(this).locationpicker('map').location.addressComponents;
+                        updateControls(addressComponents);
+                    },
+                    oninitialized: function(component) {
+                        var addressComponents = $(component).locationpicker('map').location.addressComponents;
+                        updateControls(addressComponents);
+                    }
+                  });
+
+                    $('#us6-dialog').on('shown.bs.modal', function () {
+                        $('#us3').locationpicker('autosize');
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="location-suggestin">Drap and drop the location Pin to identify the location you were at.</p>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary google-map-selected-location">Save changes</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -242,6 +242,7 @@
             }, 0);
         }
     });
+    
 
     $(".dpd2").datepicker({
         dateFormat: "DD M d yy",
@@ -269,6 +270,24 @@
     //     }
 
     // });
+
+        
+    $(".future_trip_date_picker").datepicker({
+        onSelect: function(date) {
+          $(".future_end_date").datepicker("setDate",$(".future_trip_date_picker").datepicker('getDate'));
+        },
+        dateFormat: "DD M d yy",
+        changeMonth: true,
+        yearRange: "-100:+0",
+        changeYear: true,
+        // maxDate: new Date(),
+        showButtonPanel: false,
+        beforeShow: function() {
+            setTimeout(function() {
+                $('.ui-datepicker').css('z-index', 99999999999999);
+            }, 0);
+        }
+    });
 
 
     $(".act-date").datepicker({
@@ -509,3 +528,4 @@ function init_single_location_on_google(act_id, markers){
     map.setCenter(latlngbounds.getCenter());
     map.fitBounds(latlngbounds);
 }
+

@@ -1,0 +1,43 @@
+<div class="col-md-12 col-sm-12 col-lg-12">
+  <section class="panel">
+    <header class="panel-heading">
+        <h4><b>Say something about aour trip <%= session[:future_trip_steps] %> </b></h4>
+        <!-- <button data-target="#us6-dialog" data-toggle="modal">Click hear to open dialog</button> -->
+    </header>
+    <%= form_for @trip, url: create_future_trip_trips_path, method: :post do | f | %>
+    	<% if @trip.errors.any? %>
+          <div id="trip_error_explanation">
+            <ul>
+            <% @trip.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+      <% end %>
+    <fieldset>
+    	<%= render partial: "/trips/#{@trip.current_step}_step", locals: {:f => f } %>
+      <p><%= f.submit "Continue", class: "btn btn-primary pull-right" %></p>
+      <p><%= f.submit "previous_button", class: "btn btn-primary" unless @trip.first_step? %></p>
+    </fieldset>
+  <% end %>
+
+  </section>
+</div>
+<!-- <p><%#= link_to "Back to List", trips_path %></p> -->
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    // var markers = <%=raw @trip_location.to_json %>
+    window.onload = function () {
+      // if(markers.length > 0){
+      //   initialize_map(markers);
+      // }
+      // else {
+      //   initialize_full_map();
+      // }
+      initialize_full_map();
+    }
+  });
+</script>

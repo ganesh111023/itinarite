@@ -33,7 +33,6 @@ $(function() {
 $(document).ready(function(){
 	$("#spinner").hide();
 	user_id = $('meta[name=user-id]').attr("content");
-	debugger	
 	current_path = window.location.pathname;
 	if(current_path == "/"){
 		$(".new_feed").addClass("active_link");

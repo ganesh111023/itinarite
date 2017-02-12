@@ -1,0 +1,72 @@
+<div class="col-md-4 col-sm-12 col-lg-4" style="height: 500px; overflow-y: scroll;">
+    <h4><b>Trip-Activities</h4>
+    <%= f.fields_for :trip_activities, (f.object.trip_activities.present? ? f.object.trip_activities : TripActivity.new) do |t| %>
+        <div class="panel-body clearfix">
+          <div class="morning-activities clone">
+            <div class="col-md-12">  
+              <div class="form-group-margin place">
+                <label class=" ">What do you do ?</label>
+                <%= t.text_field :description, class:"form-control trip-morning-desc",required: :required , placeholder: "Provide a brief description of what you did" %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group-margin description">
+                <label class=" ">Where ?</label>
+                <%=t.text_field :place,class:"form-control geo-picker single-trip-add-com trip-morning-place", id: "morning-trip-place" ,placeholder: "Where ?",required: :required  %>
+                <%= t.hidden_field :activity_type, value: TripActivity::ACTIVITY_TYPE[0],class:"trip-morning-type" %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group-margin">
+                <label class=" ">Date</label>
+                <%=t.text_field :activity_date, value: trip_activity_date(t.object),class:"form-control geo-picker single-trip-add-com trip-morning-date act-date",placeholder: "Date" , required: :required %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group-margin">
+                <label class=" ">Activity Type</label>
+                <%= t.select(:activity_type, TripActivity::ACTIVITY_TYPE, :prompt => 'Select') %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="row add_morning">
+        <div class="col-md-12">
+          <div class="col-md-6">
+              <a id="add-activities" href="#;"> <i class="fa fa-plus"></i> Add Another Location
+              </a>
+          </div>
+          <div class="col-md-6">
+              <a id="remove-activities" href="#;"> <i class="fa fa-plus"></i> Remove Last Location
+              </a>
+          </div>
+        </div>
+      </div>  
+ 
+</div>
+
+<div class="col-md-8 col-sm-12 col-lg-8" style="min-height: 500px;" >
+  <div id="gmap_geocoding" class="gmaps"></div>
+</div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

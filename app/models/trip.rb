@@ -26,6 +26,8 @@ class Trip < ActiveRecord::Base
 
   after_validation :geocode, :if => lambda{ |obj| obj.address_changed? } 
 
+  attr_writer :current_step
+  attr_accessor :img_path
   # Instance methods
   def trip_locations_as_json
     locations = [] 
@@ -48,6 +50,29 @@ class Trip < ActiveRecord::Base
    self.comments.map(&:user).compact.map(&:name).uniq if self.comments.size > 0
   end
 
-
+  def current_step
+    @current_step || steps.first
+  end
   
+  def steps
+    %w[place activities]
+  end
+
+  def first_step?
+    self.current_step == steps.first
+  end
+
+  def next_step
+    self.current_step = steps[steps.index(current_step)+1]
+  end
+
+  def previous_step
+    self.current_step = steps[steps.index(current_step)-1]
+  end
+
+  def last_step?
+    current_step == steps.last
+  end
+
+
 end

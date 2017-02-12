@@ -12,14 +12,27 @@ module ApplicationHelper
   end
 
   def trip_start_date
-     @trip.start_date.strftime("%A %b %d %Y")  unless @trip.new_record?
+    unless @trip.new_record?
+      @trip.start_date.strftime("%A %b %d %Y") 
+    else
+      session[:future_trip_params]["start_date"]
+    end
   end
 
   def trip_end_date
-    @trip.end_date.strftime("%A %b %d %Y")  unless @trip.new_record?
+    unless @trip.new_record?
+      @trip.end_date.strftime("%A %b %d %Y") 
+    else
+      session[:future_trip_params]["start_date"]
+    end
   end
+
   def trip_activity_date trip_activity
-    trip_activity.activity_date.strftime("%A %b %d %Y") unless trip_activity.new_record?
+     unless trip_activity.new_record?
+        trip_activity.activity_date.strftime("%A %b %d %Y")
+      else
+        trip_activity.activity_date.strftime("%A %b %d %Y") if trip_activity.activity_date
+     end
   end
 
 
