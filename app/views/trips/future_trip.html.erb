@@ -1,7 +1,7 @@
 <div class="col-md-12 col-sm-12 col-lg-12">
   <section class="panel">
     <header class="panel-heading">
-        <h4><b>Say something about aour trip <%= session[:future_trip_steps] %> </b></h4>
+        <h4><b>Say something about your trip <%= session[:future_trip_steps] %> </b></h4>
         <!-- <button data-target="#us6-dialog" data-toggle="modal">Click hear to open dialog</button> -->
     </header>
     <%= form_for @trip, url: create_future_trip_trips_path, method: :post do | f | %>

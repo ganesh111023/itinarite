@@ -68,7 +68,7 @@ class TripsController < ApplicationController
       @trip.previous_step
     elsif @trip.last_step?
       @trip.save(validate: false)
-      flash[:notice] = "future_trip saved."
+      flash[:notice] = "future trip created."
     else
       @trip.next_step
     end
