@@ -60,8 +60,19 @@ class TripsController < ApplicationController
   
   def create_future_trip
     session[:future_trip_params].deep_merge!(params[:trip]) if params[:trip]
+    if params[:trip][:address].present?
+      session[:location] = []
+      address = Geocoder.search(params[:trip][:address])
+      lat = address[0].geometry["location"]["lat"]
+      lng = address[0].geometry["location"]["lng"]
+       session[:location]<< { address: address[0].formatted_address, lat: lat, long: lng }
+      @client = GooglePlaces::Client.new("AIzaSyABberdnSWBfbIwim19QNtzQnIuX-yJEww")
+      @client.spots(lat,lng, :type=> [:art_gallery,:zoo,:park,:night_club,:museum,:natural_feature]) 
+    end
+
     permited_params = ActionController::Parameters.new(session[:future_trip_params])
     permited_params.permit!
+
     @trip = current_user.trips.new(permited_params)
     @trip.current_step = session[:future_trip_steps]
     if params[:commit] == "previous_button" 
@@ -77,6 +88,7 @@ class TripsController < ApplicationController
     if @trip.new_record?
       render 'future_trip'
     else
+      session.delete(:location)
       session.delete(:future_trip_steps)
       session.delete(:future_trip_params)
       redirect_to trips_path

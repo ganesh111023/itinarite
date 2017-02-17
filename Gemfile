@@ -45,6 +45,8 @@ gem 'carrierwave-audio'
 gem 'jw_player_helper'
 # Geocode address
 gem 'geocoder'
+# google place
+gem 'google_places'
 gem 'remotipart', '~> 1.2'
 # Autocomplete
 gem 'rails4-autocomplete'

@@ -70,6 +70,10 @@ class Trip < ActiveRecord::Base
     self.current_step = steps[steps.index(current_step)-1]
   end
 
+  def activities_step?
+    self.current_step == "activities"
+  end
+
   def last_step?
     current_step == steps.last
   end
