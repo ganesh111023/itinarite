@@ -1,3 +1,18 @@
+
+<script type="text/javascript">
+  $(document).ready(function(){
+     var markers = <%=raw session[:location].to_json %>
+    window.onload = function () {
+      if(markers.length > 0){
+        initialize_map(markers);
+      }
+      else {
+        initialize_full_map();
+      }
+    }
+  });
+</script>
+
 <div class="col-md-4 col-sm-12 col-lg-4" style="height: 500px; overflow-y: scroll;">
     <h4><b>Trip-Activities</h4>
     <%= f.fields_for :trip_activities, (f.object.trip_activities.present? ? f.object.trip_activities : TripActivity.new) do |t| %>
@@ -50,6 +65,9 @@
 <div class="col-md-8 col-sm-12 col-lg-8" style="min-height: 500px;" >
   <div id="gmap_geocoding" class="gmaps"></div>
 </div
+
+
+
 
 
 

@@ -230,7 +230,7 @@
         onSelect: function(date) {
           $(".dpd2").datepicker("setDate",$(".dpd1").datepicker('getDate'));
         },
-        dateFormat: "DD M d yy",
+        dateFormat: "change_date_dicker_range M d yy",
         changeMonth: true,
         yearRange: "-100:+0",
         changeYear: true,
